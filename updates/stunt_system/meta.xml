@@ -1,0 +1,44 @@
+<meta>
+	<info author="Maxral" version="1.0.0" name="Stunt Arena System" description="Complete Stunt Arena Manager, HUD & Records System" type="script" />
+	<min_mta_version client="1.5.3" server="1.5.3" />
+	
+	<script src="shared.luac" type="shared" cache="false" />
+	<!-- Idiomas: lang_s.lua / lang_c.lua vem ANTES dos outros scripts (definem Ls / chatL e L / Lf / Lang).
+	     Os textos ficam em lang/*.xml (lidos pelo servidor e enviados aos clients). Para um idioma
+	     novo basta criar lang/xx.xml (copie o en.xml): não precisa listar aqui. -->
+	<script src="lang_s.luac" type="server" />
+	<script src="updater_s.luac" type="server" />
+	<script src="lang_c.luac" type="client" cache="false" />
+	<script src="markers_s.luac" type="server" />
+	<script src="markers_c.luac" type="client" cache="false" />
+	<script src="ui_c.luac" type="client" cache="false" />
+	<!-- Dropdown DX dos filtros do Gerenciador (mesmo arquivo do stunt_tools): depois do ui_c.lua -->
+	<script src="dropdown_dx_c.luac" type="client" cache="false" />
+	<script src="menu_stunts_c.luac" type="client" cache="false" />
+	<file src="completed.mp3" />
+	<file src="countdown.mp3" />
+	<file src="failed.mp3" />
+	<!-- feedback visual dos stunts de 3 segundos -->
+	<file src="countdown_1.png" />
+	<file src="countdown_2.png" />
+	<file src="countdown_3.png" />
+	<file src="failed_moving.png" />
+
+	<!-- Spawn Point (ped) + CV Zone (cylinder verde) das arenas [STUNTAGE] -->
+	<script src="zones_s.luac" type="server" />
+	<script src="zones_c.luac" type="client" cache="false" />
+
+	<!-- Mapa customizado no F11 + seta do jogador no radar e no mapa -->
+	<script src="map_c.luac" type="client" cache="false" />
+	<file src="map.png" />
+	<file src="localplayer.png" />
+	<!-- Seletor de fonte (mesmos arquivos do stunt_tools; sincronizado por "hub:fonte") -->
+	<file src="fonts/segoe.ttf" />
+	<file src="fonts/bahnschrift.ttf" />
+	<file src="fonts/calibri.ttf" />
+	<export function="canUseCV" type="server" />
+	<export function="requireCV" type="server" />
+	<export function="getArenaSpawn" type="server" />
+	<!-- integracao opcional (stunt_tools) -->
+	<export function="getStuntMaisProximo" type="client" />
+</meta>

@@ -1,0 +1,389 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  =====================================================================
+  stunt_system - LANGUAGE: English (reference + automatic fallback)
+  =====================================================================
+  HOW TO CREATE A NEW LANGUAGE (no script changes needed, works with .luac):
+    1. Copy this file (lang/en.xml) to lang/<code>.xml
+       (e.g. lang/es.xml, lang/ru.xml). Use the 2-letter ISO code.
+    2. Change code="..." (shown on the header button of the Manager Alt+F2, e.g. ES)
+       and name="..." (name shown in the footer on mouse hover, e.g. Español).
+    3. Translate ONLY the TEXT between the tags. Do NOT change the id="...".
+    4. Restart the resource (restart stunt_system). The language button shows up by
+       itself in the top-left corner of the Manager (Alt+F2): PT | EN | ES ...
+  RULES:
+    - Any key missing from your file falls back to this en.xml automatically
+      (the server console reports how many keys each language is missing).
+    - {nome}, {valor}, {tempo}, {n}... are values filled in by the script: keep them
+      in the text (you may move them inside the sentence). A "$" before them is the
+      money symbol, e.g. ${valor} -> $5000.
+    - #RRGGBB changes the text color in chat/HUD (e.g. #FF9900 = orange). Keep them.
+    - In XML, write &lt; for "<", &gt; for ">" and &amp; for "&".
+    - Spaces at the start/end of a text are ignored.
+  The chosen language is saved on the player's PC (stunt_lang.xml) and shared with
+  stunt_tools (when it is running on the server): changing it in one changes the other.
+  SERVER chat messages are sent in each player's own language.
+  =====================================================================
+-->
+<lang code="EN" name="English">
+
+    <!-- ============ GENERAL ============ -->
+    <!-- Alt+F2 footer when hovering a language button -->
+    <t id="ui.idioma_hover">Language: {nome}  •  click to use</t>
+    <!-- Chat when the resource loads -->
+    <t id="geral.iniciado">#00FF00* #FFFFFFScript Started</t>
+    <t id="geral.boas_vindas">#FF9900[Stunt System] #AAAAAAStarted! Press #FFFFFFAlt+F2 #AAAAAA(or #FFFFFF/stunts#AAAAAA) to open the Arena Manager and #FFFFFFF2 #AAAAAAto open the Map.</t>
+    <!-- Stunt that accepts any vehicle (panel / map and 3D text) -->
+    <t id="veic.qualquer">Any Vehicle</t>
+    <t id="veic.qualquer_curto">Any</t>
+
+    <!-- ============ STUNT ARENA MANAGER (Alt+F2 / /stunts) ============ -->
+    <t id="menu.titulo">Stunt Arena Manager</t>
+    <!-- Stats bar (orange labels, white values) -->
+    <t id="menu.barra">#FF9900ARENA: #FFFFFF{arena}  #FF9900|  Total: #FFFFFF{total}  #FF9900|  Tested: #FFFFFF{testados}  #FF9900|  In Testing: #FFFFFF{em_teste}  #FF9900|  My Completed: #FFFFFF{completos}  #FF9900|  Total Money: #FFFFFF${dinheiro}</t>
+    <t id="menu.sem_arena">No arena loaded</t>
+
+    <!-- Filters -->
+    <t id="filtro.pesquisar">Search (name, vehicle...):</t>
+    <t id="filtro.tipo">Type:</t>
+    <t id="filtro.status">Team status:</t>
+    <t id="filtro.dificuldade">Difficulty:</t>
+    <t id="filtro.progresso">My Progress:</t>
+    <t id="filtro.ordenar">Sort by:</t>
+    <t id="filtro.limpar">Clear filters</t>
+    <t id="filtro.todos">All</t>
+    <t id="filtro.todas">All</t>
+    <t id="filtro.em_teste">In Testing</t>
+    <t id="filtro.testados">Tested</t>
+    <t id="filtro.pendentes">Pending</t>
+    <t id="filtro.completos">Completed</t>
+    <t id="ord.nome_az">Name (A-Z)</t>
+    <t id="ord.nome_za">Name (Z-A)</t>
+    <t id="ord.maior">Highest Value ($)</t>
+    <t id="ord.menor">Lowest Value ($)</t>
+    <t id="ord.recentes">Newest</t>
+    <t id="ord.antigos">Oldest</t>
+
+    <!-- Stunt types (filter, Type column, info and messages) -->
+    <t id="tipo.touch">Touch</t>
+    <t id="tipo.3s">3 Seconds</t>
+    <t id="tipo.challenge">Challenge</t>
+
+    <!-- Table columns -->
+    <t id="col.nome">Stunt Name</t>
+    <t id="col.veiculo">Vehicle</t>
+    <t id="col.valor">Value</t>
+    <t id="col.tipo">Type</t>
+    <t id="col.status">Team Status</t>
+    <t id="col.testado_por">Tested by</t>
+    <t id="col.progresso">My Progress</t>
+    <!-- Values of the Team Status / My Progress columns -->
+    <t id="status.testado">TESTED</t>
+    <t id="status.em_teste">IN TESTING</t>
+    <t id="prog.completo">Completed</t>
+    <t id="prog.pendente">Pending</t>
+    <!-- "Tested by" of stunts tested before the audit system -->
+    <t id="menu.equipe_legado">Team</t>
+    <t id="menu.vazio_filtros">No stunt matches the filters.</t>
+    <t id="menu.carregando">Loading stunts from the server...</t>
+
+    <!-- Selected stunt info line -->
+    <t id="menu.info_vazio">Select a stunt in the list.</t>
+    <t id="menu.info_selecionado">Selected: {nome}  •  {veiculo}  •  ${valor} ({dificuldade})  •  {tipo}</t>
+    <t id="menu.info_testado_por">Tested by: {nome}</t>
+    <t id="menu.info_conta">[account: {conta}]</t>
+
+    <!-- Per-stunt notes (right-click on the list, staff) -->
+    <t id="obs.rotulo">Note:</t>
+    <t id="obs.menu_adicionar">Add Note</t>
+    <t id="obs.menu_editar">Edit Note</t>
+    <t id="obs.menu_remover">Remove Note</t>
+    <t id="obs.titulo">STUNT NOTE</t>
+    <t id="obs.stunt">Stunt: {nome}</t>
+    <t id="obs.confirmar">Confirm</t>
+    <t id="obs.cancelar">Cancel</t>
+    <t id="obs.srv_salva">#FFFFFFNote for stunt #FF9900{nome} #FFFFFFsaved.</t>
+    <t id="obs.srv_removida">#FFFFFFNote for stunt #FF9900{nome} #FFFFFFremoved.</t>
+    <t id="obs.srv_sem_perm">No permission: only staff can edit notes.</t>
+
+    <!-- Bottom buttons ({estado} = ON / OFF; {n} = seconds / amount) -->
+    <t id="menu.btn_sync">SYNC MAP</t>
+    <t id="menu.btn_sync_confirmar">CONFIRM SYNC? ({n}s)</t>
+    <t id="menu.btn_sync_remocao">CONFIRM REMOVAL ({n})</t>
+    <!-- Button name quoted in the server's critical alert -->
+    <t id="menu.btn_sync_remocao_nome">CONFIRM REMOVAL</t>
+    <t id="menu.btn_status">TESTED / IN TESTING</t>
+    <t id="menu.btn_testados">TESTED MARKERS: {estado}</t>
+    <t id="menu.btn_pendente">MARK AS PENDING</t>
+    <t id="menu.btn_config">SETTINGS</t>
+
+    <!-- Footer: default hint and each button's description (hover) -->
+    <t id="menu.rodape">Showing {n} of {total} stunts  •  /stunts or {tecla} to close  •  double click teleports</t>
+    <t id="menu.dica_sync">Reloads the stunts from the current map file and updates the list.</t>
+    <t id="menu.dica_status">Toggles the official status of the selected stunt between Tested and In Testing (Team).</t>
+    <t id="menu.dica_testados">Shows or hides on the map the markers of the stunts already tested by the team.</t>
+    <t id="menu.dica_pendente">Sets your personal progress on this stunt back to Pending, so you can do it again.</t>
+    <t id="menu.dica_config">Opens the side panel to configure difficulties ($) and the resource mode.</t>
+
+    <!-- Panel chat messages -->
+    <t id="menu.prefixo">[Panel]</t>
+    <t id="menu.msg_selecione">Select a stunt first.</t>
+    <t id="menu.msg_nao_completou">You have not completed this stunt yet.</t>
+    <t id="menu.msg_sem_perm_sync">No permission to sync the map.</t>
+    <t id="menu.msg_sincronizando">Syncing the map stunts with the database...</t>
+    <t id="menu.msg_remocao_confirmada">#FF4040Mass removal confirmed. #FFFFFFSyncing...</t>
+    <t id="menu.msg_roxo">Tested markers in purple: {estado}</t>
+
+    <!-- ============ DIFFICULTIES ============ -->
+    <!-- Short name (filter, info, messages) and full name (Settings window) -->
+    <t id="dif.1">Easy</t>
+    <t id="dif.2">Medium</t>
+    <t id="dif.3">Hard</t>
+    <t id="dif.4">Very Hard</t>
+    <t id="dif.5">Demonic</t>
+    <t id="dif.1_completo">Easy</t>
+    <t id="dif.2_completo">Medium</t>
+    <t id="dif.3_completo">Hard</t>
+    <t id="dif.4_completo">Very Hard</t>
+    <t id="dif.5_completo">Demonic</t>
+    <t id="dif.acima">above ${valor}</t>
+
+    <!-- ============ SETTINGS & DIFFICULTIES WINDOW ============ -->
+    <t id="cfg.titulo">Settings &amp; Difficulties</t>
+    <t id="cfg.intro">The color of the stunt name in the list shows its difficulty by value.</t>
+    <t id="cfg.col_dificuldade">Difficulty</t>
+    <t id="cfg.col_faixa">Current range</t>
+    <t id="cfg.col_teto">Cap ($)</t>
+    <t id="cfg.sem_teto">no cap</t>
+    <t id="cfg.dica">Caps must be increasing. Demonic = above the Very Hard cap.</t>
+    <t id="cfg.perm_editar">You can edit the caps. When saved, all online players are updated.</t>
+    <t id="cfg.perm_consulta">Read only: only the management can change the ranges.</t>
+    <t id="cfg.salvar">SAVE SETTINGS</t>
+    <t id="cfg.salvar_info">Saves the difficulty caps and updates all online players.</t>
+    <!-- Resource mode -->
+    <t id="cfg.modo_gamemode">MODE: FULL GAMEMODE</t>
+    <t id="cfg.modo_criador">MODE: CREATOR (PLUGIN)</t>
+    <t id="cfg.modo_confirmar">CONFIRM MODE CHANGE?</t>
+    <t id="cfg.modo_info_gamemode">Real money, account balance, RANKING on F2, ped spawns and CV Zone on /cv enabled.</t>
+    <t id="cfg.modo_info_criador">Plugin: creation tools only. No money, ranking, forced spawn or /cv block.</t>
+    <t id="cfg.modo_so_admin">Only Admin can change the resource mode.</t>
+    <!-- Visual theme -->
+    <t id="cfg.tema_classico">THEME: CLASSIC</t>
+    <t id="cfg.tema_moderno">THEME: MODERN</t>
+    <t id="cfg.tema_minimalista">THEME: MINIMALIST</t>
+    <t id="cfg.tema_hibrido">THEME: HYBRID</t>
+    <t id="cfg.tema_info">Click to switch the window look (also applies to stunt_tools).</t>
+    <t id="cfg.fonte_padrao">FONT: DEFAULT</t>
+    <t id="cfg.fonte_segoe">FONT: SEGOE UI</t>
+    <t id="cfg.fonte_bahnschrift">FONT: BAHNSCHRIFT</t>
+    <t id="cfg.fonte_calibri">FONT: CALIBRI</t>
+    <t id="cfg.fonte_info">Click to change the window text font (also applies to stunt_tools).</t>
+    <t id="cfg.reset_btn">RESET MY PROGRESS</t>
+    <t id="cfg.reset_confirmar">CONFIRM RESET?</t>
+    <t id="cfg.reset_info">Deletes only your completed stunts in this arena (team status and other players are unchanged).</t>
+    <t id="cfg.reset_nada">You have not completed any stunt in this arena yet.</t>
+    <t id="cfg.reset_ok">Your progress in arena {arena} has been reset.</t>
+    <!-- Messages (panel and server) -->
+    <t id="cfg.msg_sem_perm">No permission to change the difficulty ranges.</t>
+    <t id="cfg.msg_teto_invalido">Invalid {nome} cap: use a whole number greater than zero.</t>
+    <t id="cfg.msg_teto_crescente">The {nome} cap must be greater than the {anterior} cap.</t>
+    <t id="cfg.srv_invalida">Invalid difficulty settings.</t>
+    <t id="cfg.srv_teto_invalido">Invalid {nome} cap (use a whole number between 1 and {max}).</t>
+    <t id="cfg.srv_aguarde">Wait a few seconds before saving again.</t>
+    <t id="cfg.srv_salvas">Difficulty ranges saved: #AAAAAA{resumo}</t>
+    <!-- Mode change (chat of every player) -->
+    <t id="modo.alterado">#FF9900[Stunts] #FFFFFFResource mode changed to {modo} #FFFFFFby {nome}.</t>
+    <t id="modo.nome_gamemode">#00FF00FULL GAMEMODE</t>
+    <t id="modo.nome_criador">#FFA500CREATOR (PLUGIN)</t>
+
+    <!-- ============ MAP (F2) ============ -->
+    <t id="mapa.barra">#FF9900ARENA: #FFFFFF{arena}     #FF9900ARENA STUNTS: #FFFFFF{feitos}/{total}</t>
+    <t id="mapa.btn_veiculos">VEHICLES</t>
+    <t id="mapa.btn_stunts">STUNTS</t>
+    <t id="mapa.btn_ranking">RANKING</t>
+    <t id="mapa.toggle_marcados">Marked Only</t>
+    <t id="mapa.toggle_pulsante">Pulse Effect</t>
+    <!-- VEHICLES drawer -->
+    <t id="mapa.col_veiculo">Vehicle</t>
+    <t id="mapa.col_stunts">Stunts</t>
+    <t id="mapa.col_feitos">Done</t>
+    <t id="mapa.nenhum_carregado">No stunts loaded.</t>
+    <!-- STUNTS drawer -->
+    <t id="mapa.col_id">ID</t>
+    <t id="mapa.col_nome">Name</t>
+    <t id="mapa.col_dinheiro">Money</t>
+    <t id="mapa.nenhum_encontrado">No stunt found.</t>
+    <!-- Tooltip -->
+    <t id="mapa.tip_duplo_clique">(double click: teleport)</t>
+    <t id="mapa.tip_challenge">Challenge {n}s</t>
+    <t id="mapa.tip_completo">(completed)</t>
+    <t id="mapa.tip_cv_zone">CV Zone - click to go here</t>
+    <t id="mapa.rodape">F2 close  •  Scroll: zoom  •  Drag: move  •  Blue house icon: go to the CV Zone</t>
+    <!-- RANKING drawer -->
+    <t id="rank.aba_stunters">Top Stunters</t>
+    <t id="rank.aba_recordistas">Top Record Holders</t>
+    <t id="rank.col_jogador">Player</t>
+    <t id="rank.col_completos">Completed</t>
+    <t id="rank.col_dinheiro">Money</t>
+    <t id="rank.col_records">Records</t>
+    <t id="rank.carregando">Loading...</t>
+    <t id="rank.vazio_stunters">Nobody has completed stunts in this arena yet.</t>
+    <t id="rank.vazio_recordistas">No World Records in this arena yet.</t>
+
+    <!-- ============ CV ZONE ============ -->
+    <!-- On-screen notice (Play Mode) -->
+    <t id="zona.dentro">You are inside a vehicle zone</t>
+    <!-- /cv and /v block (server; the "[CV Zone]" prefix comes from the script) -->
+    <t id="cv.negado">You can only use /cv and /v inside the arena's CV Zone (green square).</t>
+    <t id="cv.em_movimento">Stop completely before changing or spawning a vehicle!</t>
+    <t id="cv.jogador_invalido">Invalid player.</t>
+    <!-- /cvdiag (diagnostics) -->
+    <t id="cvdiag.conta">#00FFFF[CV diag] #FFFFFFAccount: {conta} | Staff group: {grupo}</t>
+    <t id="cvdiag.zonas">#00FFFF[CV diag] #FFFFFFZones loaded: {n} | You: {x}, {y}, {z} (dim {dim}, int {int}) | Inside zone: {dentro}</t>
+    <t id="cvdiag.zona">#00FFFF[CV diag] #AAAAAA  zone #{i}: center {x}, {y}, {z} | side {lado} m | {info} | {estado}</t>
+    <t id="cvdiag.parado">#00FFFF[CV diag] #FFFFFFStopped/on ground: {estado}{extra}</t>
+    <t id="cvdiag.permitido">#00FFFF[CV diag] #FFFFFF/cv allowed now: {estado}</t>
+    <t id="cvdiag.convidado">guest</t>
+    <t id="cvdiag.nenhum">none</t>
+    <t id="cvdiag.sim">YES</t>
+    <t id="cvdiag.nao">NO</t>
+    <t id="cvdiag.dentro">INSIDE</t>
+    <t id="cvdiag.so_dim0">(only required in dim 0)</t>
+    <t id="cvdiag.motivo_dim">dimension {a} != {b}</t>
+    <t id="cvdiag.motivo_int">interior {a} != {b}</t>
+    <t id="cvdiag.motivo_x">outside on X ({a} &gt; {b})</t>
+    <t id="cvdiag.motivo_y">outside on Y ({a} &gt; {b})</t>
+    <t id="cvdiag.motivo_altura">outside on height ({a} &gt; {b})</t>
+    <t id="cvdiag.motivo_movimento">moving ({v})</t>
+    <t id="cvdiag.motivo_ar">in the air</t>
+
+    <!-- ============ MARKERS (3D text) ============ -->
+    <t id="marker.challenge">Challenge</t>
+    <t id="marker.world_record">World record: {tempo}</t>
+    <t id="marker.nenhum">None</t>
+    <t id="marker.por">by:</t>
+    <t id="marker.3s">3 Seconds</t>
+    <t id="marker.touch">Touch</t>
+
+    <!-- ============ STUNT / CHALLENGE COMPLETION (chat) ============ -->
+    <t id="stunt.concluido">#00FF00* #FFFFFFStunt #00FF00{nome} #FFFFFFcompleted! #00FF00+${valor}</t>
+    <!-- {veiculo} already comes colored: the vehicle name or stunt.veiculo_terrestre -->
+    <t id="stunt.veiculo_errado">#00FF00* #FFFFFFWRONG VEHICLE! YOU NEED {veiculo}#FFFFFF!</t>
+    <t id="stunt.veiculo_terrestre">a #FF0000land/sea vehicle (no planes/helicopters)</t>
+    <t id="chal.iniciou">#00FF00* #FFFFFFChallenge #00FF00{nome} #FFFFFFstarted! You have #00FF00{n} #FFFFFFseconds.</t>
+    <t id="chal.concluiu">#00FF00* #FFFFFFYou Have #00FF00Completed #FFFFFFThe Challenge in #00FF00{tempo}#FFFFFF!</t>
+    <t id="chal.falhou">#00FF00* #FFFFFFChallenge #FF0000Failed#FFFFFF: {motivo}!</t>
+    <t id="chal.motivo_veiculo">You left/changed vehicle</t>
+    <t id="chal.motivo_tempo">Time is up</t>
+    <t id="chal.motivo_teleporte">Teleport detected</t>
+    <t id="chal.hud_checkpoint">Checkpoint {atual}/{total}</t>
+    <!-- World Record (chat of every player) -->
+    <t id="rec.novo">#FF6600[Challenge] #FFFFFFNew World Record on #2B7FFF{nome}#FFFFFF: #00FF00{tempo} #FFFFFFby #FF6600{jogador}#FFFFFF!</t>
+    <!-- First-completion payment (the green "* " comes from the script) -->
+    <t id="pag.recebido">+#00FF00${valor} #FFFFFFfor #2B7FFF{nome}#FFFFFF!</t>
+
+    <!-- ============ TELEPORT FROM PANEL / MAP (server) ============ -->
+    <t id="tp.sem_perm">No permission to teleport through the panel.</t>
+    <t id="tp.veiculo_trocado">Vehicle changed to {veiculo} (required by the stunt).</t>
+    <t id="tp.veiculo_criado">Vehicle {veiculo} created for the stunt.</t>
+    <t id="tp.exige_veiculo">Warning: this stunt requires {veiculo} ({id}).</t>
+    <t id="tp.qualquer_veiculo">This stunt accepts any vehicle (except planes/helicopters). Grab one to test.</t>
+    <t id="tp.challenge">Teleported to the start of challenge '{nome}'. Drive through the blue marker to begin.</t>
+    <t id="tp.ok">Teleported to '{nome}'.</t>
+    <!-- teleport from the Map Editor editing camera (client) -->
+    <t id="tp.editor_janela">Close the editor window (Browse... / Properties) before teleporting.</t>
+    <t id="tp.editor_saindo">Leaving edit mode for test mode before teleporting...</t>
+    <t id="tp.editor_timeout">Could not leave edit mode. Press F5 and try teleporting again.</t>
+
+    <!-- ============ TEAM STATUS (server) ============ -->
+    <t id="status.srv_sem_perm">No permission to change the team status.</t>
+    <t id="status.srv_login">Log in to your account (/login) to change the test status.</t>
+    <!-- {status} already comes colored (TESTED / IN TESTING) -->
+    <t id="status.srv_marcado">'{nome}' marked as {status}#FFFFFF.</t>
+
+    <!-- ============ MAP SYNC (server) ============ -->
+    <t id="sync.aguarde">Wait a few seconds before syncing again.</t>
+    <t id="sync.editor_carregando">Sync cancelled: the Map Editor is still loading the map ({mapa}). Wait for it to finish and click again.</t>
+    <t id="sync.sem_stunts">Sync cancelled: no stunts loaded on the map.</t>
+    <t id="sync.sem_nome">Warning: the map open in the Map Editor has no name yet. Save the map (e.g. [STUNTAGE]MyArena) or use /stuntarena [name]; until then the stunts stay in '{arena}'.</t>
+    <t id="sync.confirmacao_expirada">Removal confirmation expired. Click SYNC MAP again.</t>
+    <t id="sync.falhou">Sync failed; no changes were made.</t>
+    <t id="sync.alerta_critico">#FF2020[CRITICAL ALERT] #FFFFFFThis sync will #FF2020REMOVE {n} stunts #FFFFFFfrom arena {arena} (more than 10% of {total})! Click '#FF2020{botao}#FFFFFF' again within {tempo} seconds if you are absolutely sure.</t>
+    <t id="sync.remocoes_mudaram">The number of removals changed since the last confirmation (it was {n}).</t>
+    <t id="sync.resumo">[Sync {arena}] Added: {adicionados} | Updated/Renamed: {atualizados} | Removed: {removidos} #AAAAAA({total} stunts on the map)</t>
+    <t id="sync.duplicados">#FFA500[Sync] {n} stunt(s) with a repeated name on the map. Delete the old copies in the editor:</t>
+    <t id="sync.duplicados_mais">#AAAAAA  ... and {n} more (use /stuntdiag name)</t>
+    <t id="sync.duplicado_usado">#FFFFFF  {nome} #00FF00used: {copia}</t>
+    <t id="sync.duplicado_ignorado">#FF6666      ignored: {copia}</t>
+
+    <!-- ============ COMMANDS (server) ============ -->
+    <t id="cmd.sem_arena">No stunt arena loaded at the moment.</t>
+    <t id="cmd.reset_uso">Usage: /resetstunt [name] [all]</t>
+    <t id="cmd.reset_so_admin">Only admins can reset a stunt for every player.</t>
+    <t id="cmd.reset_nenhum_registro">No records found for '{nome}' in this arena.</t>
+    <t id="cmd.reset_todos_ok">Stunt '{nome}' reset for everyone ({n} records).</t>
+    <t id="cmd.reset_nao_completou">You have not completed any stunt named '{nome}' in this arena.</t>
+    <t id="cmd.reset_ok">Stunt '{nome}' reset.</t>
+    <t id="cmd.reset_all_ok">All your stunts in arena {arena} have been reset.</t>
+    <t id="cmd.reset_um_ok">Your progress on this stunt has been reset.</t>
+    <!-- /stuntarena -->
+    <t id="cmd.arena_ativa">Active arena: #A020F0{arena}{extra}</t>
+    <t id="cmd.arena_nenhuma">none</t>
+    <t id="cmd.arena_forcada">#AAAAAA(forced name: {nome})</t>
+    <t id="cmd.arena_editor">#AAAAAA(Map Editor via {fonte})</t>
+    <t id="cmd.arena_sem_perm">No permission to change the arena.</t>
+    <t id="cmd.arena_auto">Automatic arena detection restored.</t>
+    <t id="cmd.arena_longo">Arena name too long.</t>
+    <t id="cmd.arena_definida">Maps without [STUNTAGE] now use the arena '#A020F0{nome}#FFFFFF'.</t>
+    <!-- /stuntdiag -->
+    <t id="diag.uso">Usage: /stuntdiag [stunt name]</t>
+    <t id="diag.arena">#00FFFF[diag] #FFFFFFActive arena: {arena} | Editor -&gt; {editor}{fonte}</t>
+    <t id="diag.copia">#00FFFF[diag] {tag}#FFFFFF {copia} | arena: {arena}</t>
+    <t id="diag.tag_usado">[USED]</t>
+    <t id="diag.tag_ignorado">[IGNORED]</t>
+    <t id="diag.tag_fora">[OUTSIDE THE ARENA]</t>
+    <t id="diag.nenhum">#00FFFF[diag] #FFFFFFNo marker with that name on the server.</t>
+    <t id="diag.banco">#00FFFF[diag] #FFFFFFDatabase: {dados}</t>
+    <t id="diag.nao_cadastrado">not registered</t>
+
+    <!-- ============ /mvs (stunt filter by vehicle; "[Stunts]" prefix from the script) ============ -->
+    <t id="mvs.removido">Vehicle filter removed.</t>
+    <t id="mvs.uso">No filter active. Usage: /mvs [vehicle id or name] | /mvs any | /mvs off</t>
+    <t id="mvs.id_invalido">Invalid vehicle ID: {id} (use 400 to 611).</t>
+    <t id="mvs.nome_invalido">Invalid vehicle name.</t>
+    <t id="mvs.nenhum">No vehicle found for '{busca}'.</t>
+    <t id="mvs.varios">Several vehicles found: {lista}. Be more specific.</t>
+    <t id="mvs.marcados_qualquer">Marked {n} any-vehicle stunts in orange. Use /mvs off to clear.</t>
+    <t id="mvs.marcados">Marked {n} {veiculo} (ID: {id}) stunts in orange{extra}. Use /mvs off to clear.</t>
+    <t id="mvs.extra_qualquer">(+{n} that accept any vehicle)</t>
+
+    <!-- ============ /mark (track a player; "[Radar]" prefix from the script) ============ -->
+    <t id="mark.removido">Mark on {nome} removed.</t>
+    <t id="mark.uso">No player marked. Usage: /mark [id or name] | /mark off</t>
+    <t id="mark.nenhum">No player found for '{busca}'.</t>
+    <t id="mark.varios">Several players found: {lista}. Be more specific.</t>
+    <t id="mark.si_mesmo">You cannot mark yourself.</t>
+    <t id="mark.marcando">Marking player {nome} on the map (cyan). Use /mark off to remove.</t>
+    <t id="mark.saiu">The marked player ({nome}) left the server. Mark removed.</t>
+
+    <!-- ============ /blipsize ============ -->
+    <t id="blips.tamanho_invalido">#FF6969[BLIPS] #FF0000YOU HAVE TO SPECIFY A VALID SIZE! (1-25)</t>
+    <t id="blips.tamanho_ok">#FF6969[BLIPS] #FF8900BLIPS SIZE SET TO #FFFFFF{n} #FF8900SUCCESSFULLY!</t>
+
+    <!-- ============ AUTO-UPDATE (updater_s.lua) ============ -->
+    <t id="upd.selo_nova">New version available</t>
+    <t id="upd.nova_disponivel">#FF9900[{nome}] #FFFFFFNew version available: #FFCC00v{nova} #AAAAAA(installed: v{atual})</t>
+    <t id="upd.changelog">#AAAAAAChanges: #FFFFFF{texto}</t>
+    <t id="upd.como_atualizar">#AAAAAAUse #FFFFFF/{cmd} #AAAAAAto update or download manually at #8FD3FF{url}</t>
+    <t id="upd.sem_admin">#FF6969Only Admins (ACL Admin) can update.</t>
+    <t id="upd.ocupado">#FFAA00A check/update is already in progress.</t>
+    <t id="upd.atualizado">#00FF00You are already on the latest version (v{atual}).</t>
+    <t id="upd.falha_checar">#FFAA00Could not reach GitHub right now (no internet, GitHub down or missing function.fetchRemote permission).</t>
+    <t id="upd.manifesto_invalido">#FF6969The version manifest is invalid. Nothing was changed.</t>
+    <t id="upd.baixando">#8FD3FFDownloading v{nova} ({n} files)...</t>
+    <t id="upd.erro_download">#FF6969Failed to download {arquivo}. Nothing was changed.</t>
+    <t id="upd.erro_backup">#FF6969Could not create the backup. Nothing was changed.</t>
+    <t id="upd.erro_gravar">#FF6969Failed to write {arquivo}. The backup was restored.</t>
+    <t id="upd.sucesso">#00FF00[{nome}] Updated to v{nova}! Backup in {pasta}. Restarting the resource...</t>
+    <t id="upd.reinicie">#FFAA00Restart manually with /restart {recurso}.</t>
+</lang>

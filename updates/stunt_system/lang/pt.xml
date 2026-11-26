@@ -1,0 +1,389 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  =====================================================================
+  stunt_system - IDIOMA: Português (BR)
+  =====================================================================
+  COMO CRIAR UM IDIOMA NOVO (não precisa mexer em nenhum script, funciona com .luac):
+    1. Copie o lang/en.xml (o inglês é a referência) para lang/<código>.xml
+       (ex.: lang/es.xml, lang/ru.xml). Use o código ISO de 2 letras.
+    2. Troque code="..." (aparece no botão do cabeçalho do Gerenciador Alt+F2, ex.: ES)
+       e name="..." (nome mostrado no rodapé ao passar o mouse, ex.: Español).
+    3. Traduza só o TEXTO entre as tags. NÃO altere os id="...".
+    4. Reinicie o resource (restart stunt_system). O botão do idioma aparece sozinho
+       no canto superior esquerdo do Gerenciador (Alt+F2): PT | EN | ES ...
+  REGRAS:
+    - Chave que faltar no seu arquivo usa o texto do en.xml automaticamente
+      (o console do servidor mostra quantas chaves faltam em cada idioma).
+    - {nome}, {valor}, {tempo}, {n}... são valores preenchidos pelo script: mantenha-os
+      no texto (pode mudar a posição deles na frase). Um "$" antes deles é o símbolo
+      de dinheiro, ex.: ${valor} -> $5000.
+    - #RRGGBB muda a cor do texto no chat/HUD (ex.: #FF9900 = laranja). Pode manter.
+    - Em XML, escreva &lt; para "<", &gt; para ">" e &amp; para "&".
+    - Espaços no começo/fim de um texto são ignorados.
+  O idioma escolhido fica salvo no PC do jogador (stunt_lang.xml) e é compartilhado com o
+  stunt_tools (se estiver rodando no servidor): trocar em um troca no outro.
+  As mensagens de chat do SERVIDOR saem no idioma de cada jogador.
+  =====================================================================
+-->
+<lang code="PT" name="Português (BR)">
+
+    <!-- ============ GERAL ============ -->
+    <!-- Rodapé do Alt+F2 ao passar o mouse num botão de idioma -->
+    <t id="ui.idioma_hover">Idioma: {nome}  •  clique para usar</t>
+    <!-- Chat ao carregar o resource -->
+    <t id="geral.iniciado">#00FF00* #FFFFFFScript iniciado</t>
+    <t id="geral.boas_vindas">#FF9900[Stunt System] #AAAAAAIniciado! Pressione #FFFFFFAlt+F2 #AAAAAA(ou #FFFFFF/stunts#AAAAAA) para abrir o Gerenciador da Arena e #FFFFFFF2 #AAAAAApara abrir o Mapa.</t>
+    <!-- Stunt que aceita qualquer veículo (painel / mapa e texto 3D) -->
+    <t id="veic.qualquer">Qualquer Veículo</t>
+    <t id="veic.qualquer_curto">Qualquer</t>
+
+    <!-- ============ GERENCIADOR DA ARENA DE STUNTS (Alt+F2 / /stunts) ============ -->
+    <t id="menu.titulo">Gerenciador da Arena de Stunts</t>
+    <!-- Barra de estatísticas (rótulos laranja, valores brancos) -->
+    <t id="menu.barra">#FF9900ARENA: #FFFFFF{arena}  #FF9900|  Total: #FFFFFF{total}  #FF9900|  Testados: #FFFFFF{testados}  #FF9900|  Em Teste: #FFFFFF{em_teste}  #FF9900|  Meus Completos: #FFFFFF{completos}  #FF9900|  Total Money: #FFFFFF${dinheiro}</t>
+    <t id="menu.sem_arena">Nenhuma arena carregada</t>
+
+    <!-- Filtros -->
+    <t id="filtro.pesquisar">Pesquisar (nome, veículo...):</t>
+    <t id="filtro.tipo">Tipo:</t>
+    <t id="filtro.status">Status da equipe:</t>
+    <t id="filtro.dificuldade">Dificuldade:</t>
+    <t id="filtro.progresso">Meu Progresso:</t>
+    <t id="filtro.ordenar">Ordenar por:</t>
+    <t id="filtro.limpar">Limpar filtros</t>
+    <t id="filtro.todos">Todos</t>
+    <t id="filtro.todas">Todas</t>
+    <t id="filtro.em_teste">Em Teste</t>
+    <t id="filtro.testados">Testados</t>
+    <t id="filtro.pendentes">Pendentes</t>
+    <t id="filtro.completos">Completos</t>
+    <t id="ord.nome_az">Nome (A-Z)</t>
+    <t id="ord.nome_za">Nome (Z-A)</t>
+    <t id="ord.maior">Maior Valor ($)</t>
+    <t id="ord.menor">Menor Valor ($)</t>
+    <t id="ord.recentes">Mais Recentes</t>
+    <t id="ord.antigos">Mais Antigos</t>
+
+    <!-- Tipos de stunt (filtro, coluna Tipo, info e mensagens) -->
+    <t id="tipo.touch">Touch</t>
+    <t id="tipo.3s">3 Segundos</t>
+    <t id="tipo.challenge">Challenge</t>
+
+    <!-- Colunas da tabela -->
+    <t id="col.nome">Nome do Stunt</t>
+    <t id="col.veiculo">Veículo</t>
+    <t id="col.valor">Valor</t>
+    <t id="col.tipo">Tipo</t>
+    <t id="col.status">Status Equipe</t>
+    <t id="col.testado_por">Testado por</t>
+    <t id="col.progresso">Meu Progresso</t>
+    <!-- Valores das colunas Status Equipe / Meu Progresso -->
+    <t id="status.testado">TESTADO</t>
+    <t id="status.em_teste">EM TESTE</t>
+    <t id="prog.completo">Completo</t>
+    <t id="prog.pendente">Pendente</t>
+    <!-- "Testado por" de stunts testados antes do sistema de auditoria -->
+    <t id="menu.equipe_legado">Equipe</t>
+    <t id="menu.vazio_filtros">Nenhum stunt corresponde aos filtros.</t>
+    <t id="menu.carregando">Carregando stunts do servidor...</t>
+
+    <!-- Linha de informação do stunt selecionado -->
+    <t id="menu.info_vazio">Selecione um stunt na lista.</t>
+    <t id="menu.info_selecionado">Selecionado: {nome}  •  {veiculo}  •  ${valor} ({dificuldade})  •  {tipo}</t>
+    <t id="menu.info_testado_por">Testado por: {nome}</t>
+    <t id="menu.info_conta">[conta: {conta}]</t>
+
+    <!-- Observações individuais por stunt (clique direito na lista, Equipe) -->
+    <t id="obs.rotulo">Observação:</t>
+    <t id="obs.menu_adicionar">Adicionar Observação</t>
+    <t id="obs.menu_editar">Editar Observação</t>
+    <t id="obs.menu_remover">Remover Observação</t>
+    <t id="obs.titulo">OBSERVAÇÃO DO STUNT</t>
+    <t id="obs.stunt">Stunt: {nome}</t>
+    <t id="obs.confirmar">Confirmar</t>
+    <t id="obs.cancelar">Cancelar</t>
+    <t id="obs.srv_salva">#FFFFFFObservação do stunt #FF9900{nome} #FFFFFFsalva.</t>
+    <t id="obs.srv_removida">#FFFFFFObservação do stunt #FF9900{nome} #FFFFFFremovida.</t>
+    <t id="obs.srv_sem_perm">Sem permissão: apenas a equipe pode editar observações.</t>
+
+    <!-- Botões inferiores ({estado} = ON / OFF; {n} = segundos / quantidade) -->
+    <t id="menu.btn_sync">SINCRONIZAR MAPA</t>
+    <t id="menu.btn_sync_confirmar">CONFIRMAR SYNC? ({n}s)</t>
+    <t id="menu.btn_sync_remocao">CONFIRMAR REMOÇÃO ({n})</t>
+    <!-- Nome do botão citado no alerta crítico do servidor -->
+    <t id="menu.btn_sync_remocao_nome">CONFIRMAR REMOÇÃO</t>
+    <t id="menu.btn_status">TESTADO / EM TESTE</t>
+    <t id="menu.btn_testados">MARKERS TESTADOS: {estado}</t>
+    <t id="menu.btn_pendente">MARCAR PENDENTE</t>
+    <t id="menu.btn_config">CONFIGURAÇÕES</t>
+
+    <!-- Rodapé: dica padrão e descrição de cada botão (hover) -->
+    <t id="menu.rodape">Exibindo {n} de {total} stunts  •  /stunts ou {tecla} para fechar  •  duplo clique teleporta</t>
+    <t id="menu.dica_sync">Recarrega os stunts do arquivo do mapa atual e atualiza a lista.</t>
+    <t id="menu.dica_status">Alterna o status oficial do stunt selecionado entre Testado e Em Teste (Equipe).</t>
+    <t id="menu.dica_testados">Mostra ou oculta no mapa os markers dos stunts que já foram testados pela equipe.</t>
+    <t id="menu.dica_pendente">Volta o seu progresso pessoal deste stunt para Pendente, permitindo refazê-lo.</t>
+    <t id="menu.dica_config">Abre o painel lateral para configurar dificuldades ($) e o modo do resource.</t>
+
+    <!-- Mensagens do painel no chat -->
+    <t id="menu.prefixo">[Painel]</t>
+    <t id="menu.msg_selecione">Selecione um stunt primeiro.</t>
+    <t id="menu.msg_nao_completou">Você ainda não completou este stunt.</t>
+    <t id="menu.msg_sem_perm_sync">Sem permissão para sincronizar o mapa.</t>
+    <t id="menu.msg_sincronizando">Sincronizando stunts do mapa com o banco...</t>
+    <t id="menu.msg_remocao_confirmada">#FF4040Remoção em massa confirmada. #FFFFFFSincronizando...</t>
+    <t id="menu.msg_roxo">Markers testados em roxo: {estado}</t>
+
+    <!-- ============ DIFICULDADES ============ -->
+    <!-- Nome curto (filtro, info, mensagens) e nome completo (janela Configurações) -->
+    <t id="dif.1">Easy</t>
+    <t id="dif.2">Medium</t>
+    <t id="dif.3">Hard</t>
+    <t id="dif.4">Very Hard</t>
+    <t id="dif.5">Demonic</t>
+    <t id="dif.1_completo">Easy (Fácil)</t>
+    <t id="dif.2_completo">Medium (Médio)</t>
+    <t id="dif.3_completo">Hard (Difícil)</t>
+    <t id="dif.4_completo">Very Hard (Muito Difícil)</t>
+    <t id="dif.5_completo">Demonic (Demoníaco)</t>
+    <t id="dif.acima">acima de ${valor}</t>
+
+    <!-- ============ JANELA CONFIGURAÇÕES & DIFICULDADES ============ -->
+    <t id="cfg.titulo">Configurações &amp; Dificuldades</t>
+    <t id="cfg.intro">A cor do nome do stunt na lista indica a dificuldade pelo valor.</t>
+    <t id="cfg.col_dificuldade">Dificuldade</t>
+    <t id="cfg.col_faixa">Faixa atual</t>
+    <t id="cfg.col_teto">Teto ($)</t>
+    <t id="cfg.sem_teto">sem teto</t>
+    <t id="cfg.dica">Os tetos devem ser crescentes. Demonic = acima do teto de Very Hard.</t>
+    <t id="cfg.perm_editar">Você pode editar os tetos. Ao salvar, todos os jogadores online são atualizados.</t>
+    <t id="cfg.perm_consulta">Somente consulta: apenas a gerência pode alterar as faixas.</t>
+    <t id="cfg.salvar">SALVAR CONFIGURAÇÃO</t>
+    <t id="cfg.salvar_info">Grava os tetos de dificuldade e atualiza todos os jogadores online.</t>
+    <!-- Modo do resource -->
+    <t id="cfg.modo_gamemode">MODO: GAMEMODE COMPLETO</t>
+    <t id="cfg.modo_criador">MODO: CRIADOR (PLUGIN)</t>
+    <t id="cfg.modo_confirmar">CONFIRMAR ALTERAÇÃO DE MODO?</t>
+    <t id="cfg.modo_info_gamemode">Dinheiro real, saldo na conta, RANKING no F2, spawn nos peds e CV Zone no /cv ativos.</t>
+    <t id="cfg.modo_info_criador">Plugin: só ferramentas de criação. Sem dinheiro, ranking, spawn forçado ou bloqueio do /cv.</t>
+    <t id="cfg.modo_so_admin">Somente Admin pode alterar o modo do resource.</t>
+    <!-- Tema visual -->
+    <t id="cfg.tema_classico">TEMA: CLÁSSICO</t>
+    <t id="cfg.tema_moderno">TEMA: MODERNO</t>
+    <t id="cfg.tema_minimalista">TEMA: MINIMALISTA</t>
+    <t id="cfg.tema_hibrido">TEMA: HÍBRIDO</t>
+    <t id="cfg.tema_info">Clique para alternar o visual das janelas (também vale para o stunt_tools).</t>
+    <t id="cfg.fonte_padrao">FONTE: PADRÃO</t>
+    <t id="cfg.fonte_segoe">FONTE: SEGOE UI</t>
+    <t id="cfg.fonte_bahnschrift">FONTE: BAHNSCHRIFT</t>
+    <t id="cfg.fonte_calibri">FONTE: CALIBRI</t>
+    <t id="cfg.fonte_info">Clique para trocar a fonte do texto das janelas (também vale para o stunt_tools).</t>
+    <t id="cfg.reset_btn">RESETAR MEU PROGRESSO</t>
+    <t id="cfg.reset_confirmar">CONFIRMAR RESET?</t>
+    <t id="cfg.reset_info">Apaga apenas os seus stunts completos nesta arena (o status da equipe e os outros jogadores não mudam).</t>
+    <t id="cfg.reset_nada">Você ainda não completou nenhum stunt nesta arena.</t>
+    <t id="cfg.reset_ok">Seu progresso na arena {arena} foi resetado.</t>
+    <!-- Mensagens (painel e servidor) -->
+    <t id="cfg.msg_sem_perm">Sem permissão para alterar as faixas de dificuldade.</t>
+    <t id="cfg.msg_teto_invalido">Teto de {nome} inválido: use um número inteiro maior que zero.</t>
+    <t id="cfg.msg_teto_crescente">O teto de {nome} precisa ser maior que o de {anterior}.</t>
+    <t id="cfg.srv_invalida">Configuração de dificuldades inválida.</t>
+    <t id="cfg.srv_teto_invalido">Teto de {nome} inválido (use um inteiro entre 1 e {max}).</t>
+    <t id="cfg.srv_aguarde">Aguarde alguns segundos antes de salvar novamente.</t>
+    <t id="cfg.srv_salvas">Faixas de dificuldade salvas: #AAAAAA{resumo}</t>
+    <!-- Troca de modo (chat de todos os jogadores) -->
+    <t id="modo.alterado">#FF9900[Stunts] #FFFFFFModo do resource alterado para {modo} #FFFFFFpor {nome}.</t>
+    <t id="modo.nome_gamemode">#00FF00GAMEMODE COMPLETO</t>
+    <t id="modo.nome_criador">#FFA500CRIADOR (PLUGIN)</t>
+
+    <!-- ============ MAPA (F2) ============ -->
+    <t id="mapa.barra">#FF9900ARENA: #FFFFFF{arena}     #FF9900ARENA STUNTS: #FFFFFF{feitos}/{total}</t>
+    <t id="mapa.btn_veiculos">VEÍCULOS</t>
+    <t id="mapa.btn_stunts">STUNTS</t>
+    <t id="mapa.btn_ranking">RANKING</t>
+    <t id="mapa.toggle_marcados">Apenas Marcados</t>
+    <t id="mapa.toggle_pulsante">Efeito Pulsante</t>
+    <!-- Gaveta VEÍCULOS -->
+    <t id="mapa.col_veiculo">Veículo</t>
+    <t id="mapa.col_stunts">Stunts</t>
+    <t id="mapa.col_feitos">Feitos</t>
+    <t id="mapa.nenhum_carregado">Nenhum stunt carregado.</t>
+    <!-- Gaveta STUNTS -->
+    <t id="mapa.col_id">ID</t>
+    <t id="mapa.col_nome">Nome</t>
+    <t id="mapa.col_dinheiro">Dinheiro</t>
+    <t id="mapa.nenhum_encontrado">Nenhum stunt encontrado.</t>
+    <!-- Tooltip -->
+    <t id="mapa.tip_duplo_clique">(duplo clique: teleportar)</t>
+    <t id="mapa.tip_challenge">Challenge {n}s</t>
+    <t id="mapa.tip_completo">(completo)</t>
+    <t id="mapa.tip_cv_zone">CV Zone - clique para ir até aqui</t>
+    <t id="mapa.rodape">F2 fechar  •  Scroll: zoom  •  Arrastar: mover  •  Ícone azul de casa: ir para a CV Zone</t>
+    <!-- Gaveta RANKING -->
+    <t id="rank.aba_stunters">Top Stunters</t>
+    <t id="rank.aba_recordistas">Top Recordistas</t>
+    <t id="rank.col_jogador">Jogador</t>
+    <t id="rank.col_completos">Completos</t>
+    <t id="rank.col_dinheiro">Dinheiro</t>
+    <t id="rank.col_records">Records</t>
+    <t id="rank.carregando">Carregando...</t>
+    <t id="rank.vazio_stunters">Ninguém completou stunts nesta arena ainda.</t>
+    <t id="rank.vazio_recordistas">Nenhum World Record nesta arena ainda.</t>
+
+    <!-- ============ CV ZONE ============ -->
+    <!-- Aviso na tela (Modo Play) -->
+    <t id="zona.dentro">Você está dentro de uma CV Zone</t>
+    <!-- Bloqueio do /cv e /v (servidor; o prefixo "[CV Zone]" é do script) -->
+    <t id="cv.negado">Você só pode usar /cv e /v dentro da CV Zone (quadrado verde) da arena.</t>
+    <t id="cv.em_movimento">Pare completamente antes de trocar ou spawnar um veículo!</t>
+    <t id="cv.jogador_invalido">Jogador inválido.</t>
+    <!-- /cvdiag (diagnóstico) -->
+    <t id="cvdiag.conta">#00FFFF[CV diag] #FFFFFFConta: {conta} | Grupo de equipe: {grupo}</t>
+    <t id="cvdiag.zonas">#00FFFF[CV diag] #FFFFFFZonas carregadas: {n} | Você: {x}, {y}, {z} (dim {dim}, int {int}) | Dentro da zona: {dentro}</t>
+    <t id="cvdiag.zona">#00FFFF[CV diag] #AAAAAA  zona #{i}: centro {x}, {y}, {z} | lado {lado} m | {info} | {estado}</t>
+    <t id="cvdiag.parado">#00FFFF[CV diag] #FFFFFFParado/no chão: {estado}{extra}</t>
+    <t id="cvdiag.permitido">#00FFFF[CV diag] #FFFFFF/cv permitido agora: {estado}</t>
+    <t id="cvdiag.convidado">convidado (guest)</t>
+    <t id="cvdiag.nenhum">nenhum</t>
+    <t id="cvdiag.sim">SIM</t>
+    <t id="cvdiag.nao">NÃO</t>
+    <t id="cvdiag.dentro">DENTRO</t>
+    <t id="cvdiag.so_dim0">(só exigido na dim 0)</t>
+    <t id="cvdiag.motivo_dim">dimensão {a} != {b}</t>
+    <t id="cvdiag.motivo_int">interior {a} != {b}</t>
+    <t id="cvdiag.motivo_x">fora em X ({a} &gt; {b})</t>
+    <t id="cvdiag.motivo_y">fora em Y ({a} &gt; {b})</t>
+    <t id="cvdiag.motivo_altura">fora em altura ({a} &gt; {b})</t>
+    <t id="cvdiag.motivo_movimento">em movimento ({v})</t>
+    <t id="cvdiag.motivo_ar">no ar</t>
+
+    <!-- ============ MARKERS (texto 3D) ============ -->
+    <t id="marker.challenge">Challenge</t>
+    <t id="marker.world_record">World Record: {tempo}</t>
+    <t id="marker.nenhum">Nenhum</t>
+    <t id="marker.por">por:</t>
+    <t id="marker.3s">3 Segundos</t>
+    <t id="marker.touch">Touch</t>
+
+    <!-- ============ CONCLUSÃO DE STUNTS / CHALLENGES (chat) ============ -->
+    <t id="stunt.concluido">#00FF00* #FFFFFFStunt #00FF00{nome} #FFFFFFconcluído! #00FF00+${valor}</t>
+    <!-- {veiculo} já vem com a cor: o nome do veículo ou stunt.veiculo_terrestre -->
+    <t id="stunt.veiculo_errado">#00FF00* #FFFFFFVEÍCULO ERRADO! VOCÊ PRECISA DE {veiculo}#FFFFFF!</t>
+    <t id="stunt.veiculo_terrestre">um #FF0000veículo terrestre/aquático (sem aviões/helicópteros)</t>
+    <t id="chal.iniciou">#00FF00* #FFFFFFChallenge #00FF00{nome} #FFFFFFiniciada! Você tem #00FF00{n} #FFFFFFsegundos.</t>
+    <t id="chal.concluiu">#00FF00* #FFFFFFVocê #00FF00completou #FFFFFFa Challenge em #00FF00{tempo}#FFFFFF!</t>
+    <t id="chal.falhou">#00FF00* #FFFFFFChallenge #FF0000falhou#FFFFFF: {motivo}!</t>
+    <t id="chal.motivo_veiculo">Você saiu/trocou de veículo</t>
+    <t id="chal.motivo_tempo">O tempo acabou</t>
+    <t id="chal.motivo_teleporte">Teleporte detectado</t>
+    <t id="chal.hud_checkpoint">Checkpoint {atual}/{total}</t>
+    <!-- World Record (chat de todos os jogadores) -->
+    <t id="rec.novo">#FF6600[Challenge] #FFFFFFNovo World Record em #2B7FFF{nome}#FFFFFF: #00FF00{tempo} #FFFFFFpor #FF6600{jogador}#FFFFFF!</t>
+    <!-- Pagamento da 1ª conclusão (o "* " verde é do script) -->
+    <t id="pag.recebido">+#00FF00${valor} #FFFFFFpor #2B7FFF{nome}#FFFFFF!</t>
+
+    <!-- ============ TELEPORTE PELO PAINEL / MAPA (servidor) ============ -->
+    <t id="tp.sem_perm">Sem permissão para teleportar pelo painel.</t>
+    <t id="tp.veiculo_trocado">Veículo trocado para {veiculo} (exigido pelo stunt).</t>
+    <t id="tp.veiculo_criado">Veículo {veiculo} criado para o stunt.</t>
+    <t id="tp.exige_veiculo">Atenção: este stunt exige {veiculo} ({id}).</t>
+    <t id="tp.qualquer_veiculo">Este stunt aceita qualquer veículo (exceto aviões/helicópteros). Pegue um para testar.</t>
+    <t id="tp.challenge">Teleportado para a largada da challenge '{nome}'. Passe pelo marker azul para iniciar.</t>
+    <t id="tp.ok">Teleportado para '{nome}'.</t>
+    <!-- teleporte a partir da câmera de edição do Map Editor (client) -->
+    <t id="tp.editor_janela">Feche a janela do editor (Browse... / Properties) antes de teleportar.</t>
+    <t id="tp.editor_saindo">Saindo do modo edição para o modo teste antes de teleportar...</t>
+    <t id="tp.editor_timeout">Não foi possível sair do modo edição. Aperte F5 e tente teleportar de novo.</t>
+
+    <!-- ============ STATUS DA EQUIPE (servidor) ============ -->
+    <t id="status.srv_sem_perm">Sem permissão para alterar o status da equipe.</t>
+    <t id="status.srv_login">Faça login na sua conta (/login) para alterar o status de teste.</t>
+    <!-- {status} já vem colorido (TESTADO / EM TESTE) -->
+    <t id="status.srv_marcado">'{nome}' marcado como {status}#FFFFFF.</t>
+
+    <!-- ============ SINCRONIZAÇÃO DO MAPA (servidor) ============ -->
+    <t id="sync.aguarde">Aguarde alguns segundos antes de sincronizar novamente.</t>
+    <t id="sync.editor_carregando">Sincronização cancelada: o Map Editor ainda está carregando o mapa ({mapa}). Aguarde terminar e clique de novo.</t>
+    <t id="sync.sem_stunts">Sincronização cancelada: nenhum stunt carregado no mapa.</t>
+    <t id="sync.sem_nome">Aviso: o mapa aberto no Map Editor ainda não tem nome. Salve o mapa (ex: [STUNTAGE]MinhaArena) ou use /stuntarena [nome]; até lá os stunts ficam em '{arena}'.</t>
+    <t id="sync.confirmacao_expirada">Confirmação de remoção expirada. Clique em SINCRONIZAR MAPA novamente.</t>
+    <t id="sync.falhou">Sincronização falhou; nenhuma alteração foi feita.</t>
+    <t id="sync.alerta_critico">#FF2020[ALERTA CRÍTICO] #FFFFFFEsta sincronização vai #FF2020REMOVER {n} stunts #FFFFFFda arena {arena} (mais de 10% de {total})! Clique novamente em '#FF2020{botao}#FFFFFF' em até {tempo} segundos se tiver certeza absoluta.</t>
+    <t id="sync.remocoes_mudaram">O número de remoções mudou desde a última confirmação (era {n}).</t>
+    <t id="sync.resumo">[Sync {arena}] Adicionados: {adicionados} | Atualizados/Renomeados: {atualizados} | Removidos: {removidos} #AAAAAA({total} stunts no mapa)</t>
+    <t id="sync.duplicados">#FFA500[Sync] {n} stunt(s) com nome repetido no mapa. Apague as cópias antigas no editor:</t>
+    <t id="sync.duplicados_mais">#AAAAAA  ... e mais {n} (use /stuntdiag nome)</t>
+    <t id="sync.duplicado_usado">#FFFFFF  {nome} #00FF00usado: {copia}</t>
+    <t id="sync.duplicado_ignorado">#FF6666      ignorado: {copia}</t>
+
+    <!-- ============ COMANDOS (servidor) ============ -->
+    <t id="cmd.sem_arena">Nenhuma arena de stunts carregada no momento.</t>
+    <t id="cmd.reset_uso">Uso: /resetstunt [nome] [all]</t>
+    <t id="cmd.reset_so_admin">Apenas admins podem resetar o stunt de todos os jogadores.</t>
+    <t id="cmd.reset_nenhum_registro">Nenhum registro encontrado para '{nome}' nesta arena.</t>
+    <t id="cmd.reset_todos_ok">Stunt '{nome}' resetado para todos ({n} registros).</t>
+    <t id="cmd.reset_nao_completou">Você não completou nenhum stunt chamado '{nome}' nesta arena.</t>
+    <t id="cmd.reset_ok">Stunt '{nome}' resetado.</t>
+    <t id="cmd.reset_all_ok">Todos os seus stunts da arena {arena} foram resetados.</t>
+    <t id="cmd.reset_um_ok">Seu progresso neste stunt foi resetado.</t>
+    <!-- /stuntarena -->
+    <t id="cmd.arena_ativa">Arena ativa: #A020F0{arena}{extra}</t>
+    <t id="cmd.arena_nenhuma">nenhuma</t>
+    <t id="cmd.arena_forcada">#AAAAAA(nome forçado: {nome})</t>
+    <t id="cmd.arena_editor">#AAAAAA(Map Editor via {fonte})</t>
+    <t id="cmd.arena_sem_perm">Sem permissão para alterar a arena.</t>
+    <t id="cmd.arena_auto">Detecção automática de arena restaurada.</t>
+    <t id="cmd.arena_longo">Nome de arena muito longo.</t>
+    <t id="cmd.arena_definida">Mapas sem [STUNTAGE] agora usam a arena '#A020F0{nome}#FFFFFF'.</t>
+    <!-- /stuntdiag -->
+    <t id="diag.uso">Uso: /stuntdiag [nome do stunt]</t>
+    <t id="diag.arena">#00FFFF[diag] #FFFFFFArena ativa: {arena} | Editor -&gt; {editor}{fonte}</t>
+    <t id="diag.copia">#00FFFF[diag] {tag}#FFFFFF {copia} | arena: {arena}</t>
+    <t id="diag.tag_usado">[USADO]</t>
+    <t id="diag.tag_ignorado">[IGNORADO]</t>
+    <t id="diag.tag_fora">[FORA DA ARENA]</t>
+    <t id="diag.nenhum">#00FFFF[diag] #FFFFFFNenhum marker com esse nome no servidor.</t>
+    <t id="diag.banco">#00FFFF[diag] #FFFFFFBanco: {dados}</t>
+    <t id="diag.nao_cadastrado">não cadastrado</t>
+
+    <!-- ============ /mvs (filtro de stunts por veículo; prefixo "[Stunts]" do script) ============ -->
+    <t id="mvs.removido">Filtro de veículo removido.</t>
+    <t id="mvs.uso">Nenhum filtro ativo. Uso: /mvs [id ou nome do veículo] | /mvs any | /mvs off</t>
+    <t id="mvs.id_invalido">ID de veículo inválido: {id} (use 400 a 611).</t>
+    <t id="mvs.nome_invalido">Nome de veículo inválido.</t>
+    <t id="mvs.nenhum">Nenhum veículo encontrado para '{busca}'.</t>
+    <t id="mvs.varios">Vários veículos encontrados: {lista}. Seja mais específico.</t>
+    <t id="mvs.marcados_qualquer">Marcados {n} stunts para qualquer veículo em laranja. Use /mvs off para limpar.</t>
+    <t id="mvs.marcados">Marcados {n} stunts de {veiculo} (ID: {id}) em laranja{extra}. Use /mvs off para limpar.</t>
+    <t id="mvs.extra_qualquer">(+{n} que aceitam qualquer veículo)</t>
+
+    <!-- ============ /mark (rastrear jogador; prefixo "[Radar]" do script) ============ -->
+    <t id="mark.removido">Marcação de {nome} removida.</t>
+    <t id="mark.uso">Nenhum jogador marcado. Uso: /mark [id ou nome] | /mark off</t>
+    <t id="mark.nenhum">Nenhum jogador encontrado para '{busca}'.</t>
+    <t id="mark.varios">Vários jogadores encontrados: {lista}. Seja mais específico.</t>
+    <t id="mark.si_mesmo">Você não pode marcar a si mesmo.</t>
+    <t id="mark.marcando">Marcando jogador {nome} no mapa (cor ciano). Use /mark off para remover.</t>
+    <t id="mark.saiu">O jogador marcado ({nome}) saiu do servidor. Marcação removida.</t>
+
+    <!-- ============ /blipsize ============ -->
+    <t id="blips.tamanho_invalido">#FF6969[BLIPS] #FF0000VOCÊ PRECISA INFORMAR UM TAMANHO VÁLIDO! (1-25)</t>
+    <t id="blips.tamanho_ok">#FF6969[BLIPS] #FF8900TAMANHO DAS BLIPS DEFINIDO PARA #FFFFFF{n} #FF8900COM SUCESSO!</t>
+
+    <!-- ============ AUTO-UPDATE (updater_s.lua) ============ -->
+    <t id="upd.selo_nova">Nova versão disponível</t>
+    <t id="upd.nova_disponivel">#FF9900[{nome}] #FFFFFFNova versão disponível: #FFCC00v{nova} #AAAAAA(instalada: v{atual})</t>
+    <t id="upd.changelog">#AAAAAAAlterações: #FFFFFF{texto}</t>
+    <t id="upd.como_atualizar">#AAAAAAUse #FFFFFF/{cmd} #AAAAAApara atualizar ou baixe manualmente em #8FD3FF{url}</t>
+    <t id="upd.sem_admin">#FF6969Apenas Admins (ACL Admin) podem atualizar.</t>
+    <t id="upd.ocupado">#FFAA00Já existe uma verificação/atualização em andamento.</t>
+    <t id="upd.atualizado">#00FF00Você já está na versão mais recente (v{atual}).</t>
+    <t id="upd.falha_checar">#FFAA00Não foi possível consultar o GitHub agora (sem internet, GitHub fora ou sem a permissão function.fetchRemote).</t>
+    <t id="upd.manifesto_invalido">#FF6969O manifesto da versão está inválido. Nada foi alterado.</t>
+    <t id="upd.baixando">#8FD3FFBaixando v{nova} ({n} arquivos)...</t>
+    <t id="upd.erro_download">#FF6969Falha ao baixar {arquivo}. Nada foi alterado.</t>
+    <t id="upd.erro_backup">#FF6969Não foi possível criar o backup. Nada foi alterado.</t>
+    <t id="upd.erro_gravar">#FF6969Falha ao gravar {arquivo}. O backup foi restaurado.</t>
+    <t id="upd.sucesso">#00FF00[{nome}] Atualizado para v{nova}! Backup em {pasta}. Reiniciando o resource...</t>
+    <t id="upd.reinicie">#FFAA00Reinicie manualmente com /restart {recurso}.</t>
+</lang>

@@ -1,0 +1,32 @@
+<meta>
+    <info author="Maxral" version="1.0.0" name="Stuntage Tools" description="Save/Warp, TAS Replay, Ghost & Freecam Suite" type="script" />
+    <!-- triggerClientEvent com lista de jogadores (send list) exige servidor >= 1.3.0-9.04570 -->
+    <min_mta_version server="1.3.0-9.04570" />
+    <!-- Idiomas: lang_c.lua vem ANTES de todos os scripts client (define L / Lf / Lang).
+         Os textos ficam em lang/*.xml (lidos pelo servidor em lang_s.lua e enviados aos
+         clients). Para um idioma novo basta criar lang/xx.xml: não precisa listar aqui. -->
+    <script src="lang_s.luac" type="server" />
+    <script src="updater_s.luac" type="server" />
+    <script src="lang_c.luac" type="client" cache="false" />
+    <script src="ui_c.luac" type="client" cache="false" />
+    <!-- Tabela DX (Galeria de Replays): depois do ui_c.lua, antes do replay_galeria_c.lua -->
+    <script src="tabela_dx_c.luac" type="client" cache="false" />
+    <!-- Dropdown DX (Galeria de Replays): depois do ui_c.lua (desenha por cima do skin das janelas) -->
+    <script src="dropdown_dx_c.luac" type="client" cache="false" />
+    <script src="config_warp_c.luac" type="client" cache="false" />
+    <script src="client.luac" type="client" cache="false" />
+    <script src="server.luac" type="server" />
+    <!-- config_warp_s.lua define HubCfgWarp (config_warp.json): vem ANTES de teleportes.lua -->
+    <script src="config_warp_s.luac" type="server" />
+    <script src="teleportes.luac" type="server" />
+    <script src="replay_s.luac" type="server" />
+    <script src="menu_saves.luac" type="client" cache="false" />
+    <script src="replay_c.luac" type="client" cache="false" />
+    <script src="replay_galeria_c.luac" type="client" cache="false" />
+    <file src="localplayer.png" />
+    <!-- Seletor de fonte (CONFIGURAÇÕES > FONTE). Mesmos arquivos no stunt_system: a escolha
+         é sincronizada pelo elementData "hub:fonte". Ausente = a opção some do ciclo. -->
+    <file src="fonts/segoe.ttf" />
+    <file src="fonts/bahnschrift.ttf" />
+    <file src="fonts/calibri.ttf" />
+</meta>

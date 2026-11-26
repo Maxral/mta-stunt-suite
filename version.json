@@ -1,0 +1,60 @@
+{
+  "repo": "Maxral/mta-stunt-suite",
+  "releases_url": "https://github.com/Maxral/mta-stunt-suite/releases",
+  "stunt_system": {
+    "version": "1.0.0",
+    "changelog": {
+      "pt": "Primeira versão pública: Gerenciador da Arena, mapa F2, observações nos stunts, auto-update.",
+      "en": "First public release: Arena Manager, F2 map, stunt notes, auto-update."
+    },
+    "zip": "https://github.com/Maxral/mta-stunt-suite/releases/download/v1.0.0/stunt_system.zip",
+    "files_base": "https://raw.githubusercontent.com/Maxral/mta-stunt-suite/main/updates/stunt_system/",
+    "files": [
+        "blips_c.luac",
+        "dropdown_dx_c.luac",
+        "lang_c.luac",
+        "lang_s.luac",
+        "map_c.luac",
+        "markers_c.luac",
+        "markers_s.luac",
+        "menu_stunts_c.luac",
+        "shared.luac",
+        "ui_c.luac",
+        "updater_s.luac",
+        "zones_c.luac",
+        "zones_s.luac",
+        "lang/en.xml",
+        "lang/pt.xml",
+        "meta.xml"
+    ]
+  },
+  "stunt_tools": {
+    "version": "1.0.0",
+    "changelog": {
+      "pt": "Primeira versão pública: Hub F7, saves/warps, Replay/TAS, Ghost com rastro 3D e loop A-B, Galeria, auto-update.",
+      "en": "First public release: F7 Hub, saves/warps, Replay/TAS, Ghost with 3D trail and A-B loop, Gallery, auto-update."
+    },
+    "zip": "https://github.com/Maxral/mta-stunt-suite/releases/download/v1.0.0/stunt_tools.zip",
+    "files_base": "https://raw.githubusercontent.com/Maxral/mta-stunt-suite/main/updates/stunt_tools/",
+    "files": [
+        "client.luac",
+        "config_warp_c.luac",
+        "config_warp_s.luac",
+        "dropdown_dx_c.luac",
+        "lang_c.luac",
+        "lang_s.luac",
+        "menu_saves.luac",
+        "replay_c.luac",
+        "replay_galeria_c.luac",
+        "replay_s.luac",
+        "server.luac",
+        "tabela_dx_c.luac",
+        "teleportes.luac",
+        "ui_c.luac",
+        "updater_s.luac",
+        "lang/en.xml",
+        "lang/pt.xml",
+        "meta.xml"
+    ]
+  }
+}

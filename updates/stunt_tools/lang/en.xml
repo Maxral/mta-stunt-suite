@@ -1,0 +1,821 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  =====================================================================
+  stunt_tools - LANGUAGE: English (US)   *** REFERENCE / FALLBACK FILE ***
+  =====================================================================
+  Any key missing from another language file falls back to the text in THIS file.
+  Keep it complete.
+
+  HOW TO ADD A NEW LANGUAGE (no script changes needed, works with compiled .luac):
+    1. Copy this file to lang/<code>.xml (e.g. lang/es.xml, lang/ru.xml).
+       Use the 2-letter ISO code.
+    2. Change code="..." (shown on the F7 header button, e.g. ES) and name="..."
+       (shown on mouse hover, e.g. Español).
+    3. Translate only the TEXT between the tags. Do NOT change any id="...".
+    4. Restart the resource (restart stunt_tools). The new language shows up in F7 by itself.
+  RULES:
+    - {name}-style tokens ({nome}, {id}, {n}...) are filled in by the script: keep them in
+      the text (you may move them around in the sentence).
+    - #RRGGBB changes the text color in chat/HUD (e.g. #ff9900 = orange). You can keep it.
+    - In XML write &lt; for "<", &gt; for ">" and &amp; for "&".
+    - Multi-line text: one <l> tag per line; <l/> is an empty line.
+      In HELP, a line wrapped in three hyphens on each side becomes an orange section title.
+    - Spaces at the start/end of a text are ignored.
+    - The server console reports how many keys each language is missing.
+  =====================================================================
+-->
+<lang code="EN" name="English (US)">
+
+    <!-- ============ GENERAL (ui_c.lua) ============ -->
+    <t id="ui.pressione">PRESS...</t>
+    <!-- F7 footer when hovering a language button -->
+    <t id="ui.idioma_hover">Language: {nome}  •  click to use</t>
+
+    <t id="geral.boas_vindas">#FF9900[Stunt Tools] #AAAAAAStarted! Press #FFFFFFF7 #AAAAAAto open the Hub, #FFFFFFF4 #AAAAAAfor the Replay Gallery and #FFFFFFH #AAAAAAfor Freecam.</t>
+
+    <!-- ============ MAIN MENU (F7) ============ -->
+    <t id="menu.titulo">HUB  ·  STUNT MANAGER</t>
+    <t id="menu.col_id">ID</t>
+    <t id="menu.col_jogador">Player</t>
+    <t id="menu.col_veiculo">Vehicle</t>
+    <!-- F7 Status column (updated in real time by the server) -->
+    <t id="status.coluna">Status</t>
+    <t id="status.offline">Offline</t>
+    <t id="status.afk">AFK</t>
+    <t id="status.afk_minimizado">AFK (Minimized)</t>
+    <t id="status.afk_inativo">AFK (Idle)</t>
+    <t id="status.assistindo">Watching</t>
+    <t id="status.editando">Editing</t>
+    <t id="status.testando">Testing</t>
+    <t id="status.jogando">Playing</t>
+    <t id="menu.teleportar">TELEPORT</t>
+    <t id="menu.copiar_save">COPY SAVE</t>
+    <t id="menu.assistir">SPECTATE (WATCH)</t>
+    <t id="menu.ajuda">HELP</t>
+    <t id="menu.warp_aberto">MY WARP: OPEN</t>
+    <t id="menu.warp_fechado">MY WARP: LOCKED</t>
+    <t id="menu.binds">SETTINGS</t>
+    <t id="menu.cv_ativo">/CV COMMAND: ON</t>
+    <t id="menu.cv_desativado">/CV COMMAND: OFF</t>
+    <t id="menu.replays">REPLAYS</t>
+    <!-- Minimalist theme (F7): switches + icon tooltips -->
+    <t id="menu.min_warp">MY WARP</t>
+    <t id="menu.min_aberto">OPEN</t>
+    <t id="menu.min_fechado">LOCKED</t>
+    <t id="menu.min_cv">/CV COMMAND</t>
+    <t id="menu.min_ativo">ON</t>
+    <t id="menu.min_desativado">OFF</t>
+    <t id="menu.min_tip_teleportar">Teleport to the selected player</t>
+    <t id="menu.min_tip_replays">Open the Replay Gallery</t>
+    <t id="menu.min_tip_copiar">Copy the player's save</t>
+    <t id="menu.min_tip_watch">Spectate player (Watch)</t>
+    <t id="menu.min_tip_config">Settings and keys</t>
+    <t id="menu.min_tip_ajuda">Help</t>
+    <t id="menu.min_tip_warp">Open / lock your warp</t>
+    <t id="menu.min_tip_cv">Enable / disable the hub /cv</t>
+    <!-- Player list: tags after the name -->
+    <t id="menu.bloqueado">(Locked)</t>
+    <t id="menu.offline">[offline]</t>
+    <!-- Footer: default hint and each button's description (hover) -->
+    <t id="menu.dica_padrao">Select a player in the list  •  F7 or X to close</t>
+    <t id="menu.desc_teleportar">Teleports you and your vehicle to the selected player.</t>
+    <t id="menu.desc_copiar_save">Copies the selected player's current save point to your /lw.</t>
+    <t id="menu.desc_assistir">Spectates the selected player. Backspace or /watch to leave.</t>
+    <t id="menu.desc_ajuda">Opens the full list of server commands, shortcuts and tips.</t>
+    <t id="menu.desc_warp">Sets whether other players can teleport to you or copy your save.</t>
+    <t id="menu.desc_binds">Opens the panel to customize your hotkeys and the Auto-Tap.</t>
+    <t id="menu.desc_cv">Enables or blocks quick vehicle swapping with the /cv command.</t>
+    <t id="menu.desc_replays">Opens the Replay Gallery to watch runs or race against a Ghost.</t>
+    <!-- Chat messages -->
+    <t id="menu.msg_binds_salvas">#00ff00[HUB] #ffffffBinds saved successfully!</t>
+    <t id="menu.msg_selecione_jogador">#ff9900[Watch] #ffffffSelect a player in the list first.</t>
+    <t id="menu.msg_cv_ativo">#00ff00[HUB] #ffffffHub /cv command ENABLED.</t>
+    <t id="menu.msg_cv_desativado">#ff0000[HUB] #ffffffHub /cv command DISABLED (the gamemode's /cv answers on its own).</t>
+
+    <!-- ============ CONFIGURE KEYS ============ -->
+    <t id="binds.titulo">SETTINGS</t>
+    <t id="binds.tema_classico">THEME: CLASSIC</t>
+    <t id="binds.tema_moderno">THEME: MODERN</t>
+    <t id="binds.tema_minimalista">THEME: MINIMALIST</t>
+    <t id="binds.tema_hibrido">THEME: HYBRID</t>
+    <t id="binds.fonte_padrao">FONT: DEFAULT</t>
+    <t id="binds.fonte_segoe">FONT: SEGOE UI</t>
+    <t id="binds.fonte_bahnschrift">FONT: BAHNSCHRIFT</t>
+    <t id="binds.fonte_calibri">FONT: CALIBRI</t>
+    <t id="binds.save">Save (/sw)</t>
+    <t id="binds.warp">Load (/lw)</t>
+    <t id="binds.del">Delete (/dw)</t>
+    <t id="binds.priv">Private (/privado)</t>
+    <t id="binds.autotap">Bike Auto-Tap</t>
+    <t id="binds.objinv">Invisible Objects</t>
+    <t id="binds.hideply">Hide Players</t>
+    <t id="binds.transply">Transparent Players</t>
+    <t id="binds.replay">Record Replay</t>
+    <t id="binds.stopghost">Stop Ghost</t>
+    <t id="binds.galeria">Open Replay Gallery</t>
+    <t id="binds.freecam">Freecam + Teleport</t>
+    <t id="binds.reparar">Repair / Unflip Vehicle</t>
+    <t id="binds.nitro">Install / Refill Nitro</t>
+    <t id="binds.motor">Engine On / Off</t>
+    <t id="ferr.freecam_on">Freecam on: WASD moves, SHIFT speeds up, ALT slows down. Press the key again to teleport here.</t>
+    <t id="ferr.freecam_off">Teleported to the camera position.</t>
+    <t id="ferr.freecam_bloq">Freecam unavailable right now (replay, /watch or editor camera).</t>
+    <t id="ferr.freecam_passageiro">Freecam unavailable as a passenger.</t>
+    <t id="ferr.sem_veiculo">You must be driving a vehicle.</t>
+    <t id="ferr.reparado">Vehicle repaired and unflipped.</t>
+    <t id="ferr.nitro_ok">Nitro installed and refilled.</t>
+    <t id="ferr.nitro_nao">This vehicle does not support nitro.</t>
+    <t id="ferr.motor_on">Engine on.</t>
+    <t id="ferr.motor_off">Engine off.</t>
+    <!-- Key text while waiting for a key press; and when there is no key -->
+    <t id="binds.escutando">... Press a key ...</t>
+    <t id="binds.nenhuma">NONE</t>
+    <t id="binds.autotap_segurar">AUTO-TAP MODE: HOLD</t>
+    <t id="binds.autotap_alternar">AUTO-TAP MODE: TOGGLE</t>
+    <t id="binds.hud_on">SPEEDOMETER HUD: ON</t>
+    <t id="binds.hud_off">SPEEDOMETER HUD: OFF</t>
+    <t id="binds.camlw_on">CAMERA RESET ON /LW: ON</t>
+    <t id="binds.camlw_off">CAMERA RESET ON /LW: OFF</t>
+    <t id="binds.min_camlw">CAMERA RESET ON /LW</t>
+    <t id="binds.min_tip_camlw">ON: when /lw releases the vehicle the camera goes back behind it</t>
+    <t id="binds.rastro_on">GHOST 3D TRAIL: ON</t>
+    <t id="binds.rastro_off">GHOST 3D TRAIL: OFF</t>
+    <t id="binds.min_rastro">GHOST 3D TRAIL</t>
+    <t id="binds.min_tip_rastro">ON: the Ghost draws a 3D line with the exact path it has driven</t>
+    <t id="binds.restaurar">RESTORE DEFAULTS</t>
+    <t id="binds.aplicar">APPLY AND SAVE BINDS</t>
+    <!-- Minimalist theme: SETTINGS switches -->
+    <t id="binds.min_autotap">AUTO-TAP MODE</t>
+    <t id="binds.min_segurar">HOLD</t>
+    <t id="binds.min_alternar">TOGGLE</t>
+    <t id="binds.min_hud">SPEEDOMETER HUD</t>
+    <t id="binds.min_ligado">ON</t>
+    <t id="binds.min_desligado">OFF</t>
+    <t id="binds.min_tip_autotap">Hold the key or toggle it</t>
+    <t id="binds.min_tip_hud">Show / hide the speedometer</t>
+
+    <!-- ============ SPEEDOMETER HUD (chat) ============ -->
+    <t id="hud.msg_ativado">#00ff00[HUD] #ffffffHub speedometer ENABLED.</t>
+    <t id="hud.msg_desativado">#ff0000[HUD] #ffffffHub speedometer DISABLED.</t>
+    <t id="hud.msg_generico">#ff9900[HUD] #ffffffGeneric HUD/speedometer running: #ffff00{lista}#ffffff. It received the hideHud flag; if it still overlaps, ask an admin to stop it.</t>
+
+    <!-- ============ SPECTATOR MODE (/watch): bottom card ============ -->
+    <t id="watch.assistindo">WATCHING:</t>
+    <t id="watch.espectadores">SPECTATORS ({n}):</t>
+    <t id="watch.dica">[BACKSPACE] or /watch to leave  •  /copiarsave to copy their save</t>
+
+    <!-- ============ HELP ============ -->
+    <t id="ajuda.titulo">HELP  ·  COMMANDS</t>
+    <t id="ajuda.entendi">GOT IT</t>
+    <t id="ajuda.texto">
+        <l>--- SAVES AND WARPS ---</l>
+        <l>SAVE: /save or /sw</l>
+        <l>LOAD: /warp or /lw</l>
+        <l>DELETE: /delwarp or /dw</l>
+        <l/>
+        <l>--- FIXED TRAINING SLOTS (must be logged in) ---</l>
+        <l>/sw 1 to /sw 5 -&gt; saves position, rotation, speed and vehicle in that slot.</l>
+        <l>/lw 1 to /lw 5 -&gt; returns to the slot. They are stored in your account, even if the server restarts. /sw and /lw without a number work as before.</l>
+        <l/>
+        <l>PRIVATE: /privado</l>
+        <l/>
+        <l>VEHICLES: /cv, /del, /gm</l>
+        <l/>
+        <l>In Play Mode (dimension 0) /sw only saves with the vehicle STOPPED (up to 5 km/h) and touching the ground. Staff (Admin / SuperModerator / Moderator) can save freely.</l>
+        <l/>
+        <l>--- SPECTATOR MODE (/watch) ---</l>
+        <l>/watch [id or part of the name] -&gt; spectates the player (camera follows them). Also from the SPECTATE (WATCH) button in F7, with the player selected in the list.</l>
+        <l>Backspace or /watch (with nothing) -&gt; leaves and puts you back exactly where you were, in the same vehicle. While spectating you are parked (frozen, invisible and without collision).</l>
+        <l>/copiarsave -&gt; while spectating, copies the save of the player you are watching (or /copiarsave [id or name] at any time).</l>
+        <l>Respects the player's MY WARP: LOCKED. In Play Mode you must be stopped (up to 3 km/h) and on the ground to start spectating (staff has no such limits).</l>
+        <l/>
+        <l>--- SPEEDOMETER HUD (/stanthud) ---</l>
+        <l>Optional speedometer in the bottom-right corner: KM/H, MPH, gear/RPM and nitro charge. Starts OFF; toggle it with /stanthud or in SETTINGS &gt; SPEEDOMETER HUD (your choice is saved). When on, it hides GTA's native HUD elements so they don't overlap.</l>
+        <l/>
+        <l>--- WEATHER / TIME (your game only) ---</l>
+        <l>/timeset [hour]  -&gt; sets the hour (0-23). Minutes allowed: /timeset 17:30</l>
+        <l>/w [id]  -&gt; changes the weather (0-255). E.g. /w 1</l>
+        <l/>
+        <l>The clock is FROZEN (default 12:00): sky and shadows don't change between attempts, ideal for recording clips. The chosen time/weather does not affect other players.</l>
+        <l/>
+        <l>--- TRAINING / RECORDING VISUALS (your game only) ---</l>
+        <l>[I] Invisible Objects -&gt; toggle: shows the map's invisible ramps, walls and platforms as semi-transparent. When off, they go invisible again. If nothing shows up, use /objdebug near the object to see how the map hides it.</l>
+        <l/>
+        <l>[O] Hide Players -&gt; other players and their vehicles DISAPPEAR from your screen (no engine sound, smoke, lights, nitro, shadow or name tag), ideal for recording clean clips.</l>
+        <l/>
+        <l>[K] Transparent Players -&gt; other players and vehicles become semi-transparent GHOSTS (without seeing the car interior through the body), ideal for training in groups without blocking the track.</l>
+        <l/>
+        <l>O and K replace each other: turning one on turns the other off. Pressing the same key again brings everyone back to normal. You and your vehicle are never affected. Keys can be changed in SETTINGS and don't work with the chat or cursor open.</l>
+        <l/>
+        <l>--- SEGMENTED REPLAY ---</l>
+        <l>[F10] Record Replay -&gt; while driving a vehicle, starts recording your inputs. Each SAVE (/sw) becomes a checkpoint; each WARP (/lw) erases the failed attempt and rewinds the recording to the save, seamlessly: in the end only the clean run is left.</l>
+        <l>Press F10 again to finish: give it a name and choose SAVE LOCAL (.CSV), SAVE AND PUBLISH TO GALLERY (all staff can see it) or DISCARD.</l>
+        <l/>
+        <l>--- GALLERY AND PLAYER (/replays, the REPLAYS button or the F4 key) ---</l>
+        <l>[F4] Open Replay Gallery -&gt; opens/closes the gallery directly, without going through F7 (closes the F7 menu if it is open). The key can be changed in SETTINGS &gt; Open Replay Gallery and does not work while the chat, the console or a text field is active.</l>
+        <l>Filter by My Replays (local) or Public Gallery, search by name/creator/vehicle and use WATCH (or double-click), PUBLISH or DELETE.</l>
+        <l>In the player: Space = play/pause, Arrows = -3s/+3s, click the bar to jump, 0.1x to 4x buttons, LOOP, K = FOLLOW/FLYCAM camera, H = hide the interface, ESC or Backspace = exit.</l>
+        <l>FOLLOW: GTA's native camera following the replay car (doesn't clip through ramps). Hide the UI (H) to rotate with the mouse; V changes the distance.</l>
+        <l>FLYCAM: WASD moves, Q/E down/up, Shift fast, Ctrl slow, scroll changes the speed. With the interface hidden, the mouse turns the camera without holding a button.</l>
+        <l>The player applies the recording's time and weather and restores yours on exit.</l>
+        <l/>
+        <l>--- GHOST MODE (race against a replay) ---</l>
+        <l>In the gallery, pick the Ghost Mode and click RACE AGAINST (GHOST): you keep driving while a translucent car repeats the run on the track.</l>
+        <l>Sync with Warp + Loop: the ghost restarts on every warp (/lw), so you start together.</l>
+        <l>Continuous Loop Only: the ghost runs non-stop, ignoring warps.</l>
+        <l>A-B section: mark A and B in the replay player (L key / A-B button), exit it and start the Ghost of that same replay: it loops only inside A-B, always restarting at A (and Sync starts at A).</l>
+        <l>3D Trail: the Ghost draws its exact path as a 3D line (toggle in the gallery or in F7 > Settings).</l>
+        <l>To stop: L key (configurable in SETTINGS &gt; Stop Ghost), /stopghost or STOP GHOST in the gallery.</l>
+    </t>
+
+    <!-- ============ REPLAY GALLERY ============ -->
+    <t id="galeria.titulo">REPLAY GALLERY</t>
+    <t id="galeria.lbl_categoria">Category</t>
+    <t id="galeria.lbl_pesquisar">Search</t>
+    <t id="galeria.lbl_criador">Creator</t>
+    <t id="galeria.lbl_ordenar">Sort by</t>
+    <t id="galeria.lbl_ghost">Ghost Mode</t>
+    <!-- Categories (always in this order) -->
+    <t id="galeria.cat_todos">All</t>
+    <t id="galeria.cat_local">My Replays (Local .csv)</t>
+    <t id="galeria.cat_geral">Public Gallery (Server)</t>
+    <t id="galeria.cat_rascunhos">Drafts (TAS)</t>
+    <t id="galeria.cat_publicados">Local (Already Published)</t>
+    <t id="galeria.todos_criadores">All Creators</t>
+    <!-- Sort by -->
+    <t id="galeria.ordem_recentes">Newest</t>
+    <t id="galeria.ordem_antigos">Oldest</t>
+    <t id="galeria.ordem_maior">Longest</t>
+    <t id="galeria.ordem_menor">Shortest</t>
+    <t id="galeria.ordem_nome">Name (A-Z)</t>
+    <!-- Ghost modes -->
+    <t id="galeria.ghost_sync">Sync with Warp + Loop</t>
+    <t id="galeria.ghost_loop">Continuous Loop Only</t>
+    <!-- List columns -->
+    <t id="galeria.col_nome">Replay Name</t>
+    <t id="galeria.col_criador">Creator</t>
+    <t id="galeria.col_veiculo">Vehicle</t>
+    <t id="galeria.col_duracao">Length</t>
+    <t id="galeria.col_tipo">Type</t>
+    <t id="galeria.col_origem">Source</t>
+    <!-- Type column -->
+    <t id="galeria.tipo_1take">1-Take</t>
+    <t id="galeria.tipo_tas_1">TAS (1)</t>
+    <t id="galeria.tipo_tas_n">TAS ({n})</t>
+    <!-- Source column -->
+    <t id="galeria.origem_local">Local</t>
+    <t id="galeria.origem_local_pub">Local (published #{id})</t>
+    <t id="galeria.sufixo_rascunho">(Draft)</t>
+    <t id="confirma.titulo">DUPLICATE NAME</t>
+    <t id="confirma.duplicado">A replay named '{nome}' already exists. Save anyway as '{novo}'?</t>
+    <t id="confirma.sim">YES</t>
+    <t id="confirma.nao">NO</t>
+    <t id="galeria.origem_rascunho">Draft (TAS)</t>
+    <t id="galeria.origem_sessoes">· {n} sess.</t>
+    <t id="galeria.origem_geral">Public #{id}</t>
+    <t id="galeria.origem_meu">(mine)</t>
+    <!-- Buttons -->
+    <t id="galeria.correr_ghost">RACE AGAINST (GHOST)</t>
+    <t id="galeria.gravar_fila">● RECORD QUEUE</t>
+    <t id="galeria.ghost_fila">Record Queue (Cinema Mode)</t>
+    <t id="player.galeria">GALLERY (F4)</t>
+    <t id="player.fila_on">QUEUE: ON</t>
+    <t id="player.fila_off">QUEUE: OFF</t>
+    <t id="rmsg.fila_concluida">#00ff00Queue recording finished!</t>
+    <t id="galeria.parar_ghost">STOP GHOST</t>
+    <t id="galeria.rastro_on">3D TRAIL: ON</t>
+    <t id="galeria.rastro_off">3D TRAIL: OFF</t>
+    <t id="galeria.min_tip_rastro_on">Ghost 3D trail: ON (click to turn off)</t>
+    <t id="galeria.min_tip_rastro_off">Ghost 3D trail: OFF (click to turn on)</t>
+    <t id="galeria.assistir">WATCH REPLAY</t>
+    <t id="galeria.publicar">PUBLISH TO GALLERY</t>
+    <t id="galeria.continuar">CONTINUE RECORDING</t>
+    <t id="galeria.clonar">CLONE TO DRAFT</t>
+    <t id="galeria.juntar">MERGE REPLAYS</t>
+    <t id="galeria.deletar">DELETE</t>
+    <t id="galeria.confirmar_delete">CONFIRM DELETE?</t>
+    <t id="galeria.atualizar">REFRESH LIST</t>
+    <t id="galeria.renomear">RENAME</t>
+    <t id="galeria.exportar">EXPORT .CSV</t>
+    <t id="galeria.fechar">CLOSE</t>
+    <!-- Copy-folder-path icon (footer hint + chat) -->
+    <t id="galeria.copiar_dica">Copy the replays folder path to open it in Windows (Win+R + Ctrl+V)</t>
+    <!-- Minimalist theme: compact action bar (short labels + icon tooltips) -->
+    <t id="galeria.min_assistir">WATCH</t>
+    <t id="galeria.min_continuar">CONTINUE</t>
+    <t id="galeria.min_tip_assistir">Watch replay (double-click the list)</t>
+    <t id="galeria.min_tip_continuar">Continue recording from this replay</t>
+    <t id="galeria.min_tip_ghost">Race against the Ghost</t>
+    <t id="galeria.min_tip_fila">Record queue (Cinema Mode)</t>
+    <t id="galeria.min_tip_clonar">Clone to draft</t>
+    <t id="galeria.min_tip_juntar">Merge replays</t>
+    <t id="galeria.min_tip_publicar">Publish to the Public Gallery</t>
+    <t id="galeria.min_tip_renomear">Rename</t>
+    <t id="galeria.min_tip_exportar">Export .csv</t>
+    <t id="galeria.min_tip_copiar">Copy replays folder path</t>
+    <t id="galeria.min_tip_atualizar">Refresh list</t>
+    <t id="galeria.min_tip_deletar">Delete</t>
+    <t id="galeria.min_tip_confirmar_delete">Click again to confirm</t>
+    <t id="galeria.min_tip_fechar">Close</t>
+    <t id="galeria.msg_copiado">Folder path copied! Press Win+R and Ctrl+V in Windows to open it.</t>
+    <t id="galeria.msg_pasta">#aaaaaaFolder: #ffffff{pasta}</t>
+    <t id="galeria.st_copiado">Replays folder path copied (Win+R + Ctrl+V).</t>
+    <t id="galeria.st_copiar_falhou">Could not copy to the clipboard.</t>
+    <!-- Export -->
+    <t id="galeria.st_exportado">Exported: {arquivo}</t>
+    <t id="galeria.st_falha_exportar">Export failed: {erro}</t>
+    <t id="galeria.msg_exportado">#ff3333[Replay] #00ff00Exported: #ffffff{arquivo}</t>
+    <t id="galeria.msg_no_pc">#aaaaaaOn your PC: #ffffff{caminho}</t>
+    <!-- Status line (gallery footer) -->
+    <t id="galeria.st_contagem">{total} replays  ({locais} local, {rascunhos} drafts, {geral} in the Public Gallery)</t>
+    <t id="galeria.st_selecione">Select a replay in the list.</t>
+    <t id="galeria.st_nao_encontrado">File not found: {arquivo}</t>
+    <t id="galeria.st_aguarde_download">Wait for the current download to finish.</t>
+    <t id="galeria.st_baixando">Downloading replay #{id} from the Public Gallery...</t>
+    <t id="galeria.st_falha_download">Download failed: {erro}</t>
+    <t id="galeria.st_rascunho_nao_publica">Drafts can't be published: continue it and save as a FINAL REPLAY.</t>
+    <t id="galeria.st_ja_na_geral">This replay is already in the Public Gallery.</t>
+    <t id="galeria.st_ja_publicado">This replay was already published (#{id}).</t>
+    <t id="galeria.st_enviando">Uploading to the Public Gallery...</t>
+    <t id="galeria.st_so_criador_deletar">Only the creator or a moderator can delete this replay.</t>
+    <t id="galeria.st_confirmar_delete">Click DELETE again to confirm: {nome}</t>
+    <t id="galeria.st_local_deletado">Local replay deleted: {nome}</t>
+    <t id="galeria.st_deletando">Deleting from the Public Gallery...</t>
+    <t id="galeria.st_deletado_geral">Replay #{id} deleted from the Public Gallery.</t>
+    <t id="galeria.st_nao_deletar">Could not delete: {erro}</t>
+    <t id="galeria.st_selecione_rascunho">Select a draft (Category: Drafts (TAS)).</t>
+    <t id="galeria.st_nao_continuar">Could not continue: {erro}</t>
+    <t id="galeria.st_so_local_clonar">Select a local final replay (Category: My Replays) to clone.</t>
+    <t id="galeria.st_nao_clonar">Could not clone: {erro}</t>
+    <t id="galeria.st_clonado">"{nome}" cloned to draft: {arquivo} (the final replay stayed untouched).</t>
+    <t id="galeria.st_so_criador_renomear">Only the creator or an admin can rename this replay.</t>
+    <t id="galeria.st_renomeando">Renaming replay #{id} in the Public Gallery...</t>
+    <t id="galeria.st_renomeado_local">Renamed to: {nome}  ({arquivo})</t>
+    <t id="galeria.st_renomeado_geral">Replay #{id} renamed to: {nome}</t>
+    <t id="galeria.st_nao_renomear">Could not rename: {erro}</t>
+    <t id="galeria.st_nao_juntar">Could not merge: {erro}</t>
+    <t id="galeria.st_juntado">Replays merged: {nome} ({arquivo}), seam distance {dist} m. The originals were left untouched.</t>
+
+    <!-- ============ RENAME REPLAY DIALOG ============ -->
+    <t id="renomear.titulo">RENAME REPLAY</t>
+    <t id="renomear.dica">New name (characters \ / : * ? " &lt; &gt; | are removed)</t>
+    <t id="renomear.confirmar">CONFIRM</t>
+    <t id="renomear.cancelar">CANCEL</t>
+    <t id="galeria.excluir_titulo">DELETE REPLAY</t>
+    <t id="galeria.excluir_pergunta">Delete "{nome}"?</t>
+    <t id="galeria.excluir_sim">YES (Enter)</t>
+    <t id="galeria.excluir_nao">NO (ESC)</t>
+    <t id="renomear.invalido">Enter a valid name.</t>
+
+    <!-- ============ MERGE REPLAYS DIALOG ============ -->
+    <t id="juntar.titulo">MERGE REPLAYS</t>
+    <t id="juntar.parte1">Part 1 (start): {nome}  ({dur})</t>
+    <t id="juntar.lbl_parte2">Choose Part 2 (continuation):</t>
+    <t id="juntar.lbl_nome">Name of the new replay:</t>
+    <t id="juntar.confirmar">MERGE</t>
+    <t id="juntar.cancelar">CANCEL</t>
+    <t id="juntar.sem_candidatos">No other replay available to be Part 2.</t>
+    <t id="juntar.selecione_p2">Select the Part 2 replay in the list.</t>
+    <t id="juntar.nome_invalido">Enter a valid name for the new replay.</t>
+    <t id="juntar.baixando">Downloading Part 2 (replay #{id}) from the Public Gallery...</t>
+    <t id="juntar.p1">Part 1</t>
+    <t id="juntar.p2">Part 2</t>
+
+    <!-- ============ RECORDING ("REC" HUD, bottom-right) ============ -->
+    <t id="rec.gravando">Recording inputs</t>
+    <t id="rec.pausado">Recording paused</t>
+    <t id="rec.rascunho_pronto">Draft loaded: ACCELERATE (or /lw) to continue</t>
+    <t id="rec.rascunho_carregando">Loading draft...</t>
+    <t id="rec.inputs">Inputs: {n}</t>
+    <t id="rec.tempo">Time: {t}</t>
+    <t id="rec.checkpoint">CHECKPOINT {n}  {t}</t>
+    <t id="rec.rewind">REWIND -{n} frames  -&gt;  {t}</t>
+    <t id="rec.continuando">CONTINUING  {t}</t>
+    <!-- Run badge (HUD and save window) -->
+    <t id="selo.um_take">1-Take</t>
+    <t id="selo.tas_1">TAS (1 warp)</t>
+    <t id="selo.tas_n">TAS ({n} warps)</t>
+
+    <!-- ============ SAVE REPLAY WINDOW (end of recording) ============ -->
+    <t id="salvar.titulo">SAVE REPLAY</t>
+    <t id="salvar.nome">Replay name</t>
+    <t id="salvar.selo">Badge: {selo}</t>
+    <t id="salvar.corte">Draft: cut at checkpoint {n} ({t})</t>
+    <t id="salvar.indisponivel">Draft unavailable (no /sw in the car)</t>
+    <t id="salvar.final">SAVE FINAL REPLAY</t>
+    <t id="salvar.publicar">SAVE FINAL AND PUBLISH</t>
+    <t id="salvar.rascunho">SAVE DRAFT (CONTINUE LATER)</t>
+    <t id="salvar.atualizar_rascunho">UPDATE DRAFT "{nome}"</t>
+    <t id="salvar.novo_rascunho">SAVE AS NEW DRAFT</t>
+    <t id="salvar.aviso_mesmo_nome">Same name as the base draft: it will be UPDATED. Change the name to create another one.</t>
+    <t id="salvar.aviso_nome_novo">Different name: becomes a NEW draft; the base "{nome}" stays untouched.</t>
+    <t id="salvar.aviso_copia">Continuation of "{nome}": saving creates NEW files; the original stays untouched.</t>
+    <t id="salvar.descartar">DISCARD</t>
+
+    <!-- ============ REPLAY PLAYER (bottom bar) ============ -->
+    <t id="player.dica_suave">Smooth FOLLOW (default)  |  V: FOLLOW GTA (bumper/cinematic...)  |  Camera button: every mode  |  H: hide UI to rotate with the mouse  |  K: free camera  |  Space: play/pause  |  Arrows: -3s/+3s  |  Shift+Arrows: saves  |  L: A-B loop</t>
+    <t id="player.dica_follow">FOLLOW GTA (native camera)  |  V: view (bumper/close/normal/far/cinematic)  |  Camera button: every mode  |  H: hide UI to rotate with the mouse  |  K: free camera  |  Space: play/pause  |  Arrows: -3s/+3s  |  Shift+Arrows: saves  |  L: A-B loop</t>
+    <t id="player.dica_fly">WASD: move  |  Q/E: down/up  |  Shift: fast  |  Ctrl: slow  |  Scroll: lens zoom (FOV)  |  Right button + mouse: look  |  K: follow car</t>
+    <t id="player.dica_orbital">Orbital camera  |  Right button + mouse (or hidden UI): rotate 360°  |  Scroll: zoom in/out (2 to 35 m)  |  K: free camera  |  Space: play/pause  |  Arrows: -3s/+3s</t>
+    <t id="player.orbital">ORBITAL (ZOOM)</t>
+    <t id="player.vista_capo">Bumper (1st person)</t>
+    <t id="player.vista_perto">Close</t>
+    <t id="player.vista_media">Normal</t>
+    <t id="player.vista_longe">Far</t>
+    <t id="player.vista_cine">Cinematic</t>
+    <t id="player.vista_aviso">View: {modo}</t>
+    <t id="player.cam_ind_follow">FOLLOW GTA · V: {modo}</t>
+    <t id="player.cam_ind_suave">FOLLOW (smooth) · V: FOLLOW GTA</t>
+    <t id="player.cam_ind_orbital">ORBITAL · {m} m</t>
+    <t id="player.cam_ind_fly">FREE CAMERA · FOV {fov}°</t>
+    <t id="player.sair">EXIT (ESC)</t>
+    <t id="player.continuar_daqui">CONTINUE FROM HERE</t>
+    <t id="player.corte_dica">Cut editor: trim the ends and remove sections</t>
+    <t id="player.prev_dica">Previous replay in the list  ([  or  PageUp)</t>
+    <t id="player.next_dica">Next replay in the list  (]  or  PageDown)</t>
+    <t id="player.prev_vazio">First replay in the list</t>
+    <t id="player.next_vazio">Last replay in the list</t>
+    <t id="rmsg.playlist_carregando">#ffaa00Loading replay {n}/{total}...</t>
+    <t id="rmsg.playlist_aguarde">#ffaa00Please wait: another replay is being downloaded/loaded.</t>
+    <t id="rmsg.playlist_erro">#ff0000Could not open the replay from the list: {erro}</t>
+    <t id="player.corte_inicio">[ START</t>
+    <t id="player.corte_fim">END ]</t>
+    <t id="player.corte_salvar">APPLY CUT</t>
+    <t id="player.corte_cancelar">CANCEL</t>
+    <t id="player.corte_faixa">Cut: {ini} → {fim}  ·  {n} section(s) removed  ·  final {dur}s</t>
+    <t id="player.corte_trecho">+ SECTION</t>
+    <t id="player.corte_trecho_dica">Creates a section to remove at the playhead: drag the red handles (right-click the section: remove)</t>
+    <t id="player.corte_bloco_hover">Removed section: {a} → {b}  ·  drag the edges  ·  right-click: remove</t>
+    <t id="player.corte_alca_hover">Drag to adjust the cut</t>
+    <t id="player.aviso_trecho_fora">Place the playhead between the cut START and END</t>
+    <t id="player.aviso_trecho_existe">There is already a removed section here</t>
+    <t id="player.aviso_trecho_curto">No room for a section here</t>
+    <t id="player.aviso_trecho_removido">Cut section undone</t>
+    <t id="player.cam_aviso">Camera: {modo}</t>
+    <t id="player.ocultar">HIDE UI (H)</t>
+    <t id="player.follow">FOLLOW</t>
+    <t id="player.follow_gta">FOLLOW GTA (V)</t>
+    <t id="player.flycam">FREE CAMERA (K)</t>
+    <t id="player.loop">LOOP</t>
+    <!-- A-B loop (L key / A-B button) and short notices on the player bar -->
+    <t id="player.ab">A-B</t>
+    <t id="player.ab_a">A-...</t>
+    <t id="player.ab_dica">A-B loop (L): 1st sets A  |  2nd sets B and starts the loop  |  3rd clears</t>
+    <!-- Minimalist theme: compact player bar tooltips -->
+    <t id="player.min_fila">QUEUE</t>
+    <t id="player.min_tip_vel">Speed: click to choose (Right: step back)</t>
+    <t id="player.min_tip_ab">A-B loop (L): set A, set B, clear</t>
+    <t id="player.min_tip_loop">Continuous loop</t>
+    <t id="player.min_tip_fila">Record continuous queue</t>
+    <t id="player.min_tip_ocultar">Hide UI (H)</t>
+    <t id="player.min_tip_sair">Exit replay (ESC)</t>
+    <t id="player.min_tip_play">Play / pause (Space)</t>
+    <t id="player.min_tip_cam">Camera: {modo}  (Click: choose | Right: previous)</t>
+    <t id="player.corte_tip_aplicar">Apply cut: save a _cut copy (the original stays intact)</t>
+    <t id="player.corte_tip_cancelar">Cancel the cut</t>
+    <t id="player.saves_titulo">REPLAY SAVES ({n})</t>
+    <t id="player.saves_item">Save #{n} · {t}</t>
+    <t id="player.saves_tip_ir">Jump to this save</t>
+    <t id="player.saves_tip_copiar">Copy this save to your /sw · /lw</t>
+    <t id="player.saves_fechar">Close the save list</t>
+    <t id="player.min_tip_galeria">Replay gallery (F4)</t>
+    <t id="player.min_tip_cont">Continue from here: record TAS from this point</t>
+    <!-- Minimalist theme: floating ? panel -->
+    <t id="player.min_aj_titulo">KEYBOARD SHORTCUTS</t>
+    <t id="player.min_aj_fixar">click ? to pin</t>
+    <t id="player.min_aj_soltar">click ? to close</t>
+    <t id="player.min_aj_geral">PLAYBACK</t>
+    <t id="player.min_aj_follow">FOLLOW CAMERA</t>
+    <t id="player.min_aj_orbital">ORBITAL CAMERA</t>
+    <t id="player.min_aj_fly">FREE CAMERA</t>
+    <t id="player.min_aj_space_k">Space</t>
+    <t id="player.min_aj_space">Play / pause</t>
+    <t id="player.min_aj_setas_k">Arrows</t>
+    <t id="player.min_aj_setas">Back / forward 3 s</t>
+    <t id="player.min_aj_shift_k">Shift + Arrows</t>
+    <t id="player.min_aj_shift">Previous / next save (/dw /lw)</t>
+    <t id="player.min_aj_l_k">L</t>
+    <t id="player.min_aj_l">A-B loop (set A, set B, clear)</t>
+    <t id="player.min_aj_lista_k">[ ]  PgUp PgDn</t>
+    <t id="player.min_aj_lista">Previous / next replay in the list</t>
+    <t id="player.min_aj_h_k">H</t>
+    <t id="player.min_aj_h">Hide / show the UI</t>
+    <t id="player.min_aj_k_k">K</t>
+    <t id="player.min_aj_k">Toggle free camera</t>
+    <t id="player.min_aj_esc_k">ESC</t>
+    <t id="player.min_aj_esc">Exit replay</t>
+    <t id="player.min_aj_v_k">V</t>
+    <t id="player.min_aj_v">FOLLOW GTA: bumper / close / normal / far / cinematic</t>
+    <t id="player.min_aj_girar_follow_k">H + mouse</t>
+    <t id="player.min_aj_girar_follow">Hide the UI and rotate with the mouse</t>
+    <t id="player.min_aj_girar_orbital_k">Right + mouse</t>
+    <t id="player.min_aj_girar_orbital">Rotate 360° (or with hidden UI)</t>
+    <t id="player.min_aj_zoom_orbital_k">Scroll</t>
+    <t id="player.min_aj_zoom_orbital">Zoom in / out (2 to 35 m)</t>
+    <t id="player.min_aj_wasd_k">WASD</t>
+    <t id="player.min_aj_wasd">Move</t>
+    <t id="player.min_aj_qe_k">Q / E</t>
+    <t id="player.min_aj_qe">Down / up</t>
+    <t id="player.min_aj_vel_fly_k">Shift / Ctrl</t>
+    <t id="player.min_aj_vel_fly">Fast / slow</t>
+    <t id="player.min_aj_fov_fly_k">Scroll</t>
+    <t id="player.min_aj_fov_fly">Lens zoom (FOV)</t>
+    <t id="player.min_aj_olhar_fly_k">Right + mouse</t>
+    <t id="player.min_aj_olhar_fly">Look around</t>
+    <t id="player.aviso_ab_a">Point A at {t}  -  press L again to set B</t>
+    <t id="player.aviso_ab_on">A-B loop active: {a} → {b}</t>
+    <t id="player.aviso_ab_off">A-B loop off</t>
+    <t id="player.aviso_ab_curto">Section too short: move forward a bit before setting B</t>
+    <t id="player.aviso_save">Save {n}/{total}  ({t})</t>
+    <t id="player.aviso_sem_saves">This replay has no saves on the timeline</t>
+    <t id="player.aviso_primeiro_save">No save before this point</t>
+    <t id="player.aviso_ultimo_save">No save after this point</t>
+    <!-- Save markers on the timeline + CONTINUE FROM HERE picker -->
+    <t id="player.marcador">Save #{n} ({t})</t>
+    <t id="player.cont_exato">FROM THE EXACT MOMENT</t>
+    <t id="player.cont_save">FROM THE LAST SAVE (#{n} - {t})</t>
+
+    <!-- ============ GHOST CARD ============ -->
+    <t id="ghost.modo_sync">Sync with Warp</t>
+    <t id="ghost.modo_loop">Loop</t>
+    <t id="ghost.trecho_ab">A-B {a} → {b}</t>
+    <!-- {tecla} comes pre-formatted, e.g. [L] -->
+    <t id="ghost.sair_tecla">Press {tecla} or /stopghost to leave</t>
+    <t id="ghost.sair">/stopghost to leave</t>
+    <t id="ghost.aguardando">WAITING FOR YOU TO ACCELERATE...</t>
+
+    <!-- ============ F7: Vehicle column when the player saved on foot ============ -->
+    <t id="menu.a_pe">On foot</t>
+
+    <!-- =====================================================================
+         REPLAY CHAT MESSAGES (client). The "[Replay]" prefix is added by the script.
+         ===================================================================== -->
+    <t id="rmsg.limite_tempo">#ffaa0030-minute limit reached: recording finished.</t>
+    <t id="rmsg.precisa_veiculo">#ff0000You must be driving a vehicle to start recording.</t>
+    <t id="rmsg.gravando">#00ff00Recording! #ffffffSave (/sw) = checkpoint, Warp (/lw) = discards the attempt. Press the key again to finish.</t>
+    <t id="rmsg.vazia">Empty recording: nothing to save.</t>
+    <t id="rmsg.movidos">#aaaaaa{n} old replay(s) moved to replays/finais/.</t>
+    <t id="rmsg.erro_criar_arquivo">#ff0000Could not create the file {arquivo}</t>
+    <t id="rmsg.salvo">#00ff00Saved: #ffffff{arquivo} #aaaaaa({frames} frames, {kb} KB, {selo})</t>
+    <t id="rmsg.rascunho_salvo">#00ff00Draft saved: #ffffff{arquivo} #aaaaaa({frames} frames, {kb} KB, {selo})</t>
+    <t id="rmsg.recuperado">#ffaa00A previous recording was interrupted: the backup became the draft #ffffff{nome} #ffaa00(/replays &gt; Drafts (TAS)).</t>
+    <t id="rmsg.aguarde_envio">#ffaa00Wait for the previous upload to finish.</t>
+    <t id="rmsg.grande_demais">#ff0000Replay too large to publish (max. 16 MB). It was only saved locally.</t>
+    <t id="rmsg.enviando">Uploading to the Public Gallery... #aaaaaa({kb} KB)</t>
+    <t id="rmsg.publicado">#00ff00Published to the Public Gallery! #aaaaaa(ID {id})</t>
+    <t id="rmsg.falha_publicar">#ff0000Publish failed: #ffffff{erro}</t>
+    <t id="rmsg.digite_nome">#ff0000Enter a name for the replay.</t>
+    <t id="rmsg.base_continua">#aaaaaaThe base draft #ffffff{nome} #aaaaaastays in the Gallery (Drafts (TAS)) for recording other stunts.</t>
+    <t id="rmsg.novo_rascunho">#aaaaaaNew draft created; the base draft #ffffff{nome} #aaaaaastayed untouched.</t>
+    <t id="rmsg.frames_fora">#aaaaaa{n} frames after the last checkpoint were left out.</t>
+    <t id="rmsg.como_continuar">To continue: #ffff00/replays#ffffff &gt; Category #ffff00Drafts (TAS)#ffffff &gt; CONTINUE RECORDING.</t>
+    <t id="rmsg.descartada">Recording discarded.</t>
+    <t id="rmsg.confirmar_fechar">#ffaa00Click ✕ again to DISCARD the recording (or save it first).</t>
+    <t id="rmsg.finalizada">Recording finished: {frames} frames, {tempo}, {checkpoints} checkpoints, {selo}.</t>
+    <t id="rmsg.erro_continuar">#ff0000Could not continue the draft: #ffffff{erro}</t>
+    <t id="rmsg.continuar_daqui">#00ff00Replay cut at #ffffff{t}#00ff00: everything after it was discarded. This point is checkpoint #{n} (/lw returns to it; {saves} earlier save(s) kept, /dw steps back through them).</t>
+    <t id="rmsg.continuar_save">#00ff00Continuing from #ffffffSave #{n}#00ff00 ({t}): everything after it was discarded. {saves} save(s) loaded on the timeline (/lw returns to it, /dw steps back through the earlier ones).</t>
+    <t id="rmsg.cont_sem_save">#ffaa00No save before this point: continuing from the exact moment.</t>
+    <t id="rmsg.nav_save">#ff9900Save #{n}#ffffff/{total} #aaaaaa({t})</t>
+    <t id="rmsg.nav_sem_saves">#aaaaaaThis replay has no saves marked on the timeline.</t>
+    <t id="rmsg.nav_primeiro">#aaaaaaNo save before this point (/lw goes to the next one).</t>
+    <t id="rmsg.nav_ultimo">#aaaaaaNo save after this point (/dw goes back to the previous one).</t>
+    <t id="rmsg.tas_lw">#aaaaaa/lw (TAS): back to checkpoint #ffffff{cp}#aaaaaa ({t}). Frames after it were cut.</t>
+    <t id="rmsg.tas_dw">#aaaaaa/dw (TAS): last checkpoint undone. Back to checkpoint #ffffff{cp}#aaaaaa ({t}), later frames cut.</t>
+    <t id="rmsg.tas_dw_primeiro">#ffaa00/dw (TAS): already at the first checkpoint of this recording; going back to it.</t>
+    <t id="rmsg.tas_cp_inicio">start</t>
+    <t id="rmsg.tas_cp_sem_estado">That checkpoint was saved on foot: it can't be restored during the recording.</t>
+    <t id="rmsg.corte_salvo">#00ff00Cut saved as a final replay: #ffffff{arquivo} #aaaaaa({ini} → {fim}, {n} section(s) removed, {dur}s). The original stayed untouched.</t>
+    <t id="rmsg.corte_invalido">The cut START must be before the END.</t>
+    <t id="rmsg.corte_curto">The cut clip must be at least 1 second long.</t>
+    <t id="rmsg.corte_erro">Could not write the cut replay.</t>
+    <t id="rmsg.juntar_ok">#00ff00Replays merged: #ffffff{nome} #aaaaaa(Part 1 cut at {corte}, {descartados} frames dropped, seam at {dist} m, total {dur}s, {saves} saves). The originals were left untouched.</t>
+    <t id="rmsg.juntar_distante">Warning: the closest point between the parts is {dist} m away. The ~250 ms transition may look like a teleport.</t>
+    <t id="rmsg.tas_repita">#ffaa00The recording had already ended: use the command again.</t>
+    <t id="rmsg.continuando">#00ff00Continuing #ffffff{nome} #aaaaaa({frames} frames, {tempo}, session {sessao}, {selo})</t>
+    <t id="rmsg.continuando_copia">#aaaaaaThe original replay won't be changed: saving creates a NEW draft/replay.</t>
+    <t id="rmsg.retomada_ultimo_frame">#aaaaaaNo resume checkpoint in the file: continuing from the #fffffflast frame#aaaaaa recorded.</t>
+    <t id="rmsg.pronto_checkpoint">#00ff00Ready at the checkpoint! #ffffffAccelerate to keep recording (or /lw to redo the warp).</t>
+    <t id="rmsg.camera_recusada">#ff0000MTA refused to point the native camera at the ghost car; keeping FLYCAM.</t>
+    <t id="rmsg.servidor_nao_respondeu">#ff0000The server did not respond; replay cancelled.</t>
+    <t id="rmsg.preparando">Preparing the replay...</t>
+    <t id="rmsg.camera_flycam">#ffaa00The native camera could not follow the replay; starting in FLYCAM.</t>
+    <t id="rmsg.assistindo">Watching: #ffff00{nome} #aaaaaa(ESC or Backspace to exit)</t>
+    <t id="rmsg.encerrado">Replay closed.</t>
+    <!-- Also sent by the server when the replay vehicle is changed externally -->
+    <t id="rmsg.integridade">Playback cancelled: external vehicle change detected.</t>
+    <t id="rmsg.erro_carro_visivel">Could not create the replay's visible car.</t>
+    <t id="rmsg.servidor_sem_veiculo">The server could not create the replay vehicle.</t>
+    <t id="rmsg.erro_entrar_veiculo">Could not enter the replay vehicle.</t>
+    <t id="rmsg.ja_aberto">#ffaa00A replay is already open.</t>
+    <t id="rmsg.finalize_antes_assistir">#ffaa00Finish the recording (F10) before watching a replay.</t>
+    <t id="rmsg.invalido">#ff0000Empty or invalid replay.</t>
+    <t id="rmsg.carregando">Loading replay...</t>
+    <t id="rmsg.erro_ler">#ff0000Error reading the replay: {erro}</t>
+    <t id="rmsg.poucos_frames">#ff0000The replay doesn't have enough frames.</t>
+    <t id="rmsg.ghost_desligado">Ghost off.</t>
+    <t id="rmsg.feche_replay_ghost">#ffaa00Close the open replay before racing a ghost.</t>
+    <t id="rmsg.ghost_ainda_carregando">#ffaa00The ghost is still loading.</t>
+    <t id="rmsg.carregando_ghost">Loading ghost...</t>
+    <t id="rmsg.ghost_cancelado">#ffaa00A replay was opened: ghost cancelled.</t>
+    <t id="rmsg.erro_carro_ghost">#ff0000Could not create the ghost car.</t>
+    <t id="rmsg.gravando_sem_tp">#ffaa00Recording (F10): no automatic teleport to the start (it would ruin the recording).</t>
+    <t id="rmsg.ghost_ativo">#00ff00Ghost active: #ffffff{nome} #aaaaaa({modo}, /stopghost to stop)</t>
+    <t id="rmsg.ghost_modo_sync">restarts on every warp</t>
+    <t id="rmsg.ghost_modo_loop">continuous loop</t>
+    <t id="rmsg.ghost_trecho_ab">#8fd3ffA-B section {a} → {b} (set in the replay player)</t>
+    <t id="rmsg.nenhum_ghost">#ffaa00No ghost active.</t>
+    <t id="rmsg.radar_uso">#ffaa00Use it while a replay is playing.</t>
+    <!-- /radardebug (minimap diagnostics during a replay) -->
+    <t id="radar.linha">rz replay {rz} | sound car {som} ({estado}) | visible car {visivel} | you {voce} | inside: {dentro} | camera: {camera}</t>
+    <t id="radar.congelado">FROZEN</t>
+    <t id="radar.solto">free</t>
+    <t id="radar.carro_visivel">visible car</t>
+    <t id="radar.carro_som">sound car</t>
+    <t id="radar.voce">you</t>
+    <t id="radar.matriz">matrix (flycam)</t>
+
+    <!-- Error reasons (shown in chat or in the Gallery footer: no color codes) -->
+    <t id="rerro.cp_nenhum">Make at least one checkpoint (/sw) during the recording to save a draft.</t>
+    <t id="rerro.cp_fora_veiculo">The last checkpoint was made outside a vehicle: it can't be continued.</t>
+    <t id="rerro.cp_poucos_frames">The last checkpoint doesn't have enough frames.</t>
+    <t id="rerro.vazio">empty replay</t>
+    <t id="rerro.criar">could not create {arquivo}</t>
+    <t id="rerro.nome_vazio">empty name</t>
+    <t id="rerro.arquivo_invalido">invalid file</t>
+    <t id="rerro.aguarde_envio">wait for the upload to the Public Gallery to finish</t>
+    <t id="rerro.nao_encontrado">file not found</t>
+    <t id="rerro.cabecalho">replay header not recognized</t>
+    <t id="rerro.gravar">could not write {arquivo}</t>
+    <t id="rerro.finalize_gravacao">finish the current recording (F10) before continuing a draft.</t>
+    <t id="rerro.decida_janela">decide on the previous recording in the SAVE REPLAY window first.</t>
+    <t id="rerro.feche_replay">close the open replay first.</t>
+    <t id="rerro.nao_encontrado_arquivo">file not found: {arquivo}</t>
+    <t id="rerro.sem_estado">the file has no resume state (not a valid draft).</t>
+    <t id="rerro.poucos_frames">the draft doesn't have enough frames.</t>
+    <t id="rerro.teleporte">the teleport didn't arrive from the server.</t>
+    <t id="rerro.juntar_poucos">{parte} doesn't have enough valid frames.</t>
+
+    <!-- =====================================================================
+         SERVER MESSAGES (server.lua, teleportes.lua, replay_s.lua), sent in each
+         player's chosen language.
+         ===================================================================== -->
+    <!-- /cv and /del -->
+    <t id="srv.cv_uso">#ff0000[Error] #ffffffUsage: /cv [Name or ID]</t>
+    <t id="srv.cv_invalido">#ff0000[Error] #ffffffInvalid vehicle.</t>
+    <t id="srv.cv_erro_criar">#ff0000[Error] #ffffffCould not create the vehicle.</t>
+    <t id="srv.cv_pronto">#00ff00[Stunt] #ffffff{veiculo} ready!</t>
+    <t id="srv.del_removido">#00ff00[Stunt] #ffffffVehicle removed!</t>
+    <t id="srv.del_sem_veiculo">#ff0000[Error] #ffffffYou are not in a vehicle.</t>
+    <!-- Saves and warps -->
+    <t id="srv.erro_veiculo_save">#ff0000[Error] #ffffffCould not create the save's vehicle.</t>
+    <t id="srv.save_pare">#ff0000[Save] #ffffffStop the vehicle completely on the ground before saving the position!</t>
+    <t id="srv.save_ok">#00ff00[Stunt] #ffffffSaved! Slot: #ffff00{n}/5</t>
+    <t id="srv.sem_save">#ff0000[Error] #ffffffYou don't have an active save.</t>
+    <t id="srv.del_ultimo">#00ff00[Stunt] #ffffffLast save deleted! Remaining: #ffff00{n}/5</t>
+    <t id="srv.del_save">#00ff00[Stunt] #ffffffSave deleted!</t>
+    <t id="srv.historico_vazio">#ff0000[Error] #ffffffHistory is empty.</t>
+    <t id="srv.warp_aberto">#ffffff[Stunt] Your warp is now: #00ff00OPEN</t>
+    <t id="srv.warp_fechado">#ffffff[Stunt] Your warp is now: #ff0000LOCKED</t>
+    <t id="srv.save_nao_encontrado">#ff0000[Error] #ffffffSave not found.</t>
+    <t id="srv.jogador_sem_save">#ff9900[Notice] #ffffff{nome} has no save (/sw) yet. Use WATCH to follow them.</t>
+    <t id="srv.save_privado">#ff0000[Error] #ffffffThis player made their save private.</t>
+    <t id="srv.save_proprio">#ff0000[Error] #ffffffThat is already your save.</t>
+    <t id="srv.save_copiado">#00ff00[Stunt] #ffffff#ffff00{nome}#ffffff's save copied to your slot!</t>
+    <!-- Fixed slots (/sw 1..5): the "[Error]" prefix is added by the script, except in slot_salvo -->
+    <t id="srv.slot_uso_sw">Use /sw (normal save) or /sw 1 to /sw {max}.</t>
+    <t id="srv.slot_uso_lw">Use /lw (normal save) or /lw 1 to /lw {max}.</t>
+    <t id="srv.slot_login_sw">Log in to your account to use the fixed slots (/sw 1..{max}).</t>
+    <t id="srv.slot_login_lw">Log in to your account to use the fixed slots (/lw 1..{max}).</t>
+    <t id="srv.slot_login">Log in to your account to use the fixed slots.</t>
+    <t id="srv.slot_vazio">Slot {slot} is empty. Save it with /sw {slot}.</t>
+    <t id="srv.tas_slot_bloqueado">While recording a replay, use /lw (no number): slots would take you off the timeline.</t>
+    <t id="srv.slot_salvo">#00ff00[Stunt] #ffffffSaved in fixed slot #ffff00{slot}#ffffff (permanent). Use #ffff00/lw {slot}</t>
+    <!-- Player search (/watch and /copiarsave) -->
+    <!-- Prefixo das mensagens de erro de slot e de busca de jogador / prefix for slot and player-search errors -->
+    <t id="srv.prefixo_erro">#ff0000[Error]</t>
+    <t id="srv.busca_vazia">Enter the player's ID or part of their name.</t>
+    <t id="srv.busca_varios">More than one player found ({nomes}). Be more specific or use the ID.</t>
+    <t id="srv.busca_nenhum">No online player found matching "{termo}".</t>
+    <t id="srv.copiarsave_uso">#ff0000[Error] #ffffffUse /copiarsave [id or name] (or with nothing while spectating with /watch).</t>
+    <!-- Spectator mode: the "[Watch]" prefix is added by the script, except in watch_saia_antes_tp -->
+    <t id="srv.watch_saia_antes_tp">#ff9900[Watch] #ffffffLeave spectator mode (/watch or Backspace) before teleporting.</t>
+    <t id="srv.watch_saiu">You left spectator mode.</t>
+    <t id="srv.watch_uso">Use #ffff00/watch [id or name]#ffffff to spectate a player.</t>
+    <t id="srv.watch_offline">That player is offline.</t>
+    <t id="srv.watch_nao_encontrado">Player not found.</t>
+    <t id="srv.watch_si_mesmo">You can't spectate yourself.</t>
+    <t id="srv.watch_ja_assistindo">You are already watching #ffff00{nome}#ffffff.</t>
+    <t id="srv.watch_morto">You must be alive to use /watch.</t>
+    <t id="srv.watch_saia_replay">Leave the replay before spectating a player.</t>
+    <t id="srv.watch_alvo_replay">{nome} is watching a replay right now.</t>
+    <t id="srv.watch_alvo_assistindo">{nome} is spectating another player right now.</t>
+    <t id="srv.watch_alvo_privado">{nome} has their warp #ff0000LOCKED#ffffff: can't spectate.</t>
+    <t id="srv.watch_pare">Stop your vehicle completely before spectating another player!</t>
+    <t id="srv.watch_inicio">Watching #ffff00{nome}#ffffff. #aaaaaa[Backspace] or /watch to leave • /copiarsave copies their save.</t>
+    <t id="srv.watch_fim_saiu">The player you were watching left the server.</t>
+    <t id="srv.watch_fim_assistindo">{nome} started spectating another player.</t>
+    <t id="srv.watch_fim_replay">{nome} started watching a replay.</t>
+    <t id="srv.watch_fim_privado">{nome} made their warp PRIVATE.</t>
+    <t id="srv.watch_cmd_bloqueado">Command blocked in spectator mode. Use #ffff00/watch#ffffff or #ffff00Backspace#ffffff to leave.</t>
+    <!-- Ghost and draft (start line) -->
+    <t id="srv.ghost_largada">#00ff00[Ghost] #ffffffYou are at the start line. Use #ffff00/lw#ffffff to come back here on every attempt.</t>
+    <t id="srv.rascunho_largada">#ff3333[Replay] #ffffffDraft loaded at the last checkpoint. #ffff00Accelerate#ffffff to keep recording.</t>
+    <!-- Public Gallery: announcement to everyone and failure reasons (no color codes) -->
+    <t id="srv.pub_anuncio">#ff3333[Replay] #ffffff{criador} published #ffff00{nome} #ffffffto the Public Gallery.</t>
+    <t id="srv.pub_indisponivel">gallery unavailable on the server</t>
+    <t id="srv.pub_dados_invalidos">invalid data</t>
+    <t id="srv.pub_tamanho">invalid size</t>
+    <t id="srv.pub_formato">invalid replay format</t>
+    <t id="srv.pub_rascunho">drafts can't be published</t>
+    <t id="srv.pub_cooldown">wait a few seconds before publishing another replay</t>
+    <t id="srv.pub_erro_arquivo">error creating the file on the server</t>
+    <t id="srv.erro_banco">database write error</t>
+    <t id="srv.replay_nao_encontrado">replay not found</t>
+    <t id="srv.replay_nao_encontrado_servidor">replay not found on the server</t>
+    <t id="srv.so_criador_deletar">only the creator or a moderator can delete it</t>
+    <t id="srv.so_criador_renomear">only the creator or an admin can rename it</t>
+    <t id="srv.ren_aguarde">wait a moment</t>
+    <t id="srv.ren_nome_vazio">empty name</t>
+    <t id="srv.ren_erro_ler">error reading the file on the server</t>
+    <t id="srv.ren_erro_gravar">error writing the file on the server</t>
+    <t id="srv.replay_cmd_bloqueado">#ff8800[Replay] #ffffffCommand blocked while you are watching a replay.</t>
+    <!-- /replaysync (staff). The "[Replay]" prefix is added by the script, except in sync_so_equipe -->
+    <t id="srv.sync_so_equipe">#ff3333[Replay] #ffffffOnly staff can use /replaysync.</t>
+    <t id="srv.sync_nao_encontrado">#ff0000File not found: #ffffff{arquivo}</t>
+    <t id="srv.sync_ja_existe">#ffaa00This file is already in the Gallery (#{id}).</t>
+    <t id="srv.sync_importado">#00ff00Imported as #{id}: #ffffff{arquivo}</t>
+    <t id="srv.sync_falha">#ff0000Could not import: #ffffff{erro}</t>
+    <t id="srv.sync_ok">#00ff00Synced: #ffffff{importados} imported, {removidos} removed, {migrados} migrated.</t>
+    <t id="srv.sync_sem_listagem">#ffaa00(This server can't list folders: use /replaysync &lt;file.csv&gt;.)</t>
+    <t id="srv.imp_tamanho">empty or too large</t>
+    <t id="srv.imp_formato">not a recorder CSV</t>
+    <t id="srv.imp_rascunho">it is a draft (TAS)</t>
+    <t id="srv.replay_saves_restaurados">#ff3333[Replay] #ffffffYour personal saves (/sw) from before the replay were restored.</t>
+    <!-- /sync (vehicle resync after the Map Editor F6) -->
+    <!-- Map Editor editing camera: /cv, /lw, TELEPORT, WATCH and replays leave it first -->
+    <t id="srv.editor_saindo">#ff9900[Editor] #ffffffYou are in the editing camera: switching to test mode before continuing...</t>
+    <t id="editor.saindo">You are in the editing camera: switching to test mode before continuing...</t>
+    <t id="editor.feche_janela">Close the open editor window (Browse.../Properties) and press F6 to go back to test mode.</t>
+    <!-- /fixdim (staff emergency): "[FixDim]" prefix added by the script -->
+    <t id="srv.fixdim_sem_permissao">Only staff (Admin / SuperModerator / Moderator) can use /fixdim.</t>
+    <t id="srv.fixdim_ok">#ffff00{nome}#ffffff is back in dimension #ffff00{dim}#ffffff (watch/replay ended).</t>
+    <t id="srv.fixdim_alvo">A staff member fixed your dimension: you are now in #ffff00{dim}#ffffff.</t>
+    <t id="srv.fixdim_watch">Spectator mode ended by staff (/fixdim).</t>
+    <t id="srv.fixdim_replay">Replay ended by staff (/fixdim).</t>
+
+    <!-- ===== ADMIN PANEL: SAVE/WARP SETTINGS (config_warp_c.lua / config_warp_s.lua) ===== -->
+    <t id="cfgwarp.titulo">SAVE/WARP SETTINGS</t>
+    <t id="cfgwarp.btn">ADM</t>
+    <t id="cfgwarp.tip">Save/Warp settings (Admin)</t>
+    <t id="cfgwarp.desc_abrir">Opens the Admin panel: tune /sw and /lw live for every player.</t>
+    <t id="cfgwarp.dica_padrao">Hover an option to see what it does.</t>
+    <t id="cfgwarp.on">ON</t>
+    <t id="cfgwarp.off">OFF</t>
+    <t id="cfgwarp.salvar">SAVE SETTINGS</t>
+    <t id="cfgwarp.restaurar">RESTORE DEFAULTS</t>
+    <t id="cfgwarp.d_salvar">Writes config_warp.json and applies it now to every online player.</t>
+    <t id="cfgwarp.d_restaurar">Resets everything to default (400 ms, speed ON, no cooldown, 20 saves...) and applies it at once.</t>
+    <t id="cfgwarp.l_assentamentoMs">/lw settle time (ms)</t>
+    <t id="cfgwarp.l_cooldownLw">/lw cooldown (s)</t>
+    <t id="cfgwarp.l_maxSaves">Max saves per player</t>
+    <t id="cfgwarp.l_salvarVelocidade">Restore speed</t>
+    <t id="cfgwarp.l_permitirCopiar">Allow copying warps</t>
+    <t id="cfgwarp.l_permitirAr">Allow /sw in the air</t>
+    <t id="cfgwarp.l_repararLw">Repair on /lw</t>
+    <t id="cfgwarp.d_assentamentoMs">0 to 1500 ms (default 400): time held still at the spot before the vehicle is released and the speed applied. 0 = released on the same frame.</t>
+    <t id="cfgwarp.d_cooldownLw">0 to 10 s (default 0): minimum gap between two /lw from the same player. 0 = no limit.</t>
+    <t id="cfgwarp.d_maxSaves">1 to 50 (default 20): how many /sw each player keeps in their history (/dw steps back one by one).</t>
+    <t id="cfgwarp.d_salvarVelocidade">ON: /lw gives back the saved linear and angular speed. OFF: position and rotation only, standing still.</t>
+    <t id="cfgwarp.d_permitirCopiar">ON: enables the F7 COPY SAVE button and /copiarsave (/cwarp). OFF: blocked for everyone.</t>
+    <t id="cfgwarp.d_permitirAr">ON: saving works anywhere. OFF: players can only save with the vehicle touching the ground (staff are not affected).</t>
+    <t id="cfgwarp.d_repararLw">ON: /lw repairs the vehicle if it is damaged. OFF: leaves the bodywork as it is.</t>
+    <t id="cfgwarp.l_editorVoltaPonto">Editor (F6): return to previous spot</t>
+    <t id="cfgwarp.d_editorVoltaPonto">ON: leaving the editor (F6) puts the player and vehicle back where they were before editing. OFF: they go to where the editor camera was (freecam H style).</t>
+    <t id="toast.save">Saved! Slot: #ff9900{n}/{max}</t>
+    <t id="toast.del">Last save deleted! Remaining: #ff9900{n}/{max}</t>
+    <t id="toast.copy">Replay save copied to your /lw! Slot: #ff9900{n}/{max}</t>
+    <t id="cfgwarp.msg_cooldown">#ff0000Wait #ffffff{s}s #ff0000before using /lw again.</t>
+    <t id="srv.cfgwarp_sem_permissao">#ff0000No permission: only Admins can change the Save/Warp settings.</t>
+    <t id="srv.cfgwarp_salvo">#00ff00Save/Warp settings saved and applied to all players.</t>
+    <t id="srv.cfgwarp_restaurado">#00ff00Save/Warp settings restored to defaults and applied to all players.</t>
+    <t id="srv.cfgwarp_cooldown">#ff0000Wait #ffffff{s}s #ff0000before using /lw again.</t>
+    <t id="srv.cfgwarp_copia_off">#ff0000Copying warps is disabled on this server.</t>
+    <t id="srv.cfgwarp_save_ar">#ff0000On this server you can only save with the vehicle on the ground (not in the air or falling).</t>
+    <!-- ============ AUTO-UPDATE (updater_s.lua) ============ -->
+    <t id="upd.selo_nova">New version available</t>
+    <t id="upd.nova_disponivel">#FF9900[{nome}] #FFFFFFNew version available: #FFCC00v{nova} #AAAAAA(installed: v{atual})</t>
+    <t id="upd.changelog">#AAAAAAChanges: #FFFFFF{texto}</t>
+    <t id="upd.como_atualizar">#AAAAAAUse #FFFFFF/{cmd} #AAAAAAto update or download manually at #8FD3FF{url}</t>
+    <t id="upd.sem_admin">#FF6969Only Admins (ACL Admin) can update.</t>
+    <t id="upd.ocupado">#FFAA00A check/update is already in progress.</t>
+    <t id="upd.atualizado">#00FF00You are already on the latest version (v{atual}).</t>
+    <t id="upd.falha_checar">#FFAA00Could not reach GitHub right now (no internet, GitHub down or missing function.fetchRemote permission).</t>
+    <t id="upd.manifesto_invalido">#FF6969The version manifest is invalid. Nothing was changed.</t>
+    <t id="upd.baixando">#8FD3FFDownloading v{nova} ({n} files)...</t>
+    <t id="upd.erro_download">#FF6969Failed to download {arquivo}. Nothing was changed.</t>
+    <t id="upd.erro_backup">#FF6969Could not create the backup. Nothing was changed.</t>
+    <t id="upd.erro_gravar">#FF6969Failed to write {arquivo}. The backup was restored.</t>
+    <t id="upd.sucesso">#00FF00[{nome}] Updated to v{nova}! Backup in {pasta}. Restarting the resource...</t>
+    <t id="upd.reinicie">#FFAA00Restart manually with /restart {recurso}.</t>
+</lang>

@@ -1,0 +1,819 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  =====================================================================
+  stunt_tools - IDIOMA: Português (BR)
+  =====================================================================
+  COMO CRIAR UM IDIOMA NOVO (não precisa mexer em nenhum script, funciona com .luac):
+    1. Copie o lang/en.xml (o inglês é a referência) para lang/<código>.xml
+       (ex.: lang/es.xml, lang/ru.xml). Use o código ISO de 2 letras.
+    2. Troque code="..." (aparece no botão do cabeçalho do F7, ex.: ES) e name="..."
+       (nome mostrado ao passar o mouse, ex.: Español).
+    3. Traduza só o TEXTO entre as tags. NÃO altere os id="...".
+    4. Reinicie o resource (restart stunt_tools). O idioma aparece sozinho no F7.
+  REGRAS:
+    - Chave que faltar no seu arquivo usa o texto do en.xml automaticamente
+      (o console do servidor mostra quantas chaves faltam em cada idioma).
+    - {nome}, {id}, {n}... são valores preenchidos pelo script: mantenha-os no texto
+      (pode mudar a posição deles na frase).
+    - #RRGGBB muda a cor do texto no chat/HUD (ex.: #ff9900 = laranja). Pode manter.
+    - Em XML, escreva &lt; para "<", &gt; para ">" e &amp; para "&".
+    - Texto de várias linhas: uma tag <l> por linha; <l/> é uma linha em branco.
+      Na AJUDA, uma linha "- - - TÍTULO - - -" (com três hífens juntos de cada lado) vira título laranja.
+    - Espaços no começo/fim de um texto são ignorados.
+  =====================================================================
+-->
+<lang code="PT" name="Português (BR)">
+
+    <!-- ============ GERAL (ui_c.lua) ============ -->
+    <t id="ui.pressione">PRESSIONE...</t>
+    <!-- Rodapé do F7 ao passar o mouse num botão de idioma -->
+    <t id="ui.idioma_hover">Idioma: {nome}  •  clique para usar</t>
+
+    <t id="geral.boas_vindas">#FF9900[Stunt Tools] #AAAAAAIniciado! Pressione #FFFFFFF7 #AAAAAApara abrir o Hub, #FFFFFFF4 #AAAAAApara a Galeria de Replays e #FFFFFFH #AAAAAApara Freecam.</t>
+
+    <!-- ============ MENU PRINCIPAL (F7) ============ -->
+    <t id="menu.titulo">HUB  ·  GERENCIADOR DE STUNT</t>
+    <t id="menu.col_id">ID</t>
+    <t id="menu.col_jogador">Jogador</t>
+    <t id="menu.col_veiculo">Veículo</t>
+    <!-- Coluna Status do F7 (atualizada em tempo real pelo servidor) -->
+    <t id="status.coluna">Status</t>
+    <t id="status.offline">Offline</t>
+    <t id="status.afk">AFK</t>
+    <t id="status.afk_minimizado">AFK (Minimizado)</t>
+    <t id="status.afk_inativo">AFK (Inativo)</t>
+    <t id="status.assistindo">Assistindo</t>
+    <t id="status.editando">Editando</t>
+    <t id="status.testando">Testando</t>
+    <t id="status.jogando">Jogando</t>
+    <t id="menu.teleportar">TELEPORTAR</t>
+    <t id="menu.copiar_save">COPIAR SAVE</t>
+    <t id="menu.assistir">ASSISTIR (WATCH)</t>
+    <t id="menu.ajuda">AJUDA</t>
+    <t id="menu.warp_aberto">MEU WARP: ABERTO</t>
+    <t id="menu.warp_fechado">MEU WARP: FECHADO</t>
+    <t id="menu.binds">CONFIGURAÇÕES</t>
+    <t id="menu.cv_ativo">COMANDO /CV: ATIVO</t>
+    <t id="menu.cv_desativado">COMANDO /CV: DESATIVADO</t>
+    <t id="menu.replays">REPLAYS</t>
+    <!-- Tema Minimalista do F7: switches + tooltips dos ícones -->
+    <t id="menu.min_warp">MEU WARP</t>
+    <t id="menu.min_aberto">ABERTO</t>
+    <t id="menu.min_fechado">FECHADO</t>
+    <t id="menu.min_cv">COMANDO /CV</t>
+    <t id="menu.min_ativo">ATIVO</t>
+    <t id="menu.min_desativado">DESATIVADO</t>
+    <t id="menu.min_tip_teleportar">Teleportar até o jogador selecionado</t>
+    <t id="menu.min_tip_replays">Abrir a Galeria de Replays</t>
+    <t id="menu.min_tip_copiar">Copiar save do jogador</t>
+    <t id="menu.min_tip_watch">Assistir jogador (Watch)</t>
+    <t id="menu.min_tip_config">Configurações e teclas</t>
+    <t id="menu.min_tip_ajuda">Ajuda</t>
+    <t id="menu.min_tip_warp">Abrir / fechar o seu warp</t>
+    <t id="menu.min_tip_cv">Ativar / desativar o /cv do hub</t>
+    <!-- Lista de jogadores: marcações depois do nome -->
+    <t id="menu.bloqueado">(Bloqueado)</t>
+    <t id="menu.offline">[offline]</t>
+    <!-- Rodapé: dica padrão e descrição de cada botão (hover) -->
+    <t id="menu.dica_padrao">Selecione um jogador na lista  •  F7 ou X para fechar</t>
+    <t id="menu.desc_teleportar">Teleporta você e seu veículo até o jogador selecionado na lista.</t>
+    <t id="menu.desc_copiar_save">Copia o ponto de save atual do jogador selecionado para o seu /lw.</t>
+    <t id="menu.desc_assistir">Assiste o jogador selecionado (modo espectador). Backspace ou /watch para sair.</t>
+    <t id="menu.desc_ajuda">Abre a lista completa de comandos, atalhos e dicas do servidor.</t>
+    <t id="menu.desc_warp">Define se outros jogadores podem teleportar até você ou copiar seu save.</t>
+    <t id="menu.desc_binds">Abre o painel para personalizar suas teclas de atalho e o Auto-Tap.</t>
+    <t id="menu.desc_cv">Ativa ou bloqueia a troca rápida de veículos pelo comando /cv.</t>
+    <t id="menu.desc_replays">Abre a Galeria de Replays para assistir runs ou correr contra o Ghost.</t>
+    <!-- Mensagens no chat -->
+    <t id="menu.msg_binds_salvas">#00ff00[HUB] #ffffffBinds salvas com sucesso!</t>
+    <t id="menu.msg_selecione_jogador">#ff9900[Watch] #ffffffSelecione um jogador na lista primeiro.</t>
+    <t id="menu.msg_cv_ativo">#00ff00[HUB] #ffffffComando /cv do hub ATIVO.</t>
+    <t id="menu.msg_cv_desativado">#ff0000[HUB] #ffffffComando /cv do hub DESATIVADO (o /cv do gamemode responde sozinho).</t>
+
+    <!-- ============ CONFIGURAR TECLAS ============ -->
+    <t id="binds.titulo">CONFIGURAÇÕES</t>
+    <t id="binds.tema_classico">TEMA: CLÁSSICO</t>
+    <t id="binds.tema_moderno">TEMA: MODERNO</t>
+    <t id="binds.tema_minimalista">TEMA: MINIMALISTA</t>
+    <t id="binds.tema_hibrido">TEMA: HÍBRIDO</t>
+    <t id="binds.fonte_padrao">FONTE: PADRÃO</t>
+    <t id="binds.fonte_segoe">FONTE: SEGOE UI</t>
+    <t id="binds.fonte_bahnschrift">FONTE: BAHNSCHRIFT</t>
+    <t id="binds.fonte_calibri">FONTE: CALIBRI</t>
+    <t id="binds.save">Salvar (/sw)</t>
+    <t id="binds.warp">Voltar (/lw)</t>
+    <t id="binds.del">Deletar (/dw)</t>
+    <t id="binds.priv">Privado (/privado)</t>
+    <t id="binds.autotap">Auto-Tap Moto</t>
+    <t id="binds.objinv">Objetos Invisíveis</t>
+    <t id="binds.hideply">Ocultar Jogadores</t>
+    <t id="binds.transply">Jogadores Transparentes</t>
+    <t id="binds.replay">Gravar Replay</t>
+    <t id="binds.stopghost">Parar Ghost</t>
+    <t id="binds.galeria">Abrir Galeria de Replays</t>
+    <t id="binds.freecam">Freecam + Teleporte</t>
+    <t id="binds.reparar">Reparar / Desvirar Veículo</t>
+    <t id="binds.nitro">Instalar / Recarregar Nitro</t>
+    <t id="binds.motor">Ligar / Desligar Motor</t>
+    <t id="ferr.freecam_on">Freecam ligada: WASD move, SHIFT acelera, ALT desacelera. Aperte a tecla de novo para teleportar até aqui.</t>
+    <t id="ferr.freecam_off">Teleportado para a posição da câmera.</t>
+    <t id="ferr.freecam_bloq">Freecam indisponível agora (replay, /watch ou câmera do editor).</t>
+    <t id="ferr.freecam_passageiro">Freecam indisponível como passageiro.</t>
+    <t id="ferr.sem_veiculo">Você precisa estar dirigindo um veículo.</t>
+    <t id="ferr.reparado">Veículo reparado e desvirado.</t>
+    <t id="ferr.nitro_ok">Nitro instalado e recarregado.</t>
+    <t id="ferr.nitro_nao">Este veículo não suporta nitro.</t>
+    <t id="ferr.motor_on">Motor ligado.</t>
+    <t id="ferr.motor_off">Motor desligado.</t>
+    <!-- Texto da tecla enquanto espera você apertar uma; e quando não há tecla -->
+    <t id="binds.escutando">... Pressione uma tecla ...</t>
+    <t id="binds.nenhuma">NENHUMA</t>
+    <t id="binds.autotap_segurar">MODO AUTO-TAP: SEGURAR</t>
+    <t id="binds.autotap_alternar">MODO AUTO-TAP: ALTERNAR (TOGGLE)</t>
+    <t id="binds.hud_on">HUD VELOCÍMETRO: ON</t>
+    <t id="binds.hud_off">HUD VELOCÍMETRO: OFF</t>
+    <t id="binds.camlw_on">REAJUSTE DE CÂMERA NO /LW: ON</t>
+    <t id="binds.camlw_off">REAJUSTE DE CÂMERA NO /LW: OFF</t>
+    <t id="binds.min_camlw">REAJUSTE DE CÂMERA NO /LW</t>
+    <t id="binds.min_tip_camlw">ON: ao soltar o /lw a câmera volta para trás do veículo</t>
+    <t id="binds.rastro_on">RASTRO 3D DO GHOST: ON</t>
+    <t id="binds.rastro_off">RASTRO 3D DO GHOST: OFF</t>
+    <t id="binds.min_rastro">RASTRO 3D DO GHOST</t>
+    <t id="binds.min_tip_rastro">ON: o Ghost desenha uma linha 3D com a trajetória exata que percorreu</t>
+    <t id="binds.restaurar">RESTAURAR PADRÃO</t>
+    <t id="binds.aplicar">APLICAR E SALVAR BINDS</t>
+    <!-- Tema Minimalista: switches das CONFIGURAÇÕES -->
+    <t id="binds.min_autotap">MODO AUTO-TAP</t>
+    <t id="binds.min_segurar">SEGURAR</t>
+    <t id="binds.min_alternar">ALTERNAR</t>
+    <t id="binds.min_hud">HUD VELOCÍMETRO</t>
+    <t id="binds.min_ligado">ON</t>
+    <t id="binds.min_desligado">OFF</t>
+    <t id="binds.min_tip_autotap">Segurar a tecla ou alternar (toggle)</t>
+    <t id="binds.min_tip_hud">Mostrar / esconder o velocímetro</t>
+
+    <!-- ============ HUD VELOCÍMETRO (chat) ============ -->
+    <t id="hud.msg_ativado">#00ff00[HUD] #ffffffVelocímetro do hub ATIVADO.</t>
+    <t id="hud.msg_desativado">#ff0000[HUD] #ffffffVelocímetro do hub DESATIVADO.</t>
+    <t id="hud.msg_generico">#ff9900[HUD] #ffffffHUD/velocímetro genérico ativo: #ffff00{lista}#ffffff. Ele recebeu o aviso hideHud; se ainda sobrepor, peça a um admin para pará-lo.</t>
+
+    <!-- ============ MODO ESPECTADOR (/watch): card inferior ============ -->
+    <t id="watch.assistindo">ASSISTINDO:</t>
+    <t id="watch.espectadores">ESPECTADORES ({n}):</t>
+    <t id="watch.dica">[BACKSPACE] ou /watch para sair  •  /copiarsave para copiar o save dele</t>
+
+    <!-- ============ AJUDA ============ -->
+    <t id="ajuda.titulo">AJUDA  ·  COMANDOS</t>
+    <t id="ajuda.entendi">ENTENDI</t>
+    <t id="ajuda.texto">
+        <l>--- SAVES E WARPS ---</l>
+        <l>SALVAR: /save ou /sw</l>
+        <l>VOLTAR: /warp ou /lw</l>
+        <l>DELETAR: /delwarp ou /dw</l>
+        <l/>
+        <l>--- SLOTS FIXOS DE TREINO (precisa estar logado) ---</l>
+        <l>/sw 1 até /sw 5 -&gt; salva posição, rotação, velocidade e veículo naquele slot.</l>
+        <l>/lw 1 até /lw 5 -&gt; volta para o slot. Ficam salvos na sua conta, mesmo se o servidor reiniciar. O /sw e o /lw sem número continuam iguais.</l>
+        <l/>
+        <l>PRIVADO: /privado</l>
+        <l/>
+        <l>VEÍCULOS: /cv, /del, /gm</l>
+        <l/>
+        <l>No Modo Play (dimensão 0) o /sw só salva com o veículo PARADO (até 5 km/h) e tocando o chão. A equipe (Admin / SuperModerator / Moderator) salva livremente.</l>
+        <l/>
+        <l>--- MODO ESPECTADOR (/watch) ---</l>
+        <l>/watch [id ou parte do nome] -&gt; assiste o jogador (câmera segue ele). Também pelo botão ASSISTIR (WATCH) do F7, com o jogador selecionado na lista.</l>
+        <l>Backspace ou /watch (sem nada) -&gt; sai e volta exatamente para onde você estava, no mesmo veículo. Enquanto assiste, você fica guardado (congelado, invisível e sem colisão).</l>
+        <l>/copiarsave -&gt; enquanto assiste, copia o save de quem você está vendo (ou /copiarsave [id ou nome] a qualquer momento).</l>
+        <l>Respeita o MEU WARP: PRIVADO do jogador. No Modo Play é preciso estar parado (até 3 km/h) e no chão para começar a assistir (a equipe não tem essas travas).</l>
+        <l/>
+        <l>--- HUD VELOCÍMETRO (/stanthud) ---</l>
+        <l>Velocímetro opcional no canto inferior direito: KM/H, MPH, marcha/RPM e carga do nitro. Começa DESLIGADO; ligue/desligue com /stanthud ou em CONFIGURAÇÕES &gt; HUD VELOCÍMETRO (a escolha fica salva). Ligado, ele esconde os elementos nativos da HUD do GTA para não sobrepor.</l>
+        <l/>
+        <l>--- CLIMA / TEMPO (só no seu jogo) ---</l>
+        <l>/timeset [hora]  -&gt; define a hora (0-23). Aceita minuto: /timeset 17:30</l>
+        <l>/w [id]  -&gt; muda o clima (0-255). Ex: /w 1</l>
+        <l/>
+        <l>O relógio fica CONGELADO (padrão 12:00): o céu e as sombras não mudam entre uma tentativa e outra, ideal para gravar clipes. A hora/clima escolhidos não afetam os outros jogadores.</l>
+        <l/>
+        <l>--- VISUAL DE TREINO / GRAVAÇÃO (só no seu jogo) ---</l>
+        <l>[I] Objetos Invisíveis -&gt; liga/desliga: mostra semitransparentes as rampas, paredes e plataformas invisíveis do mapa. Desligado, voltam a ficar invisíveis. Se nada aparecer, use /objdebug perto do objeto para ver como o mapa o esconde.</l>
+        <l/>
+        <l>[O] Ocultar Jogadores -&gt; os outros jogadores e os veículos deles SOMEM da sua tela (sem som de motor, fumaça, faróis, nitro, sombra ou nome), ideal para gravar clipes limpos.</l>
+        <l/>
+        <l>[K] Jogadores Transparentes -&gt; os outros jogadores e veículos viram FANTASMAS semitransparentes (sem ver o interior do carro pela lataria), ideal para treinar em grupo sem tampar a pista.</l>
+        <l/>
+        <l>O e K se substituem: ligar um desliga o outro. Apertar a mesma tecla de novo volta todos ao normal. Você e o seu veículo nunca são afetados. As teclas podem ser trocadas em CONFIGURAÇÕES e não funcionam com o chat ou o cursor abertos.</l>
+        <l/>
+        <l>--- REPLAY SEGMENTADO ---</l>
+        <l>[F10] Gravar Replay -&gt; dirigindo um veículo, começa a gravar seus inputs. Cada SAVE (/sw) vira um checkpoint; cada WARP (/lw) apaga a tentativa errada e rebobina a gravação para o save, sem cortes: no fim sobra só a run limpa.</l>
+        <l>Aperte F10 de novo para finalizar: dê um nome e escolha SALVAR LOCAL (.CSV), SALVAR E PUBLICAR NA GALERIA (toda a equipe pode ver) ou DESCARTAR.</l>
+        <l/>
+        <l>--- GALERIA E PLAYER (/replays, botão REPLAYS ou tecla F4) ---</l>
+        <l>[F4] Abrir Galeria de Replays -&gt; abre/fecha a galeria direto, sem passar pelo F7 (fecha o menu F7 se estiver aberto). A tecla pode ser trocada em CONFIGURAÇÕES &gt; Abrir Galeria de Replays e não funciona com o chat, o console ou um campo de texto ativo.</l>
+        <l>Filtre por Meus Replays (local) ou Galeria Geral, pesquise por nome/criador/veículo e use ASSISTIR (ou duplo clique), PUBLICAR ou DELETAR.</l>
+        <l>No player: Space = play/pause, Setas = -3s/+3s, clique na barra para pular, botões 0.1x a 4x, LOOP, K = câmera FOLLOW/FLYCAM, H = ocultar a interface, ESC ou Backspace = sair.</l>
+        <l>FOLLOW: câmera nativa do GTA seguindo o carro do replay (não atravessa rampas). Oculte a UI (H) para girar com o mouse; V muda a distância.</l>
+        <l>FLYCAM: WASD move, Q/E desce/sobe, Shift rápido, Ctrl lento, scroll muda a velocidade. Com a interface oculta, o mouse gira a câmera sem segurar botão.</l>
+        <l>O player aplica a hora e o clima da gravação e devolve os seus ao sair.</l>
+        <l/>
+        <l>--- MODO GHOST (correr contra um replay) ---</l>
+        <l>Na galeria, escolha o Modo Ghost e clique em CORRER CONTRA (GHOST): você continua dirigindo e um carro translúcido refaz a run na pista.</l>
+        <l>Sync com Warp + Loop: o ghost reinicia a cada warp (/lw), para largarem juntos.</l>
+        <l>Apenas Loop Contínuo: o ghost roda sem parar, ignorando os warps.</l>
+        <l>Trecho A-B: marque A e B no player do replay (tecla L / botão A-B), saia dele e ative o Ghost desse mesmo replay: ele roda em loop só dentro de A-B, sempre reiniciando em A (e o Sync larga a partir do A).</l>
+        <l>Rastro 3D: o Ghost desenha a trajetória exata como uma linha 3D (liga/desliga na galeria ou em F7 &gt; Configurações).</l>
+        <l>Para parar: tecla L (configurável em CONFIGURAÇÕES &gt; Parar Ghost), /stopghost ou PARAR GHOST na galeria.</l>
+    </t>
+
+    <!-- ============ GALERIA DE REPLAYS ============ -->
+    <t id="galeria.titulo">GALERIA DE REPLAYS</t>
+    <t id="galeria.lbl_categoria">Categoria</t>
+    <t id="galeria.lbl_pesquisar">Pesquisar</t>
+    <t id="galeria.lbl_criador">Criador</t>
+    <t id="galeria.lbl_ordenar">Ordenar por</t>
+    <t id="galeria.lbl_ghost">Modo Ghost</t>
+    <!-- Categorias (mesma ordem sempre) -->
+    <t id="galeria.cat_todos">Todos</t>
+    <t id="galeria.cat_local">Meus Replays (Local .csv)</t>
+    <t id="galeria.cat_geral">Galeria Geral (Servidor)</t>
+    <t id="galeria.cat_rascunhos">Rascunhos (TAS)</t>
+    <t id="galeria.cat_publicados">Locais (Já Publicados)</t>
+    <t id="galeria.todos_criadores">Todos os Criadores</t>
+    <!-- Ordenar por -->
+    <t id="galeria.ordem_recentes">Mais Recentes</t>
+    <t id="galeria.ordem_antigos">Mais Antigos</t>
+    <t id="galeria.ordem_maior">Maior Duração</t>
+    <t id="galeria.ordem_menor">Menor Duração</t>
+    <t id="galeria.ordem_nome">Nome (A-Z)</t>
+    <!-- Modos do Ghost -->
+    <t id="galeria.ghost_sync">Sync com Warp + Loop</t>
+    <t id="galeria.ghost_loop">Apenas Loop Contínuo</t>
+    <!-- Colunas da lista -->
+    <t id="galeria.col_nome">Nome do Replay</t>
+    <t id="galeria.col_criador">Criador</t>
+    <t id="galeria.col_veiculo">Veículo</t>
+    <t id="galeria.col_duracao">Duração</t>
+    <t id="galeria.col_tipo">Tipo</t>
+    <t id="galeria.col_origem">Origem</t>
+    <!-- Coluna Tipo -->
+    <t id="galeria.tipo_1take">1-Take</t>
+    <t id="galeria.tipo_tas_1">TAS (1)</t>
+    <t id="galeria.tipo_tas_n">TAS ({n})</t>
+    <!-- Coluna Origem -->
+    <t id="galeria.origem_local">Local</t>
+    <t id="galeria.origem_local_pub">Local (publicado #{id})</t>
+    <t id="galeria.sufixo_rascunho">(Rascunho)</t>
+    <t id="confirma.titulo">NOME DUPLICADO</t>
+    <t id="confirma.duplicado">Já existe um replay com o nome '{nome}'. Deseja salvar mesmo assim como '{novo}'?</t>
+    <t id="confirma.sim">SIM</t>
+    <t id="confirma.nao">NÃO</t>
+    <t id="galeria.origem_rascunho">Rascunho (TAS)</t>
+    <t id="galeria.origem_sessoes">· {n} sess.</t>
+    <t id="galeria.origem_geral">Geral #{id}</t>
+    <t id="galeria.origem_meu">(meu)</t>
+    <!-- Botões -->
+    <t id="galeria.correr_ghost">CORRER CONTRA (GHOST)</t>
+    <t id="galeria.gravar_fila">● GRAVAR FILA</t>
+    <t id="galeria.ghost_fila">Gravar Fila (Modo Cinema)</t>
+    <t id="player.galeria">GALERIA (F4)</t>
+    <t id="player.fila_on">FILA: ON</t>
+    <t id="player.fila_off">FILA: OFF</t>
+    <t id="rmsg.fila_concluida">#00ff00Gravação da fila concluída!</t>
+    <t id="galeria.parar_ghost">PARAR GHOST</t>
+    <t id="galeria.rastro_on">RASTRO 3D: ON</t>
+    <t id="galeria.rastro_off">RASTRO 3D: OFF</t>
+    <t id="galeria.min_tip_rastro_on">Rastro 3D do Ghost: ON (clique para desligar)</t>
+    <t id="galeria.min_tip_rastro_off">Rastro 3D do Ghost: OFF (clique para ligar)</t>
+    <t id="galeria.assistir">ASSISTIR REPLAY</t>
+    <t id="galeria.publicar">PUBLICAR NA GALERIA</t>
+    <t id="galeria.continuar">CONTINUAR GRAVAÇÃO</t>
+    <t id="galeria.clonar">CLONAR PARA RASCUNHO</t>
+    <t id="galeria.juntar">JUNTAR REPLAYS</t>
+    <t id="galeria.deletar">DELETAR</t>
+    <t id="galeria.confirmar_delete">CONFIRMAR DELETE?</t>
+    <t id="galeria.atualizar">ATUALIZAR LISTA</t>
+    <t id="galeria.renomear">RENOMEAR</t>
+    <t id="galeria.exportar">EXPORTAR .CSV</t>
+    <t id="galeria.fechar">FECHAR</t>
+    <!-- Ícone de copiar o caminho da pasta (dica no rodapé + chat) -->
+    <t id="galeria.copiar_dica">Copiar caminho da pasta de replays para abrir no Windows (Win+R + Ctrl+V)</t>
+    <!-- Tema Minimalista: barra de ações compacta (texto curto + tooltips dos ícones) -->
+    <t id="galeria.min_assistir">ASSISTIR</t>
+    <t id="galeria.min_continuar">CONTINUAR</t>
+    <t id="galeria.min_tip_assistir">Assistir replay (duplo clique na lista)</t>
+    <t id="galeria.min_tip_continuar">Continuar gravação a partir deste replay</t>
+    <t id="galeria.min_tip_ghost">Correr contra o Ghost</t>
+    <t id="galeria.min_tip_fila">Gravar fila (Modo Cinema)</t>
+    <t id="galeria.min_tip_clonar">Clonar para rascunho</t>
+    <t id="galeria.min_tip_juntar">Juntar replays</t>
+    <t id="galeria.min_tip_publicar">Publicar na Galeria Geral</t>
+    <t id="galeria.min_tip_renomear">Renomear</t>
+    <t id="galeria.min_tip_exportar">Exportar .csv</t>
+    <t id="galeria.min_tip_copiar">Copiar caminho da pasta de replays</t>
+    <t id="galeria.min_tip_atualizar">Atualizar lista</t>
+    <t id="galeria.min_tip_deletar">Deletar</t>
+    <t id="galeria.min_tip_confirmar_delete">Clique de novo para confirmar</t>
+    <t id="galeria.min_tip_fechar">Fechar</t>
+    <t id="galeria.msg_copiado">Caminho da pasta copiado! Pressione Win+R e Ctrl+V no Windows para abrir.</t>
+    <t id="galeria.msg_pasta">#aaaaaaPasta: #ffffff{pasta}</t>
+    <t id="galeria.st_copiado">Caminho da pasta de replays copiado (Win+R + Ctrl+V).</t>
+    <t id="galeria.st_copiar_falhou">Não foi possível copiar para a área de transferência.</t>
+    <!-- Exportar -->
+    <t id="galeria.st_exportado">Exportado: {arquivo}</t>
+    <t id="galeria.st_falha_exportar">Falha ao exportar: {erro}</t>
+    <t id="galeria.msg_exportado">#ff3333[Replay] #00ff00Exportado: #ffffff{arquivo}</t>
+    <t id="galeria.msg_no_pc">#aaaaaaNo seu PC: #ffffff{caminho}</t>
+    <!-- Linha de status (rodapé da galeria) -->
+    <t id="galeria.st_contagem">{total} replays  ({locais} locais, {rascunhos} rascunhos, {geral} na Galeria Geral)</t>
+    <t id="galeria.st_selecione">Selecione um replay na lista.</t>
+    <t id="galeria.st_nao_encontrado">Arquivo não encontrado: {arquivo}</t>
+    <t id="galeria.st_aguarde_download">Aguarde o download atual terminar.</t>
+    <t id="galeria.st_baixando">Baixando replay #{id} da Galeria Geral...</t>
+    <t id="galeria.st_falha_download">Falha no download: {erro}</t>
+    <t id="galeria.st_rascunho_nao_publica">Rascunhos não podem ser publicados: continue e salve como REPLAY FINAL.</t>
+    <t id="galeria.st_ja_na_geral">Esse replay já está na Galeria Geral.</t>
+    <t id="galeria.st_ja_publicado">Esse replay já foi publicado (#{id}).</t>
+    <t id="galeria.st_enviando">Enviando para a Galeria Geral...</t>
+    <t id="galeria.st_so_criador_deletar">Só o criador ou um moderador pode deletar esse replay.</t>
+    <t id="galeria.st_confirmar_delete">Clique em DELETAR de novo para confirmar: {nome}</t>
+    <t id="galeria.st_local_deletado">Replay local deletado: {nome}</t>
+    <t id="galeria.st_deletando">Deletando da Galeria Geral...</t>
+    <t id="galeria.st_deletado_geral">Replay #{id} deletado da Galeria Geral.</t>
+    <t id="galeria.st_nao_deletar">Não foi possível deletar: {erro}</t>
+    <t id="galeria.st_selecione_rascunho">Selecione um rascunho (Categoria: Rascunhos (TAS)).</t>
+    <t id="galeria.st_nao_continuar">Não foi possível continuar: {erro}</t>
+    <t id="galeria.st_so_local_clonar">Selecione um replay final local (Categoria: Meus Replays) para clonar.</t>
+    <t id="galeria.st_nao_clonar">Não foi possível clonar: {erro}</t>
+    <t id="galeria.st_clonado">"{nome}" clonado para rascunho: {arquivo} (o replay final ficou intacto).</t>
+    <t id="galeria.st_so_criador_renomear">Só o criador ou um admin pode renomear esse replay.</t>
+    <t id="galeria.st_renomeando">Renomeando replay #{id} na Galeria Geral...</t>
+    <t id="galeria.st_renomeado_local">Renomeado para: {nome}  ({arquivo})</t>
+    <t id="galeria.st_renomeado_geral">Replay #{id} renomeado para: {nome}</t>
+    <t id="galeria.st_nao_renomear">Não foi possível renomear: {erro}</t>
+    <t id="galeria.st_nao_juntar">Não foi possível juntar: {erro}</t>
+    <t id="galeria.st_juntado">Replays unidos: {nome} ({arquivo}), distância na costura {dist} m. Os originais ficaram intactos.</t>
+
+    <!-- ============ MODAL RENOMEAR REPLAY ============ -->
+    <t id="renomear.titulo">RENOMEAR REPLAY</t>
+    <t id="renomear.dica">Novo nome (caracteres \ / : * ? " &lt; &gt; | são removidos)</t>
+    <t id="renomear.confirmar">CONFIRMAR</t>
+    <t id="renomear.cancelar">CANCELAR</t>
+    <t id="renomear.invalido">Digite um nome válido.</t>
+    <t id="galeria.excluir_titulo">EXCLUIR REPLAY</t>
+    <t id="galeria.excluir_pergunta">Excluir "{nome}"?</t>
+    <t id="galeria.excluir_sim">SIM (Enter)</t>
+    <t id="galeria.excluir_nao">NÃO (ESC)</t>
+
+    <!-- ============ MODAL JUNTAR REPLAYS ============ -->
+    <t id="juntar.titulo">JUNTAR REPLAYS</t>
+    <t id="juntar.parte1">Parte 1 (início): {nome}  ({dur})</t>
+    <t id="juntar.lbl_parte2">Escolha a Parte 2 (continuação):</t>
+    <t id="juntar.lbl_nome">Nome do novo replay:</t>
+    <t id="juntar.confirmar">JUNTAR</t>
+    <t id="juntar.cancelar">CANCELAR</t>
+    <t id="juntar.sem_candidatos">Nenhum outro replay disponível para ser a Parte 2.</t>
+    <t id="juntar.selecione_p2">Selecione na lista o replay da Parte 2.</t>
+    <t id="juntar.nome_invalido">Digite um nome válido para o novo replay.</t>
+    <t id="juntar.baixando">Baixando a Parte 2 (replay #{id}) da Galeria Geral...</t>
+    <t id="juntar.p1">Parte 1</t>
+    <t id="juntar.p2">Parte 2</t>
+
+    <!-- ============ GRAVAÇÃO (HUD "REC" no canto inferior direito) ============ -->
+    <t id="rec.gravando">Gravando inputs</t>
+    <t id="rec.pausado">Gravação pausada</t>
+    <t id="rec.rascunho_pronto">Rascunho carregado: ACELERE (ou /lw) para continuar</t>
+    <t id="rec.rascunho_carregando">Carregando rascunho...</t>
+    <t id="rec.inputs">Inputs: {n}</t>
+    <t id="rec.tempo">Seg: {t}</t>
+    <t id="rec.checkpoint">CHECKPOINT {n}  {t}</t>
+    <t id="rec.rewind">REWIND -{n} frames  -&gt;  {t}</t>
+    <t id="rec.continuando">CONTINUANDO  {t}</t>
+    <!-- Selo da run (HUD e janela de salvar) -->
+    <t id="selo.um_take">1-Take</t>
+    <t id="selo.tas_1">TAS (1 warp)</t>
+    <t id="selo.tas_n">TAS ({n} warps)</t>
+
+    <!-- ============ JANELA SALVAR REPLAY (fim da gravação) ============ -->
+    <t id="salvar.titulo">SALVAR REPLAY</t>
+    <t id="salvar.nome">Nome do replay</t>
+    <t id="salvar.selo">Selo: {selo}</t>
+    <t id="salvar.corte">Rascunho: corta no checkpoint {n} ({t})</t>
+    <t id="salvar.indisponivel">Rascunho indisponível (sem /sw no carro)</t>
+    <t id="salvar.final">SALVAR REPLAY FINAL</t>
+    <t id="salvar.publicar">SALVAR FINAL E PUBLICAR</t>
+    <t id="salvar.rascunho">SALVAR RASCUNHO (CONTINUAR DEPOIS)</t>
+    <t id="salvar.atualizar_rascunho">ATUALIZAR RASCUNHO "{nome}"</t>
+    <t id="salvar.novo_rascunho">SALVAR COMO NOVO RASCUNHO</t>
+    <t id="salvar.aviso_mesmo_nome">Mesmo nome do rascunho base: ele será ATUALIZADO. Troque o nome para criar outro.</t>
+    <t id="salvar.aviso_nome_novo">Nome diferente: vira um rascunho NOVO; o base "{nome}" fica intacto.</t>
+    <t id="salvar.aviso_copia">Continuação de "{nome}": salvar cria arquivos NOVOS; o original fica intacto.</t>
+    <t id="salvar.descartar">DESCARTAR</t>
+
+    <!-- ============ PLAYER DE REPLAY (barra inferior) ============ -->
+    <t id="player.dica_suave">FOLLOW suave (padrão)  |  V: FOLLOW GTA (para-choque/cinematográfica...)  |  Botão câmera: todos os modos  |  H: ocultar UI p/ girar com o mouse  |  K: câmera livre  |  Space: play/pause  |  Setas: -3s/+3s  |  Shift+Setas: saves  |  L: loop A-B</t>
+    <t id="player.dica_follow">FOLLOW GTA (câmera nativa)  |  V: visão (para-choque/próxima/normal/distante/cinematográfica)  |  Botão câmera: todos os modos  |  H: ocultar UI p/ girar com o mouse  |  K: câmera livre  |  Space: play/pause  |  Setas: -3s/+3s  |  Shift+Setas: saves  |  L: loop A-B</t>
+    <t id="player.dica_fly">WASD: mover  |  Q/E: descer/subir  |  Shift: rápido  |  Ctrl: lento  |  Scroll: zoom da lente (FOV)  |  Botão direito + mouse: olhar  |  K: seguir carro</t>
+    <t id="player.dica_orbital">Câmera orbital  |  Botão direito + mouse (ou UI oculta): girar 360°  |  Scroll: aproximar/afastar (2 a 35 m)  |  K: câmera livre  |  Space: play/pause  |  Setas: -3s/+3s</t>
+    <t id="player.orbital">ORBITAL (ZOOM)</t>
+    <t id="player.vista_capo">Para-choque (1ª pessoa)</t>
+    <t id="player.vista_perto">Próxima</t>
+    <t id="player.vista_media">Normal</t>
+    <t id="player.vista_longe">Distante</t>
+    <t id="player.vista_cine">Cinematográfica</t>
+    <t id="player.vista_aviso">Visão: {modo}</t>
+    <t id="player.cam_ind_follow">FOLLOW GTA · V: {modo}</t>
+    <t id="player.cam_ind_suave">FOLLOW (suave) · V: FOLLOW GTA</t>
+    <t id="player.cam_ind_orbital">ORBITAL · {m} m</t>
+    <t id="player.cam_ind_fly">CÂMERA LIVRE · FOV {fov}°</t>
+    <t id="player.sair">SAIR (ESC)</t>
+    <t id="player.continuar_daqui">CONTINUAR DAQUI</t>
+    <t id="player.corte_dica">Editor de corte: aparar as pontas e remover trechos</t>
+    <t id="player.prev_dica">Replay anterior da lista  ([  ou  PageUp)</t>
+    <t id="player.next_dica">Próximo replay da lista  (]  ou  PageDown)</t>
+    <t id="player.prev_vazio">Primeiro replay da lista</t>
+    <t id="player.next_vazio">Último replay da lista</t>
+    <t id="rmsg.playlist_carregando">#ffaa00Carregando o replay {n}/{total}...</t>
+    <t id="rmsg.playlist_aguarde">#ffaa00Aguarde: outro replay está sendo baixado/carregado.</t>
+    <t id="rmsg.playlist_erro">#ff0000Não foi possível abrir o replay da lista: {erro}</t>
+    <t id="player.corte_inicio">[ INÍCIO</t>
+    <t id="player.corte_fim">FIM ]</t>
+    <t id="player.corte_salvar">APLICAR CORTE</t>
+    <t id="player.corte_cancelar">CANCELAR</t>
+    <t id="player.corte_faixa">Corte: {ini} → {fim}  ·  {n} trecho(s) removido(s)  ·  final {dur}s</t>
+    <t id="player.corte_trecho">+ TRECHO</t>
+    <t id="player.corte_trecho_dica">Cria um trecho a remover na agulha: arraste as alças vermelhas (clique dir. no trecho: remover)</t>
+    <t id="player.corte_bloco_hover">Trecho removido: {a} → {b}  ·  arraste as bordas  ·  clique dir.: remover</t>
+    <t id="player.corte_alca_hover">Arraste para ajustar o corte</t>
+    <t id="player.aviso_trecho_fora">Posicione a agulha entre o INÍCIO e o FIM do corte</t>
+    <t id="player.aviso_trecho_existe">Já existe um trecho removido neste ponto</t>
+    <t id="player.aviso_trecho_curto">Sem espaço para um trecho aqui</t>
+    <t id="player.aviso_trecho_removido">Trecho de corte desfeito</t>
+    <t id="player.cam_aviso">Câmera: {modo}</t>
+    <t id="player.ocultar">OCULTAR UI (H)</t>
+    <t id="player.follow">FOLLOW</t>
+    <t id="player.follow_gta">FOLLOW GTA (V)</t>
+    <t id="player.flycam">CÂMERA LIVRE (K)</t>
+    <t id="player.loop">LOOP</t>
+    <!-- Loop A-B (tecla L / botão A-B) e avisos curtos na barra do player -->
+    <t id="player.ab">A-B</t>
+    <t id="player.ab_a">A-...</t>
+    <t id="player.ab_dica">Loop A-B (L): 1º marca A  |  2º marca B e liga o loop  |  3º limpa</t>
+    <!-- Tema Minimalista: tooltips compactos da barra do player -->
+    <t id="player.min_fila">FILA</t>
+    <t id="player.min_tip_vel">Velocidade: clique para escolher (Dir.: voltar uma)</t>
+    <t id="player.min_tip_ab">Loop A-B (L): marca A, marca B, limpa</t>
+    <t id="player.min_tip_loop">Loop contínuo</t>
+    <t id="player.min_tip_fila">Gravar fila contínua</t>
+    <t id="player.min_tip_ocultar">Ocultar UI (H)</t>
+    <t id="player.min_tip_sair">Sair do replay (ESC)</t>
+    <t id="player.min_tip_play">Play / pause (Space)</t>
+    <t id="player.min_tip_cam">Câmera: {modo}  (Clique: escolher | Dir.: anterior)</t>
+    <t id="player.corte_tip_aplicar">Aplicar corte: salvar uma cópia _cut (o original fica intacto)</t>
+    <t id="player.corte_tip_cancelar">Cancelar o corte</t>
+    <t id="player.saves_titulo">SAVES DO REPLAY ({n})</t>
+    <t id="player.saves_item">Save #{n} · {t}</t>
+    <t id="player.saves_tip_ir">Pular para este save</t>
+    <t id="player.saves_tip_copiar">Copiar este save para o seu /sw · /lw</t>
+    <t id="player.saves_fechar">Fechar a lista de saves</t>
+    <t id="player.min_tip_galeria">Galeria de replays (F4)</t>
+    <t id="player.min_tip_cont">Continuar daqui: gravar TAS a partir deste ponto</t>
+    <!-- Tema Minimalista: painel flutuante do botão ? -->
+    <t id="player.min_aj_titulo">ATALHOS DE TECLADO</t>
+    <t id="player.min_aj_fixar">clique no ? para fixar</t>
+    <t id="player.min_aj_soltar">clique no ? para fechar</t>
+    <t id="player.min_aj_geral">REPRODUÇÃO</t>
+    <t id="player.min_aj_follow">CÂMERA FOLLOW</t>
+    <t id="player.min_aj_orbital">CÂMERA ORBITAL</t>
+    <t id="player.min_aj_fly">CÂMERA LIVRE</t>
+    <t id="player.min_aj_space_k">Space</t>
+    <t id="player.min_aj_space">Play / pause</t>
+    <t id="player.min_aj_setas_k">Setas</t>
+    <t id="player.min_aj_setas">Voltar / avançar 3 s</t>
+    <t id="player.min_aj_shift_k">Shift + Setas</t>
+    <t id="player.min_aj_shift">Save anterior / próximo (/dw /lw)</t>
+    <t id="player.min_aj_l_k">L</t>
+    <t id="player.min_aj_l">Loop A-B (marca A, marca B, limpa)</t>
+    <t id="player.min_aj_lista_k">[ ]  PgUp PgDn</t>
+    <t id="player.min_aj_lista">Replay anterior / próximo da lista</t>
+    <t id="player.min_aj_h_k">H</t>
+    <t id="player.min_aj_h">Ocultar / mostrar a UI</t>
+    <t id="player.min_aj_k_k">K</t>
+    <t id="player.min_aj_k">Alternar câmera livre</t>
+    <t id="player.min_aj_esc_k">ESC</t>
+    <t id="player.min_aj_esc">Sair do replay</t>
+    <t id="player.min_aj_v_k">V</t>
+    <t id="player.min_aj_v">FOLLOW GTA: para-choque / próxima / normal / distante / cinematográfica</t>
+    <t id="player.min_aj_girar_follow_k">H + mouse</t>
+    <t id="player.min_aj_girar_follow">Ocultar a UI e girar com o mouse</t>
+    <t id="player.min_aj_girar_orbital_k">Dir. + mouse</t>
+    <t id="player.min_aj_girar_orbital">Girar 360° (ou com a UI oculta)</t>
+    <t id="player.min_aj_zoom_orbital_k">Scroll</t>
+    <t id="player.min_aj_zoom_orbital">Aproximar / afastar (2 a 35 m)</t>
+    <t id="player.min_aj_wasd_k">WASD</t>
+    <t id="player.min_aj_wasd">Mover</t>
+    <t id="player.min_aj_qe_k">Q / E</t>
+    <t id="player.min_aj_qe">Descer / subir</t>
+    <t id="player.min_aj_vel_fly_k">Shift / Ctrl</t>
+    <t id="player.min_aj_vel_fly">Rápido / lento</t>
+    <t id="player.min_aj_fov_fly_k">Scroll</t>
+    <t id="player.min_aj_fov_fly">Zoom da lente (FOV)</t>
+    <t id="player.min_aj_olhar_fly_k">Dir. + mouse</t>
+    <t id="player.min_aj_olhar_fly">Olhar</t>
+    <t id="player.aviso_ab_a">Ponto A em {t}  -  aperte L de novo para marcar o B</t>
+    <t id="player.aviso_ab_on">Loop A-B ativo: {a} → {b}</t>
+    <t id="player.aviso_ab_off">Loop A-B desligado</t>
+    <t id="player.aviso_ab_curto">Trecho muito curto: avance um pouco antes de marcar o B</t>
+    <t id="player.aviso_save">Save {n}/{total}  ({t})</t>
+    <t id="player.aviso_sem_saves">Este replay não tem saves na linha do tempo</t>
+    <t id="player.aviso_primeiro_save">Nenhum save antes deste ponto</t>
+    <t id="player.aviso_ultimo_save">Nenhum save depois deste ponto</t>
+    <!-- Marcadores de save na timeline + seletor do CONTINUAR DAQUI -->
+    <t id="player.marcador">Save #{n} ({t})</t>
+    <t id="player.cont_exato">DO MOMENTO EXATO</t>
+    <t id="player.cont_save">DO ÚLTIMO SAVE (#{n} - {t})</t>
+
+    <!-- ============ CARD DO GHOST ============ -->
+    <t id="ghost.modo_sync">Sync com Warp</t>
+    <t id="ghost.modo_loop">Loop</t>
+    <t id="ghost.trecho_ab">A-B {a} → {b}</t>
+    <!-- {tecla} já vem formatada, ex.: [L] -->
+    <t id="ghost.sair_tecla">Pressione {tecla} ou /stopghost para sair</t>
+    <t id="ghost.sair">/stopghost para sair</t>
+    <t id="ghost.aguardando">AGUARDANDO VOCÊ ACELERAR...</t>
+
+    <!-- ============ F7: coluna Veículo quando o jogador salvou a pé ============ -->
+    <t id="menu.a_pe">A pé</t>
+
+    <!-- =====================================================================
+         MENSAGENS DE CHAT DO REPLAY (client). O prefixo "[Replay]" é colocado pelo script.
+         ===================================================================== -->
+    <t id="rmsg.limite_tempo">#ffaa00Limite de 30 minutos atingido: gravação finalizada.</t>
+    <t id="rmsg.precisa_veiculo">#ff0000Você precisa estar dirigindo um veículo para iniciar a gravação.</t>
+    <t id="rmsg.gravando">#00ff00Gravando! #ffffffSave (/sw) = checkpoint, Warp (/lw) = descarta a tentativa. Aperte a tecla de novo para finalizar.</t>
+    <t id="rmsg.vazia">Gravação vazia: nada para salvar.</t>
+    <t id="rmsg.movidos">#aaaaaa{n} replay(s) antigo(s) movido(s) para replays/finais/.</t>
+    <t id="rmsg.erro_criar_arquivo">#ff0000Não foi possível criar o arquivo {arquivo}</t>
+    <t id="rmsg.salvo">#00ff00Salvo: #ffffff{arquivo} #aaaaaa({frames} frames, {kb} KB, {selo})</t>
+    <t id="rmsg.rascunho_salvo">#00ff00Rascunho salvo: #ffffff{arquivo} #aaaaaa({frames} frames, {kb} KB, {selo})</t>
+    <t id="rmsg.recuperado">#ffaa00Uma gravação anterior foi interrompida: o backup virou o rascunho #ffffff{nome} #ffaa00(/replays &gt; Rascunhos (TAS)).</t>
+    <t id="rmsg.aguarde_envio">#ffaa00Aguarde o envio anterior terminar.</t>
+    <t id="rmsg.grande_demais">#ff0000Replay grande demais para publicar (máx. 16 MB). Ficou salvo só localmente.</t>
+    <t id="rmsg.enviando">Enviando para a Galeria Geral... #aaaaaa({kb} KB)</t>
+    <t id="rmsg.publicado">#00ff00Publicado na Galeria Geral! #aaaaaa(ID {id})</t>
+    <t id="rmsg.falha_publicar">#ff0000Falha ao publicar: #ffffff{erro}</t>
+    <t id="rmsg.digite_nome">#ff0000Digite um nome para o replay.</t>
+    <t id="rmsg.base_continua">#aaaaaaO rascunho base #ffffff{nome} #aaaaaacontinua na Galeria (Rascunhos (TAS)) para gravar outros stunts.</t>
+    <t id="rmsg.novo_rascunho">#aaaaaaNovo rascunho criado; o rascunho base #ffffff{nome} #aaaaaaficou intacto.</t>
+    <t id="rmsg.frames_fora">#aaaaaa{n} frames depois do último checkpoint ficaram de fora.</t>
+    <t id="rmsg.como_continuar">Para continuar: #ffff00/replays#ffffff &gt; Categoria #ffff00Rascunhos (TAS)#ffffff &gt; CONTINUAR GRAVAÇÃO.</t>
+    <t id="rmsg.descartada">Gravação descartada.</t>
+    <t id="rmsg.confirmar_fechar">#ffaa00Clique no ✕ de novo para DESCARTAR a gravação (ou salve antes).</t>
+    <t id="rmsg.finalizada">Gravação finalizada: {frames} frames, {tempo}, {checkpoints} checkpoints, {selo}.</t>
+    <t id="rmsg.erro_continuar">#ff0000Não foi possível continuar o rascunho: #ffffff{erro}</t>
+    <t id="rmsg.continuar_daqui">#00ff00Replay cortado em #ffffff{t}#00ff00: tudo depois foi descartado. Esse ponto é o checkpoint #{n} (/lw volta para ele; {saves} save(s) anteriores mantidos, o /dw desce por eles).</t>
+    <t id="rmsg.continuar_save">#00ff00Continuando do #ffffffSave #{n}#00ff00 ({t}): tudo depois dele foi descartado. {saves} save(s) carregados na linha do tempo (/lw volta para ele, /dw desce pelos anteriores).</t>
+    <t id="rmsg.cont_sem_save">#ffaa00Nenhum save antes deste ponto: continuando do momento exato.</t>
+    <t id="rmsg.nav_save">#ff9900Save #{n}#ffffff/{total} #aaaaaa({t})</t>
+    <t id="rmsg.nav_sem_saves">#aaaaaaEste replay não tem saves marcados na linha do tempo.</t>
+    <t id="rmsg.nav_primeiro">#aaaaaaNenhum save antes deste ponto (/lw vai para o próximo).</t>
+    <t id="rmsg.nav_ultimo">#aaaaaaNenhum save depois deste ponto (/dw volta para o anterior).</t>
+    <t id="rmsg.tas_lw">#aaaaaa/lw (TAS): voltando ao checkpoint #ffffff{cp}#aaaaaa ({t}). Os frames depois dele foram cortados.</t>
+    <t id="rmsg.tas_dw">#aaaaaa/dw (TAS): último checkpoint desfeito. Voltando ao checkpoint #ffffff{cp}#aaaaaa ({t}), frames posteriores cortados.</t>
+    <t id="rmsg.tas_dw_primeiro">#ffaa00/dw (TAS): já está no primeiro checkpoint desta gravação; voltando para ele.</t>
+    <t id="rmsg.tas_cp_inicio">início</t>
+    <t id="rmsg.tas_cp_sem_estado">Esse checkpoint foi salvo a pé: não dá para voltar a ele durante a gravação.</t>
+    <t id="rmsg.corte_salvo">#00ff00Corte salvo como replay final: #ffffff{arquivo} #aaaaaa({ini} → {fim}, {n} trecho(s) removido(s), {dur}s). O original ficou intacto.</t>
+    <t id="rmsg.corte_invalido">O INÍCIO do corte precisa ficar antes do FIM.</t>
+    <t id="rmsg.corte_curto">O clipe cortado precisa ter pelo menos 1 segundo.</t>
+    <t id="rmsg.corte_erro">Não foi possível gravar o replay cortado.</t>
+    <t id="rmsg.juntar_ok">#00ff00Replays unidos: #ffffff{nome} #aaaaaa(Parte 1 cortada em {corte}, {descartados} frames descartados, costura a {dist} m, total {dur}s, {saves} saves). Os originais ficaram intactos.</t>
+    <t id="rmsg.juntar_distante">Atenção: o ponto mais próximo entre as partes fica a {dist} m. A transição de ~250 ms pode parecer um teleporte.</t>
+    <t id="rmsg.tas_repita">#ffaa00A gravação já tinha terminado: use o comando de novo.</t>
+    <t id="rmsg.continuando">#00ff00Continuando #ffffff{nome} #aaaaaa({frames} frames, {tempo}, sessão {sessao}, {selo})</t>
+    <t id="rmsg.continuando_copia">#aaaaaaO replay original não será alterado: salvar cria um rascunho/replay NOVO.</t>
+    <t id="rmsg.retomada_ultimo_frame">#aaaaaaSem checkpoint de retomada no arquivo: continuando do #ffffffúltimo frame#aaaaaa gravado.</t>
+    <t id="rmsg.pronto_checkpoint">#00ff00Pronto no checkpoint! #ffffffAcelere para continuar gravando (ou /lw para refazer o warp).</t>
+    <t id="rmsg.camera_recusada">#ff0000O MTA recusou apontar a câmera nativa para o fantasma; mantendo a FLYCAM.</t>
+    <t id="rmsg.servidor_nao_respondeu">#ff0000O servidor não respondeu; replay cancelado.</t>
+    <t id="rmsg.preparando">Preparando o replay...</t>
+    <t id="rmsg.camera_flycam">#ffaa00A câmera nativa não pôde seguir o replay; iniciando na FLYCAM.</t>
+    <t id="rmsg.assistindo">Assistindo: #ffff00{nome} #aaaaaa(ESC ou Backspace para sair)</t>
+    <t id="rmsg.encerrado">Replay encerrado.</t>
+    <!-- Também enviada pelo servidor quando o veículo do replay é alterado por fora -->
+    <t id="rmsg.integridade">Reprodução cancelada: alteração externa de veículo detectada.</t>
+    <t id="rmsg.erro_carro_visivel">Não foi possível criar o carro visível do replay.</t>
+    <t id="rmsg.servidor_sem_veiculo">O servidor não conseguiu criar o veículo do replay.</t>
+    <t id="rmsg.erro_entrar_veiculo">Não foi possível entrar no veículo do replay.</t>
+    <t id="rmsg.ja_aberto">#ffaa00Já existe um replay aberto.</t>
+    <t id="rmsg.finalize_antes_assistir">#ffaa00Finalize a gravação (F10) antes de assistir um replay.</t>
+    <t id="rmsg.invalido">#ff0000Replay vazio ou inválido.</t>
+    <t id="rmsg.carregando">Carregando replay...</t>
+    <t id="rmsg.erro_ler">#ff0000Erro ao ler o replay: {erro}</t>
+    <t id="rmsg.poucos_frames">#ff0000O replay não tem frames suficientes.</t>
+    <t id="rmsg.ghost_desligado">Ghost desligado.</t>
+    <t id="rmsg.feche_replay_ghost">#ffaa00Feche o replay aberto antes de correr contra um ghost.</t>
+    <t id="rmsg.ghost_ainda_carregando">#ffaa00O ghost ainda está carregando.</t>
+    <t id="rmsg.carregando_ghost">Carregando ghost...</t>
+    <t id="rmsg.ghost_cancelado">#ffaa00Um replay foi aberto: ghost cancelado.</t>
+    <t id="rmsg.erro_carro_ghost">#ff0000Não foi possível criar o carro do ghost.</t>
+    <t id="rmsg.gravando_sem_tp">#ffaa00Gravando (F10): sem teleporte automático para a largada (estragaria a gravação).</t>
+    <t id="rmsg.ghost_ativo">#00ff00Ghost ativo: #ffffff{nome} #aaaaaa({modo}, /stopghost para parar)</t>
+    <t id="rmsg.ghost_modo_sync">reinicia a cada warp</t>
+    <t id="rmsg.ghost_modo_loop">loop contínuo</t>
+    <t id="rmsg.ghost_trecho_ab">#8fd3ffTrecho A-B {a} → {b} (marcado no player do replay)</t>
+    <t id="rmsg.nenhum_ghost">#ffaa00Nenhum ghost ativo.</t>
+    <t id="rmsg.radar_uso">#ffaa00Use durante a reprodução de um replay.</t>
+    <!-- /radardebug (diagnóstico do minimapa durante o replay) -->
+    <t id="radar.linha">rz replay {rz} | carro som {som} ({estado}) | carro visível {visivel} | você {voce} | dentro: {dentro} | câmera: {camera}</t>
+    <t id="radar.congelado">CONGELADO</t>
+    <t id="radar.solto">solto</t>
+    <t id="radar.carro_visivel">carro visível</t>
+    <t id="radar.carro_som">carro do som</t>
+    <t id="radar.voce">você</t>
+    <t id="radar.matriz">matriz (flycam)</t>
+
+    <!-- Motivos de erro (aparecem no chat ou no rodapé da Galeria: sem códigos de cor) -->
+    <t id="rerro.cp_nenhum">Faça pelo menos um checkpoint (/sw) durante a gravação para salvar um rascunho.</t>
+    <t id="rerro.cp_fora_veiculo">O último checkpoint foi feito fora de um veículo: não dá para continuar dele.</t>
+    <t id="rerro.cp_poucos_frames">O último checkpoint não tem frames suficientes.</t>
+    <t id="rerro.vazio">replay vazio</t>
+    <t id="rerro.criar">não foi possível criar {arquivo}</t>
+    <t id="rerro.nome_vazio">nome vazio</t>
+    <t id="rerro.arquivo_invalido">arquivo inválido</t>
+    <t id="rerro.aguarde_envio">aguarde o envio para a Galeria Geral terminar</t>
+    <t id="rerro.nao_encontrado">arquivo não encontrado</t>
+    <t id="rerro.cabecalho">cabeçalho do replay não reconhecido</t>
+    <t id="rerro.gravar">não foi possível gravar {arquivo}</t>
+    <t id="rerro.finalize_gravacao">finalize a gravação atual (F10) antes de continuar um rascunho.</t>
+    <t id="rerro.decida_janela">decida a gravação anterior na janela SALVAR REPLAY primeiro.</t>
+    <t id="rerro.feche_replay">feche o replay aberto primeiro.</t>
+    <t id="rerro.nao_encontrado_arquivo">arquivo não encontrado: {arquivo}</t>
+    <t id="rerro.sem_estado">o arquivo não tem o estado de retomada (não é um rascunho válido).</t>
+    <t id="rerro.poucos_frames">o rascunho não tem frames suficientes.</t>
+    <t id="rerro.teleporte">o teleporte não chegou do servidor.</t>
+    <t id="rerro.juntar_poucos">a {parte} não tem frames válidos suficientes.</t>
+
+    <!-- =====================================================================
+         MENSAGENS DO SERVIDOR (server.lua, teleportes.lua, replay_s.lua), enviadas no
+         idioma escolhido por cada jogador.
+         ===================================================================== -->
+    <!-- /cv e /del -->
+    <t id="srv.cv_uso">#ff0000[Erro] #ffffffUse: /cv [Nome ou ID]</t>
+    <t id="srv.cv_invalido">#ff0000[Erro] #ffffffVeículo inválido.</t>
+    <t id="srv.cv_erro_criar">#ff0000[Erro] #ffffffNão foi possível criar o veículo.</t>
+    <t id="srv.cv_pronto">#00ff00[Stunt] #ffffff{veiculo} pronto!</t>
+    <t id="srv.del_removido">#00ff00[Stunt] #ffffffVeículo removido!</t>
+    <t id="srv.del_sem_veiculo">#ff0000[Erro] #ffffffVocê não está em um veículo.</t>
+    <!-- Saves e warps -->
+    <t id="srv.erro_veiculo_save">#ff0000[Erro] #ffffffNão foi possível criar o veículo do save.</t>
+    <t id="srv.save_pare">#ff0000[Save] #ffffffPare completamente o veículo no chão antes de salvar a posição!</t>
+    <t id="srv.save_ok">#00ff00[Stunt] #ffffffSalvo! Slot: #ffff00{n}/5</t>
+    <t id="srv.sem_save">#ff0000[Erro] #ffffffVocê não tem um save ativo.</t>
+    <t id="srv.del_ultimo">#00ff00[Stunt] #ffffffÚltimo save deletado! Restantes: #ffff00{n}/5</t>
+    <t id="srv.del_save">#00ff00[Stunt] #ffffffSave deletado!</t>
+    <t id="srv.historico_vazio">#ff0000[Erro] #ffffffHistórico vazio.</t>
+    <t id="srv.warp_aberto">#ffffff[Stunt] Seu warp agora está: #00ff00ABERTO</t>
+    <t id="srv.warp_fechado">#ffffff[Stunt] Seu warp agora está: #ff0000FECHADO</t>
+    <t id="srv.save_nao_encontrado">#ff0000[Erro] #ffffffSave não encontrado.</t>
+    <t id="srv.jogador_sem_save">#ff9900[Aviso] #ffffff{nome} ainda não possui um save (/sw). Use ASSISTIR (WATCH) para acompanhar.</t>
+    <t id="srv.save_privado">#ff0000[Erro] #ffffffEste jogador deixou o save privado.</t>
+    <t id="srv.save_proprio">#ff0000[Erro] #ffffffEsse já é o seu save.</t>
+    <t id="srv.save_copiado">#00ff00[Stunt] #ffffffSave de #ffff00{nome}#ffffff copiado para o seu slot!</t>
+    <!-- Slots fixos (/sw 1..5): o prefixo "[Erro]" é colocado pelo script, menos em slot_salvo -->
+    <t id="srv.slot_uso_sw">Use /sw (save normal) ou /sw 1 até /sw {max}.</t>
+    <t id="srv.slot_uso_lw">Use /lw (save normal) ou /lw 1 até /lw {max}.</t>
+    <t id="srv.slot_login_sw">Faça login na sua conta para usar os slots fixos (/sw 1..{max}).</t>
+    <t id="srv.slot_login_lw">Faça login na sua conta para usar os slots fixos (/lw 1..{max}).</t>
+    <t id="srv.slot_login">Faça login na sua conta para usar os slots fixos.</t>
+    <t id="srv.slot_vazio">O slot {slot} está vazio. Salve com /sw {slot}.</t>
+    <t id="srv.tas_slot_bloqueado">Durante a gravação do replay, use /lw (sem número): slots levariam para fora da linha do tempo.</t>
+    <t id="srv.slot_salvo">#00ff00[Stunt] #ffffffSalvo no slot fixo #ffff00{slot}#ffffff (permanente). Use #ffff00/lw {slot}</t>
+    <!-- Busca de jogador (/watch e /copiarsave) -->
+    <!-- Prefixo das mensagens de erro de slot e de busca de jogador / prefix for slot and player-search errors -->
+    <t id="srv.prefixo_erro">#ff0000[Erro]</t>
+    <t id="srv.busca_vazia">Informe o ID ou parte do nome do jogador.</t>
+    <t id="srv.busca_varios">Mais de um jogador encontrado ({nomes}). Seja mais específico ou use o ID.</t>
+    <t id="srv.busca_nenhum">Nenhum jogador online encontrado com "{termo}".</t>
+    <t id="srv.copiarsave_uso">#ff0000[Erro] #ffffffUse /copiarsave [id ou nome] (ou sem nada enquanto assiste com /watch).</t>
+    <!-- Modo espectador: o prefixo "[Watch]" é colocado pelo script, menos em watch_saia_antes_tp -->
+    <t id="srv.watch_saia_antes_tp">#ff9900[Watch] #ffffffSaia do modo espectador (/watch ou Backspace) antes de teleportar.</t>
+    <t id="srv.watch_saiu">Você saiu do modo espectador.</t>
+    <t id="srv.watch_uso">Use #ffff00/watch [id ou nome]#ffffff para assistir um jogador.</t>
+    <t id="srv.watch_offline">Esse jogador está offline.</t>
+    <t id="srv.watch_nao_encontrado">Jogador não encontrado.</t>
+    <t id="srv.watch_si_mesmo">Você não pode assistir a si mesmo.</t>
+    <t id="srv.watch_ja_assistindo">Você já está assistindo #ffff00{nome}#ffffff.</t>
+    <t id="srv.watch_morto">Você precisa estar vivo para usar o /watch.</t>
+    <t id="srv.watch_saia_replay">Saia do replay antes de assistir um jogador.</t>
+    <t id="srv.watch_alvo_replay">{nome} está assistindo um replay agora.</t>
+    <t id="srv.watch_alvo_assistindo">{nome} está assistindo outro jogador agora.</t>
+    <t id="srv.watch_alvo_privado">{nome} está com o warp #ff0000PRIVADO#ffffff: não é possível assistir.</t>
+    <t id="srv.watch_pare">Pare completamente o veículo antes de assistir outro jogador!</t>
+    <t id="srv.watch_inicio">Assistindo #ffff00{nome}#ffffff. #aaaaaa[Backspace] ou /watch para sair • /copiarsave copia o save dele.</t>
+    <t id="srv.watch_fim_saiu">O jogador assistido saiu do servidor.</t>
+    <t id="srv.watch_fim_assistindo">{nome} começou a assistir outro jogador.</t>
+    <t id="srv.watch_fim_replay">{nome} começou a assistir um replay.</t>
+    <t id="srv.watch_fim_privado">{nome} deixou o warp PRIVADO.</t>
+    <t id="srv.watch_cmd_bloqueado">Comando bloqueado no modo espectador. Use #ffff00/watch#ffffff ou #ffff00Backspace#ffffff para sair.</t>
+    <!-- Ghost e rascunho (largada) -->
+    <t id="srv.ghost_largada">#00ff00[Ghost] #ffffffVocê está na largada. Use #ffff00/lw#ffffff para voltar aqui a cada tentativa.</t>
+    <t id="srv.rascunho_largada">#ff3333[Replay] #ffffffRascunho carregado no último checkpoint. #ffff00Acelere#ffffff para continuar gravando.</t>
+    <!-- Galeria Geral: anúncio para todos e motivos de falha (sem códigos de cor) -->
+    <t id="srv.pub_anuncio">#ff3333[Replay] #ffffff{criador} publicou #ffff00{nome} #ffffffna Galeria Geral.</t>
+    <t id="srv.pub_indisponivel">galeria indisponível no servidor</t>
+    <t id="srv.pub_dados_invalidos">dados inválidos</t>
+    <t id="srv.pub_tamanho">tamanho inválido</t>
+    <t id="srv.pub_formato">formato de replay inválido</t>
+    <t id="srv.pub_rascunho">rascunhos não podem ser publicados</t>
+    <t id="srv.pub_cooldown">aguarde alguns segundos antes de publicar outro replay</t>
+    <t id="srv.pub_erro_arquivo">erro ao criar o arquivo no servidor</t>
+    <t id="srv.erro_banco">erro ao gravar no banco</t>
+    <t id="srv.replay_nao_encontrado">replay não encontrado</t>
+    <t id="srv.replay_nao_encontrado_servidor">replay não encontrado no servidor</t>
+    <t id="srv.so_criador_deletar">só o criador ou um moderador pode deletar</t>
+    <t id="srv.so_criador_renomear">só o criador ou um admin pode renomear</t>
+    <t id="srv.ren_aguarde">aguarde um instante</t>
+    <t id="srv.ren_nome_vazio">nome vazio</t>
+    <t id="srv.ren_erro_ler">erro ao ler o arquivo no servidor</t>
+    <t id="srv.ren_erro_gravar">erro ao gravar o arquivo no servidor</t>
+    <t id="srv.replay_cmd_bloqueado">#ff8800[Replay] #ffffffComando bloqueado enquanto você assiste um replay.</t>
+    <!-- /replaysync (equipe). O prefixo "[Replay]" é colocado pelo script, menos em sync_so_equipe -->
+    <t id="srv.sync_so_equipe">#ff3333[Replay] #ffffffSó a equipe pode usar /replaysync.</t>
+    <t id="srv.sync_nao_encontrado">#ff0000Arquivo não encontrado: #ffffff{arquivo}</t>
+    <t id="srv.sync_ja_existe">#ffaa00Esse arquivo já está na Galeria (#{id}).</t>
+    <t id="srv.sync_importado">#00ff00Importado como #{id}: #ffffff{arquivo}</t>
+    <t id="srv.sync_falha">#ff0000Não foi possível importar: #ffffff{erro}</t>
+    <t id="srv.sync_ok">#00ff00Sincronizado: #ffffff{importados} importado(s), {removidos} removido(s), {migrados} migrado(s).</t>
+    <t id="srv.sync_sem_listagem">#ffaa00(Este servidor não lista pastas: use /replaysync &lt;arquivo.csv&gt;.)</t>
+    <t id="srv.imp_tamanho">vazio ou grande demais</t>
+    <t id="srv.imp_formato">não é um CSV do gravador</t>
+    <t id="srv.imp_rascunho">é um rascunho (TAS)</t>
+    <t id="srv.replay_saves_restaurados">#ff3333[Replay] #ffffffSeus saves pessoais (/sw) de antes do replay foram restaurados.</t>
+    <!-- /sync (resync dos veículos depois do F6 do Map Editor) -->
+    <!-- Câmera de edição do Map Editor: /cv, /lw, TELEPORTAR, WATCH e replays saem dela antes -->
+    <t id="srv.editor_saindo">#ff9900[Editor] #ffffffVocê está na câmera de edição: saindo para o modo teste antes de continuar...</t>
+    <t id="editor.saindo">Você está na câmera de edição: saindo para o modo teste antes de continuar...</t>
+    <t id="editor.feche_janela">Feche a janela aberta do editor (Browse.../Properties) e aperte F6 para voltar ao teste.</t>
+    <!-- /fixdim (emergência da equipe): prefixo "[FixDim]" colocado pelo script -->
+    <t id="srv.fixdim_sem_permissao">Só a equipe (Admin / SuperModerator / Moderator) pode usar o /fixdim.</t>
+    <t id="srv.fixdim_ok">#ffff00{nome}#ffffff voltou para a dimensão #ffff00{dim}#ffffff (watch/replay encerrados).</t>
+    <t id="srv.fixdim_alvo">Um membro da equipe corrigiu a sua dimensão: agora você está na #ffff00{dim}#ffffff.</t>
+    <t id="srv.fixdim_watch">Modo espectador encerrado pela equipe (/fixdim).</t>
+    <t id="srv.fixdim_replay">Replay encerrado pela equipe (/fixdim).</t>
+
+    <!-- ===== PAINEL ADMIN: CONFIGURAÇÃO DO SAVE/WARP (config_warp_c.lua / config_warp_s.lua) ===== -->
+    <t id="cfgwarp.titulo">CONFIGURAÇÃO DO SAVE/WARP</t>
+    <t id="cfgwarp.btn">ADM</t>
+    <t id="cfgwarp.tip">Configuração do Save/Warp (Admin)</t>
+    <t id="cfgwarp.desc_abrir">Abre o painel de Admin: ajusta o /sw e o /lw ao vivo para todos os jogadores.</t>
+    <t id="cfgwarp.dica_padrao">Passe o mouse sobre uma opção para ver o que ela faz.</t>
+    <t id="cfgwarp.on">ON</t>
+    <t id="cfgwarp.off">OFF</t>
+    <t id="cfgwarp.salvar">SALVAR CONFIGURAÇÕES</t>
+    <t id="cfgwarp.restaurar">RESTAURAR PADRÕES</t>
+    <t id="cfgwarp.d_salvar">Grava em config_warp.json e aplica agora para todos os jogadores online.</t>
+    <t id="cfgwarp.d_restaurar">Volta tudo ao padrão (400 ms, velocidade ON, sem cooldown, 20 saves...) e aplica na hora.</t>
+    <t id="cfgwarp.l_assentamentoMs">Assentamento do /lw (ms)</t>
+    <t id="cfgwarp.l_cooldownLw">Cooldown do /lw (s)</t>
+    <t id="cfgwarp.l_maxSaves">Máx. de saves por jogador</t>
+    <t id="cfgwarp.l_salvarVelocidade">Restaurar velocidade</t>
+    <t id="cfgwarp.l_permitirCopiar">Permitir copiar warp</t>
+    <t id="cfgwarp.l_permitirAr">Permitir /sw no ar</t>
+    <t id="cfgwarp.l_repararLw">Reparar ao dar /lw</t>
+    <t id="cfgwarp.d_assentamentoMs">0 a 1500 ms (padrão 400): tempo parado no ponto antes de soltar o veículo e aplicar a velocidade. 0 = solta no mesmo frame.</t>
+    <t id="cfgwarp.d_cooldownLw">0 a 10 s (padrão 0): intervalo mínimo entre dois /lw do mesmo jogador. 0 = sem limite.</t>
+    <t id="cfgwarp.d_maxSaves">1 a 50 (padrão 20): quantos /sw cada jogador guarda no histórico (/dw volta um a um).</t>
+    <t id="cfgwarp.d_salvarVelocidade">ON: o /lw devolve a velocidade linear e angular do save. OFF: só posição e rotação, parado.</t>
+    <t id="cfgwarp.d_permitirCopiar">ON: libera o COPIAR SAVE do F7 e o /copiarsave (/cwarp). OFF: bloqueia para todos.</t>
+    <t id="cfgwarp.d_permitirAr">ON: salva em qualquer posição. OFF: o jogador só salva com o veículo tocando o chão (equipe não é afetada).</t>
+    <t id="cfgwarp.d_repararLw">ON: o /lw conserta o veículo se ele estiver avariado. OFF: mantém a lataria como está.</t>
+    <t id="cfgwarp.l_editorVoltaPonto">Editor (F6): voltar ao ponto anterior</t>
+    <t id="cfgwarp.d_editorVoltaPonto">ON: ao sair do editor (F6) o jogador e o veículo voltam ao ponto de antes de editar. OFF: vão para onde a câmera do editor estava (estilo freecam H).</t>
+    <t id="toast.save">Salvo! Slot: #ff9900{n}/{max}</t>
+    <t id="toast.del">Último save deletado! Restantes: #ff9900{n}/{max}</t>
+    <t id="toast.copy">Save do replay copiado para o /lw! Slot: #ff9900{n}/{max}</t>
+    <t id="cfgwarp.msg_cooldown">#ff0000Aguarde #ffffff{s}s #ff0000para usar o /lw de novo.</t>
+    <t id="srv.cfgwarp_sem_permissao">#ff0000Sem permissão: só Admin altera as configurações do Save/Warp.</t>
+    <t id="srv.cfgwarp_salvo">#00ff00Configurações do Save/Warp salvas e aplicadas para todos os jogadores.</t>
+    <t id="srv.cfgwarp_restaurado">#00ff00Configurações do Save/Warp restauradas aos padrões e aplicadas para todos.</t>
+    <t id="srv.cfgwarp_cooldown">#ff0000Aguarde #ffffff{s}s #ff0000para usar o /lw de novo.</t>
+    <t id="srv.cfgwarp_copia_off">#ff0000Copiar warp está desativado neste servidor.</t>
+    <t id="srv.cfgwarp_save_ar">#ff0000Neste servidor só é possível salvar com o veículo no chão (não no ar ou em queda).</t>
+    <!-- ============ AUTO-UPDATE (updater_s.lua) ============ -->
+    <t id="upd.selo_nova">Nova versão disponível</t>
+    <t id="upd.nova_disponivel">#FF9900[{nome}] #FFFFFFNova versão disponível: #FFCC00v{nova} #AAAAAA(instalada: v{atual})</t>
+    <t id="upd.changelog">#AAAAAAAlterações: #FFFFFF{texto}</t>
+    <t id="upd.como_atualizar">#AAAAAAUse #FFFFFF/{cmd} #AAAAAApara atualizar ou baixe manualmente em #8FD3FF{url}</t>
+    <t id="upd.sem_admin">#FF6969Apenas Admins (ACL Admin) podem atualizar.</t>
+    <t id="upd.ocupado">#FFAA00Já existe uma verificação/atualização em andamento.</t>
+    <t id="upd.atualizado">#00FF00Você já está na versão mais recente (v{atual}).</t>
+    <t id="upd.falha_checar">#FFAA00Não foi possível consultar o GitHub agora (sem internet, GitHub fora ou sem a permissão function.fetchRemote).</t>
+    <t id="upd.manifesto_invalido">#FF6969O manifesto da versão está inválido. Nada foi alterado.</t>
+    <t id="upd.baixando">#8FD3FFBaixando v{nova} ({n} arquivos)...</t>
+    <t id="upd.erro_download">#FF6969Falha ao baixar {arquivo}. Nada foi alterado.</t>
+    <t id="upd.erro_backup">#FF6969Não foi possível criar o backup. Nada foi alterado.</t>
+    <t id="upd.erro_gravar">#FF6969Falha ao gravar {arquivo}. O backup foi restaurado.</t>
+    <t id="upd.sucesso">#00FF00[{nome}] Atualizado para v{nova}! Backup em {pasta}. Reiniciando o resource...</t>
+    <t id="upd.reinicie">#FFAA00Reinicie manualmente com /restart {recurso}.</t>
+</lang>
